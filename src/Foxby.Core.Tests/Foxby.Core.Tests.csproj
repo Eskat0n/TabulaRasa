@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C25FFBAC-8F07-491D-B14F-7AB1EEF6DAEE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foxby.Core.Tests</RootNamespace>
+    <AssemblyName>Foxby.Core.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\tests\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\tests\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\..\lib\Moq\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xunit">
+      <HintPath>..\..\lib\xUnit\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.extensions">
+      <HintPath>..\..\lib\xUnit\xunit.extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DocumentBuilder\DocumentPlaceholderTests.cs" />
+    <Compile Include="DocumentBuilder\DocumentTagTests.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBuilderTests.cs" />
+    <Compile Include="DocumentBuilder\Extensions\OpenXmlElementExtensionsTests.cs" />
+    <Compile Include="EqualityComparers\DocxDocumentEqualityComparer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foxby.Core\Foxby.Core.csproj">
+      <Project>{8826F774-A0F0-46BC-8089-90F947485ECE}</Project>
+      <Name>Foxby.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ApprovalEntryInTheNonProfitOrganizationDocument.docx" />
+    <None Include="Resources\Broken.docx" />
+    <None Include="Resources\DocumentWithAddedParagraph.docx" />
+    <None Include="Resources\DocumentWithAttribute.docx" />
+    <None Include="Resources\DocumentWithoutAttributes.docx" />
+    <None Include="Resources\DocumentWithoutParagraph.docx" />
+    <None Include="Resources\DocumentWithParagraph.docx" />
+    <None Include="Resources\DocumentWithReplacedTitle.docx" />
+    <None Include="Resources\DocumentWithTitle.docx" />
+    <None Include="Resources\DocumentWithTwoAttributes.docx" />
+    <None Include="Resources\EmptyTemplate.docx" />
+    <None Include="Resources\InvalidDocument.docx" />
+    <None Include="Resources\Protected.docx" />
+    <None Include="Resources\TableWithFormattedCells.docx" />
+    <None Include="Resources\Unprotected.docx" />
+    <None Include="Resources\WithCellWithPlaceholder.docx" />
+    <None Include="Resources\WithDifferentlyFormattedTextInPlaceholder.docx" />
+    <None Include="Resources\WithDifferentlyFormattedTextInTag.docx" />
+    <None Include="Resources\WithIndentedOrderedListInserted.docx" />
+    <None Include="Resources\WithMainContentAndNewTag.docx" />
+    <None Include="Resources\WithMainContentAndThreeEmptyLines.docx" />
+    <None Include="Resources\WithMainContentInserted.docx" />
+    <None Include="Resources\WithMainContentInsertedJustifiedParagraphs.docx" />
+    <None Include="Resources\WithMainContentInsertedMultilineParagraph.docx" />
+    <None Include="Resources\WithMainContentInsertedOrderedList.docx" />
+    <None Include="Resources\WithMainContentInsertedTextWithSpaces.docx" />
+    <None Include="Resources\WithMainContentInsertedTwoParagraphs.docx" />
+    <None Include="Resources\WithMainContentSingleTag.docx" />
+    <None Include="Resources\WithMainContentTag.docx" />
+    <None Include="Resources\WithMainContentTwoDifferentParagraphs.docx" />
+    <None Include="Resources\WithManyPlaceholders.docx" />
+    <None Include="Resources\WithManyPlaceholdersInsertedContent.docx" />
+    <None Include="Resources\WithManyTags.docx" />
+    <None Include="Resources\WithManyTagsInsertedParagraph.docx" />
+    <None Include="Resources\WithOrderedListWithParagraphs.docx" />
+    <None Include="Resources\WithPlaceholderInPlaceholder.docx" />
+    <None Include="Resources\WithPlaceholderInsertedContentInserted.docx" />
+    <None Include="Resources\WithPlaceholderInsertedInParagraph.docx" />
+    <None Include="Resources\WithPlaceholderReplacedWithText.docx" />
+    <None Include="Resources\WithPlaceholdersDenormalized.docx" />
+    <None Include="Resources\WithPlaceholdersNormalized.docx" />
+    <None Include="Resources\WithTableInsert.docx" />
+    <None Include="Resources\WithTableWithMultilineCells.docx" />
+    <None Include="Resources\WithTableWithoutBordersInsert.docx" />
+    <None Include="Resources\WithTitlePlaceholder.docx" />
+    <None Include="Resources\WithTitlePlaceholderRemoved.docx" />
+    <None Include="Resources\WithTitlePlaceholderReplaced.docx" />
+    <None Include="Resources\WithTwoIndependentOrderedListsInserted.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

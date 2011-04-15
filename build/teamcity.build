@@ -1,0 +1,74 @@
+﻿<?xml version="1.0"?>
+<project name="Build IndyCode.Foxby project" default="help">
+	
+	<!-- environment -->
+	<property name="path.base" value="${project::get-base-directory()}" />
+	<property name="path.root" value="${path.base}\.." />
+	<property name="path.src" value="${path.root}\src" />
+	<property name="path.lib" value="${path.root}\lib" />
+	<property name="path.tests" value="${path.root}\tests" />
+
+	<property name="build.asminfo" value="GlobalAssemblyInfo.cs" />
+	<property name="solution.filename" value="Foxby.sln" />
+	<property name="xunit.console.exe" value="d:\Configuration\Tools\XUnit\xunit.console.clr4.exe" />
+
+	<property name="build.config" value="Release" dynamic="true" />
+	<property name="build.platform" value="Any CPU"/>
+
+	<property name="version" value="1.0.0.0" dynamic="true" />
+	<property name="version.major" value="${version::get-major(version::parse(version))}" dynamic="true" />
+	<property name="version.minor" value="${version::get-minor(version::parse(version))}" dynamic="true" />
+	<property name="version.revision" value="${build.number}" dynamic="true" />
+	<property name="build.version" value="${version.major}.${version.minor}.${version.revision}.0" dynamic="true" />
+	
+	<!-- entry point -->
+	<target name="go" depends="create-assembly-info, build, test" />
+
+	<target name="create-assembly-info">
+		<asminfo output="${path.root}\${build.asminfo}" language="CSharp">
+			<imports>
+				<import namespace="System" />
+				<import namespace="System.Reflection" />
+				<import namespace="System.Runtime.InteropServices" />
+			</imports>
+			<attributes>
+				<attribute type="AssemblyProductAttribute" value="Foxby" />
+				<attribute type="AssemblyCompanyAttribute" value="IndyCode" />
+				<attribute type="AssemblyCopyrightAttribute" value="Copyright © IndyCode 2011" />
+				<attribute type="AssemblyVersionAttribute" value="${build.version}" />
+				<attribute type="ComVisibleAttribute" value="false" />
+			</attributes>
+		</asminfo>
+	</target>
+	
+	<target name="build">
+		<msbuild project="${path.root}\${solution.filename}">
+			<property name="Configuration" value="${build.config}" />
+			<property name="Platform" value="${build.platform}" />
+		</msbuild>
+	</target>
+	
+	<target name="test">
+		<foreach item="File" property="filename">
+			<in>
+				<items basedir="${path.tests}">
+					<include name="*Tests.dll" />
+				</items>
+			</in>
+			<do>
+				<echo message="${filename}" />
+				<exec program="${xunit.console.exe}">
+					<arg value="${filename}" />
+					<arg value="/html &quot;failed-tests.html&quot;" />
+				</exec>
+			</do>
+		</foreach>
+		<delete file="_xunit.xml" failonerror="false" />
+		<delete file="failed-tests.html" failonerror="false" />
+		
+	</target>
+
+	<target name="help">
+		<echo message="Don't run it directly" />
+	</target>
+</project>

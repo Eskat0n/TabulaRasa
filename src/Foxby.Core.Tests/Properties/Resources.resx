@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ApprovalEntryInTheNonProfitOrganizationDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\approvalentryinthenonprofitorganizationdocument.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Broken" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\broken.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithAddedParagraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithaddedparagraph.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithAttribute" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithattribute.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithoutAttributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithoutattributes.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithoutParagraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithoutparagraph.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithParagraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithparagraph.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithReplacedTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithreplacedtitle.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithtitle.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithTwoAttributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithtwoattributes.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EmptyTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\emptytemplate.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="InvalidDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\invaliddocument.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Protected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\protected.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TableWithFormattedCells" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tablewithformattedcells.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Unprotected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\unprotected.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithCellWithPlaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withcellwithplaceholder.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithDifferentlyFormattedTextInPlaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withdifferentlyformattedtextinplaceholder.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithDifferentlyFormattedTextInTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withdifferentlyformattedtextintag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithIndentedOrderedListInserted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withindentedorderedlistinserted.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentAndNewTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentandnewtag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentAndThreeEmptyLines" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentandthreeemptylines.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentInserted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentinserted.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentInsertedJustifiedParagraphs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentinsertedjustifiedparagraphs.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentInsertedMultilineParagraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentinsertedmultilineparagraph.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentInsertedOrderedList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentinsertedorderedlist.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentInsertedTextWithSpaces" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentinsertedtextwithspaces.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentInsertedTwoParagraphs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentinsertedtwoparagraphs.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentSingleTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontentsingletag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontenttag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithMainContentTwoDifferentParagraphs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmaincontenttwodifferentparagraphs.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithManyPlaceholders" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmanyplaceholders.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithManyPlaceholdersInsertedContent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmanyplaceholdersinsertedcontent.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithManyTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmanytags.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithManyTagsInsertedParagraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withmanytagsinsertedparagraph.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithOrderedListWithParagraphs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withorderedlistwithparagraphs.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithPlaceholderInPlaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withplaceholderinplaceholder.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithPlaceholderInsertedContentInserted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withplaceholderinsertedcontentinserted.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithPlaceholderInsertedInParagraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withplaceholderinsertedinparagraph.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithPlaceholderReplacedWithText" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withplaceholderreplacedwithtext.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithPlaceholdersDenormalized" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withplaceholdersdenormalized.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithPlaceholdersNormalized" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withplaceholdersnormalized.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithTableInsert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withtableinsert.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithTableWithMultilineCells" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withtablewithmultilinecells.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithTableWithoutBordersInsert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withtablewithoutbordersinsert.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithTitlePlaceholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withtitleplaceholder.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithTitlePlaceholderRemoved" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withtitleplaceholderremoved.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithTitlePlaceholderReplaced" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withtitleplaceholderreplaced.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WithTwoIndependentOrderedListsInserted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\withtwoindependentorderedlistsinserted.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

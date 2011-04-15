@@ -1,0 +1,8 @@
+glob:bin
+glob:obj
+glob:_ReSharper.*
+glob:build/**/*
+glob:tests/*
+glob:*.user
+glob:*.suo
+syntax: glob
