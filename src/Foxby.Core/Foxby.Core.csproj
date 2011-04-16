@@ -72,6 +72,7 @@
     <Compile Include="IDocumentTagContextBuilder.cs" />
     <Compile Include="MetaObjects\Extensions\StringFormatExtensions.cs" />
     <Compile Include="MetaObjects\Format.cs" />
+    <Compile Include="MetaObjects\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

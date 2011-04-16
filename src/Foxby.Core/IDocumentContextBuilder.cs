@@ -13,5 +13,7 @@ namespace Foxby.Core
 		IDocumentContextBuilder Placeholder(string placeholderName, params string[] contentLines);
 
 		IDocumentContextBuilder AddText(params string[] contentLines);
+
+        IDocumentContextBuilder Image(byte[] content, string contentType);
 	}
 }
