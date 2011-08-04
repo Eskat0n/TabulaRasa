@@ -17,7 +17,7 @@ namespace Foxby.Core.DocumentBuilder
 				.OfType<NumberingProperties>()
 				.Select(x => x.NumberingId.Val);
 
-			numberingId = numberingProperties.Count() == 0
+			numberingId = numberingProperties.Any() == false
 			              	? 1
 			              	: (numberingProperties.Max(x => x.Value) + 1);
 		}

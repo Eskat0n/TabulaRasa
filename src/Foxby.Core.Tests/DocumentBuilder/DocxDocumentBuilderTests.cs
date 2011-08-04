@@ -10,13 +10,19 @@ namespace Foxby.Core.Tests.DocumentBuilder
 {
 	public class DocxDocumentBuilderTests
 	{
+	    private static DocxDocumentBuilder CreateBuilder(DocxDocument document)
+	    {
+
+            return new DocxDocumentBuilder(document, new VisibilityTags("Black_White_Template", new[] { "sg", "fg" }));
+	    }
+
 		[Fact]
 		public void GoingToTagCleansItsEntireContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentTag))
 			using (var document = new DocxDocument(Resources.WithMainContentInserted))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder.Tag("MAIN_CONTENT", x => { });
 
@@ -30,7 +36,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedTwoParagraphs))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -49,7 +55,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentTwoDifferentParagraphs))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -67,7 +73,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedMultilineParagraph))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -85,7 +91,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentAndNewTag))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -107,7 +113,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentAndNewTag))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -131,7 +137,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithTitlePlaceholderReplaced))
 			using (var document = new DocxDocument(Resources.WithTitlePlaceholder))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Placeholder("TITLE", x => x.Text("Заголовок"));
@@ -146,7 +152,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentAndThreeEmptyLines))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -168,7 +174,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentTag))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(expected);
+                var builder = CreateBuilder(expected);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -176,7 +182,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 					          	.EmptyLine()
 					          	.EmptyLine());
 
-				builder = DocxDocumentBuilder.Create(document);
+                builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -192,7 +198,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedOrderedList))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -211,7 +217,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedJustifiedParagraphs))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -230,7 +236,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithPlaceholderInsertedInParagraph))
 			using (var document = new DocxDocument(Resources.WithTitlePlaceholder))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT",
@@ -249,7 +255,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithPlaceholderInsertedContentInserted))
 			using (var document = new DocxDocument(Resources.WithPlaceholderInsertedInParagraph))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Placeholder("SIMPLE",
@@ -265,7 +271,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithPlaceholderInPlaceholder))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.Paragraph(z => z.Text("Справа плейсхолдер\r\n")
@@ -284,7 +290,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithTitlePlaceholderRemoved))
 			using (var document = new DocxDocument(Resources.WithTitlePlaceholder))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Placeholder("TITLE", x => x.Text("Замененный текст"), false);
@@ -299,7 +305,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.TableWithFormattedCells))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder.Tag("MAIN_CONTENT", x => x.Table(y => y.Column("Наименование")
 				                                              	.Column("Адрес"),
@@ -316,7 +322,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithCellWithPlaceholder))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder.Tag("MAIN_CONTENT", x => x.Table(y => y.Column("Наименование")
 				                                              	.Column("Адрес"),
@@ -332,7 +338,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithTableInsert))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder.Tag("MAIN_CONTENT", x => x.Table(y => y.Column("Наименование")
 				                                              	.Column("Адрес"),
@@ -349,7 +355,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithTableWithoutBordersInsert))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder.Tag("MAIN_CONTENT", x => x.BorderNone.Table(y => y.Column("Наименование")
 				                                                         	.Column("Адрес"),
@@ -367,7 +373,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithManyTagsInsertedParagraph))
 			using (var document = new DocxDocument(Resources.WithManyTags))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("SUB", x => x.Paragraph("Параграф во всех тегах"));
@@ -382,7 +388,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithManyPlaceholdersInsertedContent))
 			using (var document = new DocxDocument(Resources.WithManyPlaceholders))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Placeholder("INNER", x => x.Text("Вставленный контент "));
@@ -397,7 +403,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentTag))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("NON_EXISTING", x => x.Paragraph("Тест")
@@ -418,7 +424,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithTitlePlaceholder))
 			using (var document = new DocxDocument(Resources.WithTitlePlaceholder))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Placeholder("NON_EXISTING", x => x.EditableStart()
@@ -437,7 +443,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedTextWithSpaces))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.Paragraph(z => z.Text("Слово1").Text(" Слово2 ").Text(" Слово3")));
@@ -452,7 +458,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithOrderedListWithParagraphs))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.OrderedList(z => z.Item(y => y.Text("Первый элемент списка").Text(" с пробелом"))
@@ -469,7 +475,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithPlaceholdersNormalized))
 			using (var document = new DocxDocument(Resources.WithPlaceholdersDenormalized))
 			{
-				DocxDocumentBuilder.Create(document);
+                CreateBuilder(document);
 
 				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
 			}
@@ -481,7 +487,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithDifferentlyFormattedTextInTag))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.Paragraph(z => z.Bold.Text("Жирный ")
@@ -499,7 +505,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithDifferentlyFormattedTextInTag))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.Paragraph("Жирный ".Bold() + "Курсив ".Italic() + "Подчеркнутый ".Underlined() + "Нормальный"));
@@ -514,7 +520,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithDifferentlyFormattedTextInPlaceholder))
 			using (var document = new DocxDocument(Resources.WithManyPlaceholders))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Placeholder("INNER", x => x.Bold.Text("Жирный ")
@@ -532,7 +538,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithTableWithMultilineCells))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.Table(z => z.Column("Первая").Column("Вторая"),
@@ -549,7 +555,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithIndentedOrderedListInserted))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.EditableStart()
@@ -566,7 +572,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			using (var expected = new DocxDocument(Resources.WithTwoIndependentOrderedListsInserted))
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				builder
 					.Tag("MAIN_CONTENT", x => x.EditableStart()
@@ -583,7 +589,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 		{
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				Assert.True(builder.Validate());
 			}
@@ -594,13 +600,13 @@ namespace Foxby.Core.Tests.DocumentBuilder
 		{
 			using (var document = new DocxDocument(Resources.InvalidDocument))
 			{
-				var builder = DocxDocumentBuilder.Create(document);
+				var builder = CreateBuilder(document);
 
 				Assert.False(builder.Validate());
 			}
 		}
 
-		private static void SaveDocxFile(DocxDocument document, string fileName)
+	    private static void SaveDocxFile(DocxDocument document, string fileName)
 		{
 			File.WriteAllBytes(string.Format(@"D:\{0}.docx", fileName), document.ToArray());
 		}

@@ -6,6 +6,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Foxby.Core.DocumentBuilder.Anchors;
 using Foxby.Core.DocumentBuilder.Extensions;
+using Format = Foxby.Core.MetaObjects.Format;
 
 namespace Foxby.Core.DocumentBuilder
 {
@@ -77,7 +78,7 @@ namespace Foxby.Core.DocumentBuilder
 			return Paragraph(x => x.AddText(contentLines));
 		}
 
-        public IDocumentTagContextBuilder Paragraph(MetaObjects.Format content)
+        public IDocumentTagContextBuilder Paragraph(Format content)
 		{
 			return Paragraph(content.Invoke);
 		}

@@ -11,19 +11,21 @@ using Foxby.Core.MetaObjects;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	public sealed class DocxDocumentBuilder : DocxDocumentBuilderBase, IDocumentBuilder
+	public class DocxDocumentBuilder : DocxDocumentBuilderBase, IDocumentBuilder
 	{
 		private readonly DocxDocument docxDocument;
+        private readonly VisibilityTags theme;
 
-		private DocxDocumentBuilder(DocxDocument docxDocument)
+	    public DocxDocumentBuilder(DocxDocument docxDocument, VisibilityTags theme = null)
 			: base(docxDocument.GetWordDocument())
 		{
 			this.docxDocument = docxDocument;
+            this.theme = theme;
 
 			MergeVanishedRuns();
 		}
 
-		public static IDocumentBuilder Create(DocxDocument docxDocument)
+        public static IDocumentBuilder Create(DocxDocument docxDocument)
 		{
 			return new DocxDocumentBuilder(docxDocument);
 		}
@@ -42,14 +44,18 @@ namespace Foxby.Core.DocumentBuilder
 				ClearBetweenElements(documentPlaceholder.Opening, documentPlaceholder.Closing);
 			SaveDocument();
 
-			var placeholderContextBuilder = new DocxDocumentPlaceholderContextBuilder(Document, documentPlaceholders.Count() == 0
-			                                                                                    	? new RunProperties()
-			                                                                                    	: documentPlaceholders.First().Opening.RunProperties);
-			options(placeholderContextBuilder);
+
+
+
+
 
 			foreach (var documentPlaceholder in documentPlaceholders)
 			{
-				foreach (var contentElement in placeholderContextBuilder.AggregatedContent)
+                var builder = new DocxDocumentPlaceholderContextBuilder(Document, !documentPlaceholders.Any()
+                                                                                                    ? new RunProperties()
+                                                                                                    : documentPlaceholder.Opening.RunProperties);
+                options(builder);
+                foreach (var contentElement in builder.AggregatedContent)
 					documentPlaceholder.Closing.InsertBeforeSelf(contentElement.CloneElement());
 				if (isUpdatable == false)
 					documentPlaceholder.Remove();
@@ -59,14 +65,21 @@ namespace Foxby.Core.DocumentBuilder
 			return this;
 		}
 
+        public void SetVisibilityTag(string tagName, bool visible)
+        {
+            docxDocument.SetVisibilityTag(tagName, visible);
+        }
+
 	    public bool Validate()
 	    {
 	        var errorInfos = new OpenXmlValidator(FileFormatVersions.Office2007).Validate(Document);
-	        return errorInfos.Count() == 0;
+	        return !errorInfos.Any();
 	    }
 
 	    public byte[] ToArray()
 		{
+            if (theme != null)
+                docxDocument.UseTheme(theme);
 			return docxDocument.ToArray();
 		}
 
@@ -77,7 +90,7 @@ namespace Foxby.Core.DocumentBuilder
 
 			var vanishedNeighbours = new List<List<Run>>();
 			foreach (var vanishedRun in vanishedRuns)
-				if (vanishedNeighbours.Count == 0 || vanishedNeighbours.Last().Last().NextSibling<Run>() != vanishedRun)
+				if (!vanishedNeighbours.Any() || vanishedNeighbours.Last().Last().NextSibling<Run>() != vanishedRun)
 					vanishedNeighbours.Add(new List<Run> {vanishedRun});
 				else
 					vanishedNeighbours.Last().Add(vanishedRun);

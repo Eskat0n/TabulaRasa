@@ -69,7 +69,7 @@ namespace Foxby.Core.DocumentBuilder
 
 		protected static void ClearBetweenElements(OpenXmlElement start, OpenXmlElement end)
 		{
-			while (start.NextSibling() != end)
+            while (start.NextSibling() != end && start.NextSibling() != end)
 				start.NextSibling().Remove();
 		}
 

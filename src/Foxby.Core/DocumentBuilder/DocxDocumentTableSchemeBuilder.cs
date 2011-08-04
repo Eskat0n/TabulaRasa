@@ -78,13 +78,13 @@ namespace Foxby.Core.DocumentBuilder
 			return x => x.AddText(text);
 		}
 
-        private void AddCell(TableRow row, Action<ICellContextBuilder> options)
+        private void AddCell(OpenXmlCompositeElement row, Action<ICellContextBuilder> options)
         {
             var tableCellProperties = new TableCellProperties(new TableCellWidth { Type = TableWidthUnitValues.Auto });
             AddCell(row, options, tableCellProperties);
         }
 
-		private void AddCell(TableRow row, Action<ICellContextBuilder> options, TableCellProperties cellProperties)
+        private void AddCell(OpenXmlCompositeElement row, Action<ICellContextBuilder> options, TableCellProperties cellProperties)
 		{
 			var builder = new DocxDocumentCellContextBuilder(Document, cellProperties);
 

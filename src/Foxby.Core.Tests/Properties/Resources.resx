@@ -121,9 +121,6 @@
   <data name="ApprovalEntryInTheNonProfitOrganizationDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\approvalentryinthenonprofitorganizationdocument.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Broken" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\broken.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="DocumentWithAddedParagraph" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\documentwithaddedparagraph.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -261,5 +258,20 @@
   </data>
   <data name="WithTwoIndependentOrderedListsInserted" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\withtwoindependentorderedlistsinserted.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithVisibilityContentInTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithvisibilitycontentintag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithHideContentInTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithhidecontentintag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithHideContentInPlaceholderInTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithhidecontentinplaceholderintag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithVisibilityContentInPlaceholderInTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithvisibilitycontentinplaceholderintag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithContentTypeTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documentwithcontenttypetag.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
