@@ -12,8 +12,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 	{
 	    private static DocxDocumentBuilder CreateBuilder(DocxDocument document)
 	    {
-
-            return new DocxDocumentBuilder(document, new VisibilityTags("Black_White_Template", new[] { "sg", "fg" }));
+            return new DocxDocumentBuilder(document, new TagVisibilityOptions("Black_White_Template", new[] { "sg", "fg" }));
 	    }
 
 		[Fact]

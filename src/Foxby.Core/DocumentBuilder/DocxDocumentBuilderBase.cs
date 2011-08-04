@@ -8,6 +8,9 @@ using Foxby.Core.DocumentBuilder.Extensions;
 
 namespace Foxby.Core.DocumentBuilder
 {
+	/// <summary>
+	/// Contains common operations for working OpenXML tree
+	/// </summary>
 	public abstract class DocxDocumentBuilderBase
 	{
 		protected readonly WordprocessingDocument Document;

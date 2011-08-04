@@ -11,20 +11,32 @@ using Foxby.Core.MetaObjects;
 
 namespace Foxby.Core.DocumentBuilder
 {
+	/// <summary>
+	/// Operates with content of tags and placeholders in OpenXML template
+	/// </summary>
 	public class DocxDocumentBuilder : DocxDocumentBuilderBase, IDocumentBuilder
 	{
 		private readonly DocxDocument docxDocument;
-        private readonly VisibilityTags theme;
+        private readonly TagVisibilityOptions tagVisibilityOptions;
 
-	    public DocxDocumentBuilder(DocxDocument docxDocument, VisibilityTags theme = null)
+		/// <summary>
+		/// Create builder for template
+		/// </summary>
+		/// <param name="docxDocument">Template document</param>
+		/// <param name="tagVisibilityOptions">List of tags for show and hide</param>
+	    public DocxDocumentBuilder(DocxDocument docxDocument, TagVisibilityOptions tagVisibilityOptions = null)
 			: base(docxDocument.GetWordDocument())
 		{
 			this.docxDocument = docxDocument;
-            this.theme = theme;
+            this.tagVisibilityOptions = tagVisibilityOptions;
 
 			MergeVanishedRuns();
 		}
 
+		/// <summary>
+		/// Factory method
+		/// </summary>
+		/// <param name="docxDocument">Template document</param>
         public static IDocumentBuilder Create(DocxDocument docxDocument)
 		{
 			return new DocxDocumentBuilder(docxDocument);
@@ -78,8 +90,8 @@ namespace Foxby.Core.DocumentBuilder
 
 	    public byte[] ToArray()
 		{
-            if (theme != null)
-                docxDocument.UseTheme(theme);
+            if (tagVisibilityOptions != null)
+                docxDocument.UseTheme(tagVisibilityOptions);
 			return docxDocument.ToArray();
 		}
 

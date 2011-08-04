@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\build\Debug\Foxby.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -64,7 +65,7 @@
     <Compile Include="DocumentBuilder\DocxDocumentTableSchemeBuilder.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentTagContextBuilder.cs" />
     <Compile Include="DocumentBuilder\Extensions\OpenXmlElementExtensions.cs" />
-    <Compile Include="DocumentBuilder\VisibilityTags.cs" />
+    <Compile Include="DocumentBuilder\TagVisibilityOptions.cs" />
     <Compile Include="IXlsxCell.cs" />
     <Compile Include="IXlsxCellOption.cs" />
     <Compile Include="IXlsxContent.cs" />

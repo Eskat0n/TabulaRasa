@@ -35,11 +35,11 @@ namespace Foxby.Core.MetaObjects
 			}
 		}
 
-        public void UseTheme(VisibilityTags theme)
+        public void UseTheme(TagVisibilityOptions theme)
         {
-            SetVisibilityTag(theme.UsingTagName, true);
+            SetVisibilityTag(theme.VisibleTagName, true);
 
-            foreach (var notUsingTagName in theme.NotUsingTagNames)
+            foreach (var notUsingTagName in theme.HiddenTagNames)
                 SetVisibilityTag(notUsingTagName, false);
         }
 
