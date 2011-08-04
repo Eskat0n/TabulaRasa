@@ -60,10 +60,37 @@ namespace Foxby.Core {
             }
         }
         
-        public static byte[] Empty {
+        /// <summary>
+        ///   Looks up a localized string similar to CONTENT.
+        /// </summary>
+        public static string ContentTagName {
             get {
-                object obj = ResourceManager.GetObject("Empty", resourceCulture);
+                return ResourceManager.GetString("ContentTagName", resourceCulture);
+            }
+        }
+        
+        public static byte[] EmptyWordFile {
+            get {
+                object obj = ResourceManager.GetObject("EmptyWordFile", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FOOTER.
+        /// </summary>
+        public static string FooterTagName {
+            get {
+                return ResourceManager.GetString("FooterTagName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HEADER.
+        /// </summary>
+        public static string HeaderTagName {
+            get {
+                return ResourceManager.GetString("HeaderTagName", resourceCulture);
             }
         }
     }
