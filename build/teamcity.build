@@ -7,6 +7,7 @@
 	<property name="path.src" value="${path.root}\src" />
 	<property name="path.lib" value="${path.root}\lib" />
 	<property name="path.tests" value="${path.root}\tests" />
+	<property name="path.solution-items" value="${path.src}\Solution Items" />
 
 	<property name="build.asminfo" value="GlobalAssemblyInfo.cs" />
 	<property name="solution.filename" value="Foxby.sln" />
@@ -15,7 +16,7 @@
 	<property name="build.config" value="Release" dynamic="true" />
 	<property name="build.platform" value="Any CPU"/>
 
-	<property name="version" value="1.0.0.0" dynamic="true" />
+	<property name="version" value="1.1.0.0" dynamic="true" />
 	<property name="version.major" value="${version::get-major(version::parse(version))}" dynamic="true" />
 	<property name="version.minor" value="${version::get-minor(version::parse(version))}" dynamic="true" />
 	<property name="version.revision" value="${build.number}" dynamic="true" />
@@ -25,7 +26,7 @@
 	<target name="go" depends="create-assembly-info, build, test" />
 
 	<target name="create-assembly-info">
-		<asminfo output="${path.root}\${build.asminfo}" language="CSharp">
+		<asminfo output="${path.solution-items}\${build.asminfo}" language="CSharp">
 			<imports>
 				<import namespace="System" />
 				<import namespace="System.Reflection" />
@@ -34,7 +35,7 @@
 			<attributes>
 				<attribute type="AssemblyProductAttribute" value="Foxby" />
 				<attribute type="AssemblyCompanyAttribute" value="IndyCode" />
-				<attribute type="AssemblyCopyrightAttribute" value="Copyright © IndyCode 2011" />
+				<attribute type="AssemblyCopyrightAttribute" value="Copyright © IndyCode" />
 				<attribute type="AssemblyVersionAttribute" value="${build.version}" />
 				<attribute type="ComVisibleAttribute" value="false" />
 			</attributes>
