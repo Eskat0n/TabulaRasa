@@ -92,25 +92,20 @@
     <Compile Include="MetaObjects\TagReplacer.cs" />
     <Compile Include="MetaObjects\TextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Templates1.Designer.cs">
+    <Compile Include="SimpleTemplate.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Templates.resx</DependentUpon>
+      <DependentUpon>SimpleTemplate.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Templates.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Templates.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Templates.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Templates1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Empty.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SimpleTemplate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SimpleTemplate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
