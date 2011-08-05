@@ -222,7 +222,7 @@ namespace Foxby.Core.Tests
             {
                 var initialCount = GetParagraphs(document).Count();
 
-                document.AddOpenCloseTag("Test");
+                document.AppendTag("Test");
 
                 var paragraphs = GetParagraphs(document);
 
@@ -239,7 +239,7 @@ namespace Foxby.Core.Tests
             {
                 var initialCount = GetParagraphs(document).Count();
 
-                document.AddSingleTag("Test");
+                document.AppendSelfclosingTag("Test");
 
                 var paragraphs = GetParagraphs(document);
 
@@ -255,7 +255,7 @@ namespace Foxby.Core.Tests
             {
                 var initialCount = GetParagraphs(document).Count();
 
-                document.AddSingleTag("Test", false);
+                document.AppendSelfclosingTag("Test", false);
 
                 var paragraphs = GetParagraphs(document);
 

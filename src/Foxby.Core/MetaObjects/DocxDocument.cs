@@ -325,6 +325,10 @@ namespace Foxby.Core.MetaObjects
 			return openXmlElement.InnerText;
 		}
 
+		///<summary>
+		/// Appends paragraph with specified <paramref name="content"/> to the end of the document
+		///</summary>
+		///<param name="content">Content for new paragraph as list of <see cref="TextBlock"/></param>
 		public void AppendParagraph(IEnumerable<TextBlock> content)
 		{
 			var paragraphContent = content.SelectMany(WrapText);
@@ -334,6 +338,11 @@ namespace Foxby.Core.MetaObjects
 			wordDocument.MainDocumentPart.Document.Save();
 		}
 
+		///<summary>
+		/// Appends paragraph with specified <paramref name="content"/> to the end of the document
+		///</summary>
+		///<param name="content">Text content</param>
+		///<param name="visible">Specifies whether paragraph appended is visible or not</param>
 		public void AppendParagraph(string content, bool visible = true)
 		{
 			var paragraph = new Paragraph();
@@ -351,20 +360,20 @@ namespace Foxby.Core.MetaObjects
 			wordDocument.MainDocumentPart.Document.Save();
 		}
 
-		public void InsertTagContent(string tagName, IEnumerable<TextBlock> contentForInsert)
+		internal void InsertTagContent(string tagName, IEnumerable<TextBlock> content)
 		{
-			var paragraphContent = contentForInsert.SelectMany(WrapText);
+			var paragraphContent = content.SelectMany(WrapText);
 			var paragraph = new Paragraph(paragraphContent);
 
 			InsertTagContent(tagName, paragraph);
 		}
 
-		public void InsertTagContent(string tagName, OpenXmlElement forInsert)
+		internal void InsertTagContent(string tagName, OpenXmlElement content)
 		{
 			var tag = GetParagraph(GetCloseTagName(tagName));
 
 			if (tag != null)
-				tag.InsertBeforeSelf(forInsert);
+				tag.InsertBeforeSelf(content);
 
 			wordDocument.MainDocumentPart.Document.Save();
 		}
@@ -374,15 +383,24 @@ namespace Foxby.Core.MetaObjects
 			return wordDocument;
 		}
 
-		public void AddOpenCloseTag(string name)
+		///<summary>
+		/// Appends opening and closing tags pair to the end of docx document
+		///</summary>
+		///<param name="tagName">Tag name</param>
+		public void AppendTag(string tagName)
 		{
-			AppendParagraph(GetOpenTagName(name), false);
-			AppendParagraph(GetCloseTagName(name), false);
+			AppendParagraph(GetOpenTagName(tagName), false);
+			AppendParagraph(GetCloseTagName(tagName), false);
 		}
-
-		public void AddSingleTag(string name, bool visible = true)
+	
+		///<summary>
+		/// Appends selfclosing tag to the end of docx document
+		///</summary>
+		///<param name="tagName">Tag name</param>
+		///<param name="isVisible">Specifies whether new tag will be visible or not</param>
+		public void AppendSelfclosingTag(string tagName, bool isVisible = true)
 		{
-			AppendParagraph(GetSingleTagName(name), visible);
+			AppendParagraph(GetSingleTagName(tagName), isVisible);
 		}
 
 		private IEnumerable<OpenXmlElement> WrapText(TextBlock textBlock)
