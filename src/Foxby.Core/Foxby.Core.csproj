@@ -66,13 +66,6 @@
     <Compile Include="DocumentBuilder\DocxDocumentTagContextBuilder.cs" />
     <Compile Include="DocumentBuilder\Extensions\OpenXmlElementExtensions.cs" />
     <Compile Include="DocumentBuilder\TagVisibilityOptions.cs" />
-    <Compile Include="IXlsxCell.cs" />
-    <Compile Include="IXlsxCellOption.cs" />
-    <Compile Include="IXlsxContent.cs" />
-    <Compile Include="Excel\XlsxCell.cs" />
-    <Compile Include="Excel\XlsxCellOption.cs" />
-    <Compile Include="Excel\XlsxContent.cs" />
-    <Compile Include="Excel\XlsxDocument.cs" />
     <Compile Include="MetaObjects\OpenCloseTagReplacer.cs" />
     <Compile Include="MetaObjects\DocxDocument.cs" />
     <Compile Include="ICellContextBuilder.cs" />
