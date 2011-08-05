@@ -13,11 +13,30 @@ using Foxby.Core.DocumentBuilder.Anchors;
 
 namespace Foxby.Core.MetaObjects
 {
+	///<summary>
+	/// Wrapper for OpenXML docx file which provides base methods for operating document
+	///</summary>
 	public class DocxDocument : IDisposable
 	{
 		private readonly MemoryStream documentStream;
 		private readonly WordprocessingDocument wordDocument;
 
+		///<summary>
+		/// Creates new instance of DocxDocument from scratch
+		///</summary>
+		public DocxDocument()
+		{
+			documentStream = new MemoryStream();
+		
+			wordDocument = WordprocessingDocument.Create(documentStream, WordprocessingDocumentType.Document, true);
+			wordDocument.AddMainDocumentPart();
+			wordDocument.MainDocumentPart.Document = new Document(new Body());
+		}
+
+		///<summary>
+		/// Creates new instance of DocxDocument using <paramref name="template"/>
+		///</summary>
+		///<param name="template">Binary content of docx file</param>
 		public DocxDocument(byte[] template)
 		{
 			documentStream = new MemoryStream();
@@ -26,6 +45,9 @@ namespace Foxby.Core.MetaObjects
 			wordDocument = WordprocessingDocument.Open(documentStream, true);
 		}
 
+		///<summary>
+		/// Checks whether docx document have any digital signatures or not
+		///</summary>
 		public bool HasSignatures
 		{
 			get
@@ -35,15 +57,24 @@ namespace Foxby.Core.MetaObjects
 			}
 		}
 
-        public void UseTheme(TagVisibilityOptions theme)
+		/// <summary>
+		/// Sets visibility as specified in <paramref name="options"/> passed
+		/// </summary>
+		/// <param name="options">Specify tags to be shown and hidden</param>
+        public void SetTagVisibility(TagVisibilityOptions options)
         {
-            SetVisibilityTag(theme.VisibleTagName, true);
+            SetTagVisibility(options.VisibleTagName, true);
 
-            foreach (var notUsingTagName in theme.HiddenTagNames)
-                SetVisibilityTag(notUsingTagName, false);
+            foreach (var notUsingTagName in options.HiddenTagNames)
+                SetTagVisibility(notUsingTagName, false);
         }
 
-	    public void SetVisibilityTag(string tagName, bool visible)
+	    ///<summary>
+	    /// Sets visibility for tag specified by <paramref name="tagName"/>
+	    ///</summary>
+	    ///<param name="tagName">Tag name</param>
+	    ///<param name="isVisible">Shows tag if set to true, otherwise hides it</param>
+	    public void SetTagVisibility(string tagName, bool isVisible)
         {
             var documentTags = DocumentTag.Get(wordDocument, tagName);
 
@@ -52,9 +83,9 @@ namespace Foxby.Core.MetaObjects
                 var paragraph = documentTag.Opening.NextSibling();
                 while (paragraph as Paragraph != documentTag.Closing)
                 {
-                    SetVisibilityInParagraphProperty(paragraph, visible);
+                    SetVisibilityInParagraphProperty(paragraph, isVisible);
 
-                    SetVisibilityInParagraphRuns(paragraph, visible);
+                    SetVisibilityInParagraphRuns(paragraph, isVisible);
 
                     paragraph = paragraph.NextSibling();
                 }
@@ -111,6 +142,10 @@ namespace Foxby.Core.MetaObjects
 			documentStream.Dispose();
 		}
 
+		///<summary>
+		/// Removes all content from tag specified by <paramref name="tagName"/>
+		///</summary>
+		///<param name="tagName">Tag name</param>
 		public void CleanContent(string tagName)
 		{
 			OpenXmlElement startTag = GetParagraph(GetOpenTagName(tagName));
@@ -126,7 +161,7 @@ namespace Foxby.Core.MetaObjects
 			wordDocument.MainDocumentPart.Document.Save();
 		}
 
-		public void Replace(string singleTagName, string newValue)
+		internal void Replace(string singleTagName, string newValue)
 		{
 			string formattedReplacementName = GetSingleTagName(singleTagName);
 		    var document = wordDocument.MainDocumentPart.Document;
@@ -134,7 +169,7 @@ namespace Foxby.Core.MetaObjects
             document.Save();
 		}
 
-		public void Replace(string tagName, IEnumerable<TextBlock> content)
+		internal void Replace(string tagName, IEnumerable<TextBlock> content)
 		{
 			var tagReplacer = GetTagReplacer(tagName);
 
@@ -149,7 +184,7 @@ namespace Foxby.Core.MetaObjects
 			wordDocument.MainDocumentPart.Document.Save();
 		}
 
-		public void Replace(IEnumerable<KeyValuePair<string, string>> replacements)
+		internal void Replace(IEnumerable<KeyValuePair<string, string>> replacements)
 		{
 			foreach (var replacement in replacements)
 			{
@@ -189,17 +224,26 @@ namespace Foxby.Core.MetaObjects
 			return wordDocument.MainDocumentPart.Document.Descendants().Count(x => x.InnerXml == text) == 1;
 		}
 
+		/// <summary>
+		/// Serialize OpenXML document as binary array
+		/// </summary>
 		public byte[] ToArray()
 		{
 			wordDocument.Close();
 			return documentStream.ToArray();
 		}
 
+		///<summary>
+		/// Removes global readonly protection from OpenXML docx document
+		///</summary>
 		public void Unprotect()
 		{
 			SetProtectionAttribute("None");
 		}
 
+		///<summary>
+		/// Sets global readonly protection for OpenXML docx document
+		///</summary>
 		public void Protect()
 		{
 			SetProtectionAttribute("readOnly");
@@ -229,7 +273,12 @@ namespace Foxby.Core.MetaObjects
 			return string.Format("{{{{{0}}}}}", replacementName);
 		}
 
-		public void SetCustomProperty(string name, string value)
+		///<summary>
+		/// Sets value for specified <paramref name="key"/> into docx document inner key-value storage
+		///</summary>
+		///<param name="key">Key name</param>
+		///<param name="value">Value to be set</param>
+		public void SetCustomProperty(string key, string value)
 		{
 			if (wordDocument.CustomFilePropertiesPart == null)
 			{
@@ -239,7 +288,7 @@ namespace Foxby.Core.MetaObjects
 
 			Properties properties = wordDocument.CustomFilePropertiesPart.Properties;
 
-			var existsProperty = properties.SingleOrDefault(p => ((CustomDocumentProperty)p).Name.Value == name);
+			var existsProperty = properties.SingleOrDefault(p => ((CustomDocumentProperty)p).Name.Value == key);
 			if(existsProperty != null)
 			{
 				existsProperty.Remove();
@@ -255,16 +304,20 @@ namespace Foxby.Core.MetaObjects
 			                                                        	{
 			                                                        		FormatId = "{D5CDD505-2E9C-101B-9397-08002B2CF9AE}",
 			                                                        		PropertyId = nextPropertyId,
-			                                                        		Name = name
+			                                                        		Name = key
 			                                                        	});
 		}
 
-		public string GetCustomProperty(string name)
+		///<summary>
+		/// Gets value for specified <paramref name="key"/> from docx document inner key-value storage
+		///</summary>
+		///<param name="key">Key name</param>
+		public string GetCustomProperty(string key)
 		{
 			if (wordDocument.CustomFilePropertiesPart == null)
 				return null;
 
-			var openXmlElement = wordDocument.CustomFilePropertiesPart.Properties.FirstOrDefault(x => x.GetAttribute("name", string.Empty).Value == name);
+			var openXmlElement = wordDocument.CustomFilePropertiesPart.Properties.FirstOrDefault(x => x.GetAttribute("name", string.Empty).Value == key);
 
 			if (openXmlElement == null)
 				return null;

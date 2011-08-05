@@ -5,8 +5,15 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder.Anchors
 {
+	///<summary>
+	/// Represents inline anchor (placeholder)
+	///</summary>
 	public class DocumentPlaceholder : AnchorElement<Run>
 	{
+		///<summary>
+		/// ctor
+		///</summary>
+		///<param name="placeholderName">Name of new placeholder</param>
 		public DocumentPlaceholder(string placeholderName) 
 			: base(placeholderName, "{{{{{0}}}}}", "{{{{/{0}}}}}")
 		{
@@ -21,7 +28,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 			Closing = closing;
 		}
 
-		public static IEnumerable<DocumentPlaceholder> Get(WordprocessingDocument document, string placeholderName)
+		internal static IEnumerable<DocumentPlaceholder> Get(WordprocessingDocument document, string placeholderName)
 		{
 			var placeholder = new DocumentPlaceholder(placeholderName);
 

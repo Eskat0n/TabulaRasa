@@ -8,6 +8,9 @@ using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Foxby.Core.Excel
 {
+    ///<summary>
+    /// 
+    ///</summary>
     public class XlsxDocument : IDisposable
     {
         private readonly UInt32Value easyStyleIndex = 0U;        

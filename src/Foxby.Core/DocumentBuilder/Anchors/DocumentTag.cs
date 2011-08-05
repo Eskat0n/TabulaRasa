@@ -5,8 +5,15 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder.Anchors
 {
+	///<summary>
+	/// Represents block anchor (tag)
+	///</summary>
 	public class DocumentTag : AnchorElement<Paragraph>
 	{
+		///<summary>
+		/// ctor
+		///</summary>
+		///<param name="tagName">Name of new tag</param>
 		public DocumentTag(string tagName)
 			: base(tagName, "{{{0}}}", "{{/{0}}}")
 		{
@@ -23,7 +30,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 			Closing = closing;
 		}
 
-		public static IEnumerable<DocumentTag> Get(WordprocessingDocument document, string tagName)
+		internal static IEnumerable<DocumentTag> Get(WordprocessingDocument document, string tagName)
 		{
 			var tag = new DocumentTag(tagName);
 

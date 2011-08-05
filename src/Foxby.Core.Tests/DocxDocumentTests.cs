@@ -317,7 +317,7 @@ namespace Foxby.Core.Tests
             using (var initialDocument = new DocxDocument(Resources.DocumentWithVisibilityContentInTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithHideContentInTag))
             {
-                initialDocument.SetVisibilityTag("Tag", false);
+                initialDocument.SetTagVisibility("Tag", false);
                 Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
             }
         }
@@ -328,7 +328,7 @@ namespace Foxby.Core.Tests
             using (var initialDocument = new DocxDocument(Resources.DocumentWithHideContentInTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithVisibilityContentInTag))
             {
-                initialDocument.SetVisibilityTag("Tag", true);
+                initialDocument.SetTagVisibility("Tag", true);
                 Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
             }
         }
@@ -339,7 +339,7 @@ namespace Foxby.Core.Tests
             using (var initialDocument = new DocxDocument(Resources.DocumentWithHideContentInPlaceholderInTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithVisibilityContentInPlaceholderInTag))
             {
-                initialDocument.SetVisibilityTag("Tag", true);
+                initialDocument.SetTagVisibility("Tag", true);
                 Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
             }
         }  
@@ -350,7 +350,7 @@ namespace Foxby.Core.Tests
             using (var initialDocument = new DocxDocument(Resources.DocumentWithContentTypeTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithContentTypeTag))
             {
-                initialDocument.SetVisibilityTag("Tag", true);
+                initialDocument.SetTagVisibility("Tag", true);
                 Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
             }
         }

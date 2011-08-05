@@ -48,18 +48,14 @@ namespace Foxby.Core.DocumentBuilder
 			return this;
 		}
 
-		public IDocumentBuilder Placeholder(string placeholderName, Action<IDocumentContextBuilder> options, bool isUpdatable = true)
+		public IDocumentBuilder Placeholder(string placeholderName, Action<IDocumentContextBuilder> options, bool preservePlaceholder = true)
 		{
 			var documentPlaceholders = DocumentPlaceholder.Get(Document, placeholderName);
 
 			foreach (var documentPlaceholder in documentPlaceholders)
 				ClearBetweenElements(documentPlaceholder.Opening, documentPlaceholder.Closing);
+
 			SaveDocument();
-
-
-
-
-
 
 			foreach (var documentPlaceholder in documentPlaceholders)
 			{
@@ -69,7 +65,7 @@ namespace Foxby.Core.DocumentBuilder
                 options(builder);
                 foreach (var contentElement in builder.AggregatedContent)
 					documentPlaceholder.Closing.InsertBeforeSelf(contentElement.CloneElement());
-				if (isUpdatable == false)
+				if (preservePlaceholder == false)
 					documentPlaceholder.Remove();
 			}
 			SaveDocument();
@@ -79,7 +75,7 @@ namespace Foxby.Core.DocumentBuilder
 
         public void SetVisibilityTag(string tagName, bool visible)
         {
-            docxDocument.SetVisibilityTag(tagName, visible);
+            docxDocument.SetTagVisibility(tagName, visible);
         }
 
 	    public bool Validate()
@@ -91,7 +87,7 @@ namespace Foxby.Core.DocumentBuilder
 	    public byte[] ToArray()
 		{
             if (tagVisibilityOptions != null)
-                docxDocument.UseTheme(tagVisibilityOptions);
+                docxDocument.SetTagVisibility(tagVisibilityOptions);
 			return docxDocument.ToArray();
 		}
 

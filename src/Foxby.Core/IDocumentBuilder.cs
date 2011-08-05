@@ -19,8 +19,8 @@ namespace Foxby.Core
 		/// </summary>
 		/// <param name="placeholderName">Placeholder name from template</param>
 		/// <param name="options">Delegate which contains code filling placeholder content</param>
-		/// <param name="isUpdatable">Indicates whether to remove placeholder after setting its content. Default is true.</param>
-		IDocumentBuilder Placeholder(string placeholderName, Action<IDocumentContextBuilder> options, bool isUpdatable = true);
+		/// <param name="preservePlaceholder">Indicates whether to remove placeholder after setting its content. Default is true.</param>
+		IDocumentBuilder Placeholder(string placeholderName, Action<IDocumentContextBuilder> options, bool preservePlaceholder = true);
 
 		/// <summary>
 		/// Hide or display content of tag with name <paramref name="tagName"/>
