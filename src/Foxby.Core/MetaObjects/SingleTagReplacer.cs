@@ -2,7 +2,7 @@
 
 namespace Foxby.Core.MetaObjects
 {
-    public class SingleTagReplacer : TagReplacer
+	internal class SingleTagReplacer : TagReplacer
     {
         public SingleTagReplacer(string name, DocxDocument document)
             : base(name, document)

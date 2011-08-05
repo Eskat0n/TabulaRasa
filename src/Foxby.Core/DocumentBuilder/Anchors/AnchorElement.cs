@@ -9,7 +9,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 	/// Contains metadata for anchors such as tags, placeholders etc.
 	/// </summary>
 	/// <typeparam name="TElement"><see cref="OpenXmlElement"/> representing anchor</typeparam>
-	public abstract class AnchorElement<TElement>
+	internal abstract class AnchorElement<TElement>
 		where TElement : OpenXmlElement
 	{
 		/// <summary>

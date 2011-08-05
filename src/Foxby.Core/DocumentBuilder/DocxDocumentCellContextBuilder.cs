@@ -5,7 +5,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	public class DocxDocumentCellContextBuilder : DocxDocumentContextBuilderBase, ICellContextBuilder
+	internal class DocxDocumentCellContextBuilder : DocxDocumentContextBuilderBase, ICellContextBuilder
 	{
 		private readonly TableCellProperties contextTableCellProperties;
 		private ParagraphProperties paragraphProperties;
@@ -16,7 +16,7 @@ namespace Foxby.Core.DocumentBuilder
 			contextTableCellProperties = new TableCellProperties(new TableCellWidth {Type = TableWidthUnitValues.Auto});
 		}
 
-        public DocxDocumentCellContextBuilder(WordprocessingDocument document, TableCellProperties cellProperties)
+		public DocxDocumentCellContextBuilder(WordprocessingDocument document, TableCellProperties cellProperties)
             : base(document)
         {
             contextTableCellProperties = cellProperties;

@@ -5,7 +5,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	public class DocxDocumentParagraphContextBuilder : DocxDocumentContextBuilderBase
+	internal class DocxDocumentParagraphContextBuilder : DocxDocumentContextBuilderBase
 	{
 		private readonly IEnumerable<OpenXmlElement> prependedElements;
 		private readonly ParagraphProperties properties;

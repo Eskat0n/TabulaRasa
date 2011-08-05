@@ -8,7 +8,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 	///<summary>
 	/// Represents inline anchor (placeholder)
 	///</summary>
-	public class DocumentPlaceholder : AnchorElement<Run>
+	internal class DocumentPlaceholder : AnchorElement<Run>
 	{
 		///<summary>
 		/// ctor

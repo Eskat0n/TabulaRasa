@@ -328,22 +328,9 @@ namespace Foxby.Core.MetaObjects
 		///<summary>
 		/// Appends paragraph with specified <paramref name="content"/> to the end of the document
 		///</summary>
-		///<param name="content">Content for new paragraph as list of <see cref="TextBlock"/></param>
-		public void AppendParagraph(IEnumerable<TextBlock> content)
-		{
-			var paragraphContent = content.SelectMany(WrapText);
-			var paragraph = new Paragraph(paragraphContent);
-
-			wordDocument.MainDocumentPart.Document.Body.Append(paragraph);
-			wordDocument.MainDocumentPart.Document.Save();
-		}
-
-		///<summary>
-		/// Appends paragraph with specified <paramref name="content"/> to the end of the document
-		///</summary>
 		///<param name="content">Text content</param>
 		///<param name="visible">Specifies whether paragraph appended is visible or not</param>
-		public void AppendParagraph(string content, bool visible = true)
+		internal void AppendParagraph(string content, bool visible = true)
 		{
 			var paragraph = new Paragraph();
 			var run = new Run(new Text(content));

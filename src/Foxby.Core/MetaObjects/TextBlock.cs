@@ -1,6 +1,6 @@
 ﻿namespace Foxby.Core.MetaObjects
 {
-    public class TextBlock
+	internal class TextBlock
     {
         public bool Editable { get; private set; }
 

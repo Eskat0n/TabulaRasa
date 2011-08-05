@@ -3,7 +3,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	public class DocxDocumentPlaceholderContextBuilder : DocxDocumentContextBuilderBase
+	internal class DocxDocumentPlaceholderContextBuilder : DocxDocumentContextBuilderBase
 	{
 		private readonly RunProperties runProperties;
 

@@ -266,46 +266,6 @@ namespace Foxby.Core.Tests
             }
         }
 
-        [Fact]
-        public void AppendParagraphWithTextBlocksAddsTextToTheEndOfTheDocument()
-        {
-            using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
-            {
-                var initialCount = GetParagraphs(document).Count();
-
-                document.AppendParagraph(new[] { new TextBlock("text of the paragraph "), new TextBlock("another part") });
-
-                var paragraphs = GetParagraphs(document);
-
-                Assert.Equal(initialCount + 1, paragraphs.Count());
-                Assert.Equal("text of the paragraph another part", paragraphs.Last().InnerText);
-            }
-        }
-
-        [Fact]
-        public void AppendParagraphWithProtectedTextAddsTextWithPermissionsRequireToTheEndOfTheDocument()
-        {
-            using (var document = new DocxDocument(Resources.Unprotected))
-            {
-                var initialCount = GetParagraphs(document).Count();
-
-                document.AppendParagraph(new[]
-				                         	{
-				                         		new TextBlock("part 1 ", false), 
-												new TextBlock("part 2 "),
-												new TextBlock("part 3", false)
-				                         	});
-
-                var paragraphs = GetParagraphs(document);
-
-                Assert.Equal(initialCount + 1, paragraphs.Count());
-                Assert.Equal("part 1 part 2 part 3", paragraphs.Last().InnerText);
-                Assert.Contains("permEnd", paragraphs.Last().ChildElements.Select(x => x.LocalName));
-                Assert.Contains("permStart", paragraphs.Last().ChildElements.Select(x => x.LocalName));
-                Assert.Equal("part 2 ", paragraphs.Last().ChildElements.Where(x => x.LocalName == "permStart").First().NextSibling().InnerText);
-            }
-        }
-
         private static IEnumerable<Paragraph> GetParagraphs(DocxDocument document)
         {
             return document.GetWordDocument().MainDocumentPart.Document.Descendants().OfType<Paragraph>();

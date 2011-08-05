@@ -10,7 +10,7 @@ using Format = Foxby.Core.MetaObjects.Format;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	public class DocxDocumentTagContextBuilder : DocxDocumentBuilderBase, IDocumentTagContextBuilder
+	internal class DocxDocumentTagContextBuilder : DocxDocumentBuilderBase, IDocumentTagContextBuilder
 	{
 		private readonly IEnumerable<DocumentTag> documentTags;
 

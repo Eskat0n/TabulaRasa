@@ -8,7 +8,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 	///<summary>
 	/// Represents block anchor (tag)
 	///</summary>
-	public class DocumentTag : AnchorElement<Paragraph>
+	internal class DocumentTag : AnchorElement<Paragraph>
 	{
 		///<summary>
 		/// ctor

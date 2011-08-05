@@ -5,7 +5,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	public class DocxDocumentOrderedListBuilder : DocxDocumentAggregationBuilder, IDocumentOrderedListBuilder
+	internal class DocxDocumentOrderedListBuilder : DocxDocumentAggregationBuilder, IDocumentOrderedListBuilder
 	{
 		private readonly int numberingId;
 

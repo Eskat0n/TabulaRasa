@@ -10,7 +10,7 @@ using Foxby.Core.MetaObjects;
 
 namespace Foxby.Core.DocumentBuilder
 {
-    public abstract class DocxDocumentContextBuilderBase : DocxDocumentAggregationBuilder, IDocumentContextBuilder
+	internal abstract class DocxDocumentContextBuilderBase : DocxDocumentAggregationBuilder, IDocumentContextBuilder
     {
         private readonly ICollection<OpenXmlElement> runPropertiesElements = new List<OpenXmlElement>();
 

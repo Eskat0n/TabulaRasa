@@ -2,7 +2,7 @@
 
 namespace Foxby.Core.MetaObjects
 {
-    public class OpenCloseTagReplacer : TagReplacer
+	internal class OpenCloseTagReplacer : TagReplacer
     {
         public OpenCloseTagReplacer(string name, DocxDocument document)
             : base(name, document)

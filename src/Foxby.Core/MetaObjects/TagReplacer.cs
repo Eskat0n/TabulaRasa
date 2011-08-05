@@ -2,7 +2,7 @@
 
 namespace Foxby.Core.MetaObjects
 {
-    public abstract class TagReplacer
+	internal abstract class TagReplacer
     {
         protected readonly DocxDocument Document;
 

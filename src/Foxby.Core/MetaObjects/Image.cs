@@ -7,7 +7,7 @@ using Pictures = DocumentFormat.OpenXml.Drawing.Pictures;
 
 namespace Foxby.Core.MetaObjects
 {
-    public class Image
+	internal class Image
     {
         private const string SchemaUri = "http://schemas.openxmlformats.org/drawingml/2006/picture";
         private const string PictureName = "Image inserted via Foxby";

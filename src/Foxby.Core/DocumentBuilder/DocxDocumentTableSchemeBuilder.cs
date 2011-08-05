@@ -6,10 +6,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	///<summary>
-	/// Builder for table header and columns metadata
-	///</summary>
-	public class DocxDocumentTableSchemeBuilder : DocxDocumentAggregationBuilder, IDocumentTableSchemeBuilder, IDocumentTableRowsBuilder
+	internal class DocxDocumentTableSchemeBuilder : DocxDocumentAggregationBuilder, IDocumentTableSchemeBuilder, IDocumentTableRowsBuilder
 	{
 		private readonly TableRow headerRow;
 		private readonly Table table;
