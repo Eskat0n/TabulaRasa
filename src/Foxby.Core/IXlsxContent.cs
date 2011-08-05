@@ -5,6 +5,6 @@ namespace Foxby.Core
     public interface IXlsxContent
     {
         void AddRow(IEnumerable<IXlsxCell> xlsxCell);
-        IEnumerable<IEnumerable<IXlsxCell>> GetTable();
+    	IEnumerable<IEnumerable<IXlsxCell>> Table { get; }
     }
 }
