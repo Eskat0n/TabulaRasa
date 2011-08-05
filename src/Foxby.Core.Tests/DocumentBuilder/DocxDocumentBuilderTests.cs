@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Foxby.Core.DocumentBuilder;
 using Foxby.Core.MetaObjects;
@@ -94,7 +95,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 
 				builder
 					.Tag("MAIN_CONTENT",
-					     x => x.NewTag("NEW_TAG", z => z.EditableStart()
+					     x => x.AppendTag("NEW_TAG", z => z.EditableStart()
 					                                   	.Indent.Paragraph("Тестовый в новом теге 1")
 					                                   	.Indent.Paragraph("Тестовый в новом теге 2 строка 1", "Тестовый в новом теге 2 строка 2")
 					                                   	.EditableEnd())
@@ -116,7 +117,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 
 				builder
 					.Tag("MAIN_CONTENT",
-					     x => x.NewTag("NEW_TAG", z => { })
+					     x => x.AppendTag("NEW_TAG", z => { })
 					          	.EditableStart()
 					          	.Indent.Paragraph("Тестовый 1")
 					          	.EditableEnd())
@@ -406,7 +407,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 
 				builder
 					.Tag("NON_EXISTING", x => x.Paragraph("Тест")
-					                          	.NewTag("NEW", z => { })
+					                          	.AppendTag("NEW", z => { })
 					                          	.OrderedList(z => z.Item("Элемент 1").Item("Элемент 2"))
 					                          	.EditableStart()
 					                          	.Table(z => z.Column("Колонки"), z => z.Row("Строка"))

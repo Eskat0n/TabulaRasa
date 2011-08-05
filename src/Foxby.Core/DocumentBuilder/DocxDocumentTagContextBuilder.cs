@@ -73,9 +73,9 @@ namespace Foxby.Core.DocumentBuilder
 			return this;
 		}
 
-		public IDocumentTagContextBuilder Paragraph(params string[] contentLines)
+		public IDocumentTagContextBuilder Paragraph(params string[] content)
 		{
-			return Paragraph(x => x.AddText(contentLines));
+			return Paragraph(x => x.AddText(content));
 		}
 
         public IDocumentTagContextBuilder Paragraph(Format content)
@@ -112,7 +112,7 @@ namespace Foxby.Core.DocumentBuilder
 			return this;
 		}
 
-		public IDocumentTagContextBuilder NewTag(string tagName, Action<IDocumentTagContextBuilder> options)
+		public IDocumentTagContextBuilder AppendTag(string tagName, Action<IDocumentTagContextBuilder> options)
 		{
 			var tag = new DocumentTag(tagName);
 
@@ -124,11 +124,11 @@ namespace Foxby.Core.DocumentBuilder
 			return this;
 		}
 
-		public IDocumentTagContextBuilder Table(Action<IDocumentTableSchemeBuilder> options, Action<IDocumentTableRowsBuilder> rows)
+		public IDocumentTagContextBuilder Table(Action<IDocumentTableSchemeBuilder> header, Action<IDocumentTableRowsBuilder> rows)
 		{
 			var tableContextBuilder = new DocxDocumentTableSchemeBuilder(Document, contextTableProperties);
 
-			options.Invoke(tableContextBuilder);
+			header.Invoke(tableContextBuilder);
 			rows.Invoke(tableContextBuilder);
 
 			AppendElements(tableContextBuilder.AggregatedContent.ToArray());

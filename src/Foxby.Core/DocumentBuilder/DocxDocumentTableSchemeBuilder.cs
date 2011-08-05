@@ -6,12 +6,15 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.DocumentBuilder
 {
+	///<summary>
+	/// Builder for table header and columns metadata
+	///</summary>
 	public class DocxDocumentTableSchemeBuilder : DocxDocumentAggregationBuilder, IDocumentTableSchemeBuilder, IDocumentTableRowsBuilder
 	{
 		private readonly TableRow headerRow;
 		private readonly Table table;
 
-		public DocxDocumentTableSchemeBuilder(WordprocessingDocument document, TableProperties contextTableProperties)
+		internal DocxDocumentTableSchemeBuilder(WordprocessingDocument document, TableProperties contextTableProperties)
 			: base(document)
 		{
 			table = new Table();
@@ -39,17 +42,17 @@ namespace Foxby.Core.DocumentBuilder
 			Aggregation.Add(table);
 		}
 
-		public IDocumentTableRowsBuilder Row(params string[] rowContent)
+		public IDocumentTableRowsBuilder Row(params string[] content)
 		{
-			return Row(rowContent.Select(AddText).ToArray());
+			return Row(content.Select(AddText).ToArray());
 		}
 
-		public IDocumentTableRowsBuilder Row(params Action<ICellContextBuilder>[] optionsParams)
+		public IDocumentTableRowsBuilder Row(params Action<ICellContextBuilder>[] options)
 		{
 			var row = new TableRow();
 			table.Append(row);
 
-			foreach (var option in optionsParams)
+			foreach (var option in options)
 			{
 				AddCell(row, option);
 			}

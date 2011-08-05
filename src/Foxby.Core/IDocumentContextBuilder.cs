@@ -3,7 +3,7 @@
 namespace Foxby.Core
 {
 	/// <summary>
-	/// Provide base methods for changing content of block elements
+	/// Provide base methods for changing content of block anchors and OpenXML elements
 	/// </summary>
 	public interface IDocumentContextBuilder : IDocumentContextFormattableBuilder
 	{
