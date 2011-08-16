@@ -82,7 +82,8 @@
 		</exec>
 		<exec program="${packaging.console.exe}" workingdir="${path.base}">
 			<arg value="push" />
-			<arg value="-source http://packages.nuget.org/v1/" />
+			<arg value="-source" />
+			<arg value="http://packages.nuget.org/v1/" />
 			<arg value="${packaging.name}" />
 			<arg value="${packaging.key}" />			
 		</exec>
