@@ -74,12 +74,13 @@
 	</target>
 
 	<target name="pack">
-		<exec program="${packaging.console.exe}">
+		<exec program="${packaging.console.exe}" workingdir="${path.base}">
 			<arg value="pack" />
 			<arg value="${packaging.metadata}" />
-			<arg value="-Version ${build.version}" />
+			<arg value="-Version" />
+			<arg value="${build.version}" />
 		</exec>
-		<exec program="${packaging.console.exe}">
+		<exec program="${packaging.console.exe}" workingdir="${path.base}">
 			<arg value="push" />
 			<arg value="-source http://packages.nuget.org/v1/" />
 			<arg value="${packaging.name}" />
