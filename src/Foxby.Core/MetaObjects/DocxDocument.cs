@@ -333,6 +333,9 @@ namespace Foxby.Core.MetaObjects
 			return openXmlElement.InnerText;
 		}
 
+		/// <summary>
+		/// Placeholder fields created using <see cref="SdtElement"/> subclasses
+		/// </summary>
 		public FieldsCollection Fields
 		{
 			get { return _fields; }

@@ -5,6 +5,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Foxby.Core.MetaObjects.Collections
 {
+	/// <summary>
+	/// Collection which contains all sdt fields from document represented as <see cref="Field"/>s
+	/// </summary>
 	public class FieldsCollection : IEnumerable<Field>
 	{
 		private readonly IEnumerable<SdtElement> _elements;
@@ -14,6 +17,11 @@ namespace Foxby.Core.MetaObjects.Collections
 			_elements = elements;
 		}
 
+		/// <summary>
+		/// Looks for sdt field in document specified by <paramref name="name"/>, <paramref name="tag"/> or both <paramref name="name"/> and <paramref name="tag"/>
+		/// </summary>
+		/// <param name="name">Name of field</param>
+		/// <param name="tag">Name of tag of field</param>
 		public bool Contains(string name = null, string tag = null)
 		{
 			return Fields.Any(x => SearchPredicate(x, name, tag));

@@ -340,5 +340,14 @@ namespace Foxby.Core.Tests
 				Assert.True(hasInlineField);
 			}
     	}
+
+    	[Fact]
+    	public void CanCorrectlyCountAllFieldsInDocument()
+    	{
+			using (var document = new DocxDocument(Resources.WithSdtElements))
+			{
+				Assert.Equal(2, document.Fields.Count());
+			}
+    	}
     }
 }
