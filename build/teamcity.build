@@ -24,6 +24,8 @@
 
 	<property name="packaging.console.exe" value="d:\Configuration\Tools\NuGet\NuGet.exe" />
 	<property name="packaging.metadata" value="package.nuspec" />
+	<property name="packaging.name" value="Foxby.${build.version}.nupkg" />
+	<property name="packaging.key" value="2e73205b-5d6b-4e53-971c-6054e12c2459" />
 	
 	<!-- entry point -->
 	<target name="go" depends="create-assembly-info, build, test, pack" />
@@ -72,10 +74,16 @@
 	</target>
 
 	<target name="pack">
-		<exec program="${packaging.console.exe}" workingdir="${path.base}" >
+		<exec program="${packaging.console.exe}" workingdir="${path.base}">
 			<arg value="pack" />
 			<arg value="${packaging.metadata}" />
 			<arg value="-Version ${build.version}" />
+		</exec>
+		<exec program="${packaging.console.exe}" workingdir="${path.base}">
+			<arg value="push" />
+			<arg value="-source http://packages.nuget.org/v1/" />
+			<arg value="${packaging.name}" />
+			<arg value="${packaging.key}" />			
 		</exec>
 	</target>
 
