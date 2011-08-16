@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foxby.Core.Tests", "src\Fox
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2B717965-9FBE-49D6-8674-AF021E82D920}"
 	ProjectSection(SolutionItems) = preProject
+		build\package.nuspec = build\package.nuspec
 		build\teamcity.build = build\teamcity.build
 	EndProjectSection
 EndProject

@@ -7,7 +7,7 @@
 	<property name="path.src" value="${path.root}\src" />
 	<property name="path.lib" value="${path.root}\lib" />
 	<property name="path.tests" value="${path.root}\tests" />
-	<property name="path.solution-items" value="${path.src}\Solution Items" />
+	<property name="path.solution-items" value="${path.src}\Solution Items" />	
 
 	<property name="build.asminfo" value="GlobalAssemblyInfo.cs" />
 	<property name="solution.filename" value="Foxby.sln" />
@@ -21,9 +21,12 @@
 	<property name="version.minor" value="${version::get-minor(version::parse(version))}" dynamic="true" />
 	<property name="version.revision" value="${build.number}" dynamic="true" />
 	<property name="build.version" value="${version.major}.${version.minor}.${version.revision}.0" dynamic="true" />
+
+	<property name="packaging.console.exe" value="d:\Configuration\Tools\NuGet\NuGet.exe" />
+	<property name="packaging.metadata" value="package.nuspec" />
 	
 	<!-- entry point -->
-	<target name="go" depends="create-assembly-info, build, test" />
+	<target name="go" depends="create-assembly-info, build, test, pack" />
 
 	<target name="create-assembly-info">
 		<asminfo output="${path.solution-items}\${build.asminfo}" language="CSharp">
@@ -65,8 +68,15 @@
 			</do>
 		</foreach>
 		<delete file="_xunit.xml" failonerror="false" />
-		<delete file="failed-tests.html" failonerror="false" />
-		
+		<delete file="failed-tests.html" failonerror="false" />		
+	</target>
+
+	<target name="pack">
+		<exec program="${packaging.console.exe}" workingdir="${path.base}" >
+			<arg value="pack" />
+			<arg value="${packaging.metadata}" />
+			<arg value="-Version ${version}" />
+		</exec>
 	</target>
 
 	<target name="help">
