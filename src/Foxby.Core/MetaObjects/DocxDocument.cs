@@ -282,20 +282,18 @@ namespace Foxby.Core.MetaObjects
 		{
 			if (wordDocument.CustomFilePropertiesPart == null)
 			{
-				CustomFilePropertiesPart addCustomFilePropertiesPart = wordDocument.AddCustomFilePropertiesPart();
+				var addCustomFilePropertiesPart = wordDocument.AddCustomFilePropertiesPart();
 				addCustomFilePropertiesPart.Properties = new Properties();
 			}
 
-			Properties properties = wordDocument.CustomFilePropertiesPart.Properties;
+			var properties = wordDocument.CustomFilePropertiesPart.Properties;
 
-			var existsProperty = properties.SingleOrDefault(p => ((CustomDocumentProperty)p).Name.Value == key);
-			if(existsProperty != null)
-			{
+			var existsProperty = properties.OfType<CustomDocumentProperty>()
+				.SingleOrDefault(x => x.Name.HasValue && x.Name.Value == key);
+			if (existsProperty != null)
 				existsProperty.Remove();
-			}
 
-			Int32Value nextPropertyId = properties
-			                            	.Elements<CustomDocumentProperty>()
+			Int32Value nextPropertyId = properties.Elements<CustomDocumentProperty>()
 			                            	.Select(x => x.PropertyId.Value)
 			                            	.Union(new[] {1})
 			                            	.Max() + 1;
@@ -317,12 +315,20 @@ namespace Foxby.Core.MetaObjects
 			if (wordDocument.CustomFilePropertiesPart == null)
 				return null;
 
-			var openXmlElement = wordDocument.CustomFilePropertiesPart.Properties.FirstOrDefault(x => x.GetAttribute("name", string.Empty).Value == key);
+			var openXmlElement = wordDocument.CustomFilePropertiesPart.Properties
+				.OfType<CustomDocumentProperty>()
+				.FirstOrDefault(x => x.Name.HasValue && x.Name.Value == key);
 
 			if (openXmlElement == null)
 				return null;
 
 			return openXmlElement.InnerText;
+		}
+
+		public bool HasField(string name)
+		{
+			return wordDocument.MainDocumentPart.Document.Body.Descendants<SdtElement>()
+				.Any(x => x.SdtProperties.GetFirstChild<SdtAlias>().Val.Value == name);
 		}
 
 		///<summary>

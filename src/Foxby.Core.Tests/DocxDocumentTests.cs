@@ -314,5 +314,18 @@ namespace Foxby.Core.Tests
                 Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
             }
         }
+
+    	[Fact]
+    	public void HasFieldShouldReturnsCorrectResultForBlockAndInlineFields()
+    	{
+			using (var document = new DocxDocument(Resources.WithSdtElements))
+			{
+				var hasBlockField = document.HasField("BlockField");
+				var hasInlineField = document.HasField("InlineField");
+
+				Assert.True(hasBlockField);
+				Assert.True(hasInlineField);
+			}
+    	}
     }
 }
