@@ -75,7 +75,7 @@
 		<exec program="${packaging.console.exe}" workingdir="${path.base}" >
 			<arg value="pack" />
 			<arg value="${packaging.metadata}" />
-			<arg value="-Version ${version}" />
+			<arg value="-Version ${build.version}" />
 		</exec>
 	</target>
 
