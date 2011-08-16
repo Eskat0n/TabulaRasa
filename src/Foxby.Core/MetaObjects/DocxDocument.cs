@@ -10,6 +10,7 @@ using DocumentFormat.OpenXml.VariantTypes;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Foxby.Core.DocumentBuilder;
 using Foxby.Core.DocumentBuilder.Anchors;
+using Foxby.Core.MetaObjects.Collections;
 
 namespace Foxby.Core.MetaObjects
 {
@@ -18,19 +19,23 @@ namespace Foxby.Core.MetaObjects
 	///</summary>
 	public class DocxDocument : IDisposable
 	{
-		private readonly MemoryStream documentStream;
-		private readonly WordprocessingDocument wordDocument;
+		private readonly MemoryStream _documentStream;
+		private readonly WordprocessingDocument _wordDocument;
+		private readonly FieldsCollection _fields;
 
 		///<summary>
 		/// Creates new instance of DocxDocument from scratch
 		///</summary>
 		public DocxDocument()
 		{
-			documentStream = new MemoryStream();
+			_documentStream = new MemoryStream();
 		
-			wordDocument = WordprocessingDocument.Create(documentStream, WordprocessingDocumentType.Document, true);
-			wordDocument.AddMainDocumentPart();
-			wordDocument.MainDocumentPart.Document = new Document(new Body());
+			_wordDocument = WordprocessingDocument.Create(_documentStream, WordprocessingDocumentType.Document, true);
+			_wordDocument.AddMainDocumentPart();
+			_wordDocument.MainDocumentPart.Document = new Document(new Body());
+
+			var sdtElements = _wordDocument.MainDocumentPart.Document.Body.Descendants<SdtElement>();
+			_fields = new FieldsCollection(sdtElements);
 		}
 
 		///<summary>
@@ -39,10 +44,13 @@ namespace Foxby.Core.MetaObjects
 		///<param name="template">Binary content of docx file</param>
 		public DocxDocument(byte[] template)
 		{
-			documentStream = new MemoryStream();
-			documentStream.Write(template, 0, template.Length);
+			_documentStream = new MemoryStream();
+			_documentStream.Write(template, 0, template.Length);
 
-			wordDocument = WordprocessingDocument.Open(documentStream, true);
+			_wordDocument = WordprocessingDocument.Open(_documentStream, true);
+
+			var sdtElements = _wordDocument.MainDocumentPart.Document.Body.Descendants<SdtElement>();
+			_fields = new FieldsCollection(sdtElements);
 		}
 
 		///<summary>
@@ -52,7 +60,7 @@ namespace Foxby.Core.MetaObjects
 		{
 			get
 			{
-			    DigitalSignatureOriginPart part = wordDocument.DigitalSignatureOriginPart;
+			    DigitalSignatureOriginPart part = _wordDocument.DigitalSignatureOriginPart;
 			    return part != null && part.XmlSignatureParts != null && part.XmlSignatureParts.Any();
 			}
 		}
@@ -76,7 +84,7 @@ namespace Foxby.Core.MetaObjects
 	    ///<param name="isVisible">Shows tag if set to true, otherwise hides it</param>
 	    public void SetTagVisibility(string tagName, bool isVisible)
         {
-            var documentTags = DocumentTag.Get(wordDocument, tagName);
+            var documentTags = DocumentTag.Get(_wordDocument, tagName);
 
             foreach (var documentTag in documentTags)
             {
@@ -139,7 +147,7 @@ namespace Foxby.Core.MetaObjects
 
 	    public void Dispose()
 		{
-			documentStream.Dispose();
+			_documentStream.Dispose();
 		}
 
 		///<summary>
@@ -158,13 +166,13 @@ namespace Foxby.Core.MetaObjects
 				openXmlElement.Remove();
 				openXmlElement = startTag.NextSibling();
 			}
-			wordDocument.MainDocumentPart.Document.Save();
+			_wordDocument.MainDocumentPart.Document.Save();
 		}
 
 		internal void Replace(string singleTagName, string newValue)
 		{
 			string formattedReplacementName = GetSingleTagName(singleTagName);
-		    var document = wordDocument.MainDocumentPart.Document;
+		    var document = _wordDocument.MainDocumentPart.Document;
 		    document.InnerXml = document.InnerXml.Replace(formattedReplacementName, newValue);
             document.Save();
 		}
@@ -181,7 +189,7 @@ namespace Foxby.Core.MetaObjects
 				tagReplacer.Replace(paragraph);
 			}
 
-			wordDocument.MainDocumentPart.Document.Save();
+			_wordDocument.MainDocumentPart.Document.Save();
 		}
 
 		internal void Replace(IEnumerable<KeyValuePair<string, string>> replacements)
@@ -194,12 +202,12 @@ namespace Foxby.Core.MetaObjects
 					tagReplacer.Replace(replacement.Value);
 			}
 
-			wordDocument.MainDocumentPart.Document.Save();
+			_wordDocument.MainDocumentPart.Document.Save();
 		}
 
 	    private OpenXmlElement GetParagraph(string formattedName)
 		{
-			IEnumerable<Paragraph> paragraphs = wordDocument.MainDocumentPart.Document.Descendants().OfType<Paragraph>();
+			IEnumerable<Paragraph> paragraphs = _wordDocument.MainDocumentPart.Document.Descendants().OfType<Paragraph>();
 
 			return paragraphs.SingleOrDefault(x => x.InnerText == formattedName);
 		}
@@ -221,7 +229,7 @@ namespace Foxby.Core.MetaObjects
 
 		private bool ExistsUniqueTagWithInnerText(string text)
 		{
-			return wordDocument.MainDocumentPart.Document.Descendants().Count(x => x.InnerXml == text) == 1;
+			return _wordDocument.MainDocumentPart.Document.Descendants().Count(x => x.InnerXml == text) == 1;
 		}
 
 		/// <summary>
@@ -229,8 +237,8 @@ namespace Foxby.Core.MetaObjects
 		/// </summary>
 		public byte[] ToArray()
 		{
-			wordDocument.Close();
-			return documentStream.ToArray();
+			_wordDocument.Close();
+			return _documentStream.ToArray();
 		}
 
 		///<summary>
@@ -251,7 +259,7 @@ namespace Foxby.Core.MetaObjects
 
 		private void SetProtectionAttribute(string value)
 		{
-			Settings settings = wordDocument.MainDocumentPart.DocumentSettingsPart.Settings;
+			Settings settings = _wordDocument.MainDocumentPart.DocumentSettingsPart.Settings;
 			OpenXmlElement protectionTag = settings.Where(x => x.LocalName == "documentProtection").FirstOrDefault();
 
 			if (protectionTag != null)
@@ -280,13 +288,13 @@ namespace Foxby.Core.MetaObjects
 		///<param name="value">Value to be set</param>
 		public void SetCustomProperty(string key, string value)
 		{
-			if (wordDocument.CustomFilePropertiesPart == null)
+			if (_wordDocument.CustomFilePropertiesPart == null)
 			{
-				var addCustomFilePropertiesPart = wordDocument.AddCustomFilePropertiesPart();
+				var addCustomFilePropertiesPart = _wordDocument.AddCustomFilePropertiesPart();
 				addCustomFilePropertiesPart.Properties = new Properties();
 			}
 
-			var properties = wordDocument.CustomFilePropertiesPart.Properties;
+			var properties = _wordDocument.CustomFilePropertiesPart.Properties;
 
 			var existsProperty = properties.OfType<CustomDocumentProperty>()
 				.SingleOrDefault(x => x.Name.HasValue && x.Name.Value == key);
@@ -312,10 +320,10 @@ namespace Foxby.Core.MetaObjects
 		///<param name="key">Key name</param>
 		public string GetCustomProperty(string key)
 		{
-			if (wordDocument.CustomFilePropertiesPart == null)
+			if (_wordDocument.CustomFilePropertiesPart == null)
 				return null;
 
-			var openXmlElement = wordDocument.CustomFilePropertiesPart.Properties
+			var openXmlElement = _wordDocument.CustomFilePropertiesPart.Properties
 				.OfType<CustomDocumentProperty>()
 				.FirstOrDefault(x => x.Name.HasValue && x.Name.Value == key);
 
@@ -325,10 +333,9 @@ namespace Foxby.Core.MetaObjects
 			return openXmlElement.InnerText;
 		}
 
-		public bool HasField(string name)
+		public FieldsCollection Fields
 		{
-			return wordDocument.MainDocumentPart.Document.Body.Descendants<SdtElement>()
-				.Any(x => x.SdtProperties.GetFirstChild<SdtAlias>().Val.Value == name);
+			get { return _fields; }
 		}
 
 		///<summary>
@@ -349,8 +356,8 @@ namespace Foxby.Core.MetaObjects
 
 			paragraph.AppendChild(run);
 
-			wordDocument.MainDocumentPart.Document.Body.Append(paragraph);
-			wordDocument.MainDocumentPart.Document.Save();
+			_wordDocument.MainDocumentPart.Document.Body.Append(paragraph);
+			_wordDocument.MainDocumentPart.Document.Save();
 		}
 
 		internal void InsertTagContent(string tagName, IEnumerable<TextBlock> content)
@@ -368,12 +375,12 @@ namespace Foxby.Core.MetaObjects
 			if (tag != null)
 				tag.InsertBeforeSelf(content);
 
-			wordDocument.MainDocumentPart.Document.Save();
+			_wordDocument.MainDocumentPart.Document.Save();
 		}
 
 	    internal WordprocessingDocument GetWordDocument()
 		{
-			return wordDocument;
+			return _wordDocument;
 		}
 
 		///<summary>
@@ -406,7 +413,7 @@ namespace Foxby.Core.MetaObjects
 
 			if (textBlock.Editable)
 			{
-				var id = wordDocument.MainDocumentPart.Document.Descendants().OfType<PermStart>()
+				var id = _wordDocument.MainDocumentPart.Document.Descendants().OfType<PermStart>()
 					.Select(x => x.Id.Value)
 					.Union(new[] {1})
 					.Max();

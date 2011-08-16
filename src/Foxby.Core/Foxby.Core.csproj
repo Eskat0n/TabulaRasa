@@ -66,6 +66,7 @@
     <Compile Include="DocumentBuilder\DocxDocumentTagContextBuilder.cs" />
     <Compile Include="DocumentBuilder\Extensions\OpenXmlElementExtensions.cs" />
     <Compile Include="DocumentBuilder\TagVisibilityOptions.cs" />
+    <Compile Include="MetaObjects\Collections\FieldsCollection.cs" />
     <Compile Include="MetaObjects\Field.cs" />
     <Compile Include="MetaObjects\OpenCloseTagReplacer.cs" />
     <Compile Include="MetaObjects\DocxDocument.cs" />

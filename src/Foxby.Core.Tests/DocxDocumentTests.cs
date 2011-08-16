@@ -316,12 +316,25 @@ namespace Foxby.Core.Tests
         }
 
     	[Fact]
-    	public void HasFieldShouldReturnsCorrectResultForBlockAndInlineFields()
+    	public void CanCheckFieldAvailabilityUsingItsName()
     	{
 			using (var document = new DocxDocument(Resources.WithSdtElements))
 			{
-				var hasBlockField = document.HasField("BlockField");
-				var hasInlineField = document.HasField("InlineField");
+				var hasBlockField = document.Fields.Contains("BlockField");
+				var hasInlineField = document.Fields.Contains("InlineField");
+
+				Assert.True(hasBlockField);
+				Assert.True(hasInlineField);
+			}
+    	}
+		
+		[Fact]
+    	public void CanCheckFieldAvailabilityUsingItsTag()
+    	{
+			using (var document = new DocxDocument(Resources.WithSdtElements))
+			{
+				var hasBlockField = document.Fields.Contains(tag: "FirstTag");
+				var hasInlineField = document.Fields.Contains(tag: "SecondTag");
 
 				Assert.True(hasBlockField);
 				Assert.True(hasInlineField);
