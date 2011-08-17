@@ -6,7 +6,7 @@
     <title>Fluent OpenXml</title>
     <authors>Александр Бындю, Eskat0n, hazzik</authors>
     <owners>IndyCode Software Company</owners>
-    <licenseUrl>http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</licenseUrl>
+    <licenseUrl>http://www.gnu.org/copyleft/lesser.html</licenseUrl>
     <projectUrl>http://code.google.com/p/fluent-openxml</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Fluent OpenXml Generator is .NET library which provides a fluent API for generating, changing and templating documents in OpenXML format.</description>
