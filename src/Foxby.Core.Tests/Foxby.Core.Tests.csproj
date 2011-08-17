@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="DocumentBuilder\DocumentPlaceholderTests.cs" />
     <Compile Include="DocumentBuilder\DocumentTagTests.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBuilderFieldTests.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentBuilderTests.cs" />
     <Compile Include="DocumentBuilder\Extensions\OpenXmlElementExtensionsTests.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentBuilderMediaTests.cs" />
@@ -75,7 +76,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ApprovalEntryInTheNonProfitOrganizationDocument.docx" />
     <None Include="Resources\DocumentWithAddedParagraph.docx" />
     <None Include="Resources\DocumentWithAttribute.docx" />
     <None Include="Resources\DocumentWithContentTypeTag.docx" />

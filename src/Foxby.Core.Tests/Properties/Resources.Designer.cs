@@ -60,13 +60,6 @@ namespace Foxby.Core.Tests.Properties {
             }
         }
         
-        internal static byte[] ApprovalEntryInTheNonProfitOrganizationDocument {
-            get {
-                object obj = ResourceManager.GetObject("ApprovalEntryInTheNonProfitOrganizationDocument", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
         internal static byte[] DocumentWithAddedParagraph {
             get {
                 object obj = ResourceManager.GetObject("DocumentWithAddedParagraph", resourceCulture);
