@@ -12,9 +12,8 @@ namespace Foxby.Core.DocumentBuilder
 {
 	internal abstract class DocxDocumentContextBuilderBase : DocxDocumentAggregationBuilder, IDocumentContextBuilder
     {
-        private readonly ICollection<OpenXmlElement> runPropertiesElements = new List<OpenXmlElement>();
-
-        private bool isEditable;
+        private readonly ICollection<OpenXmlElement> _runPropertiesElements = new List<OpenXmlElement>();
+        private bool _isEditable;
 
         protected DocxDocumentContextBuilderBase(WordprocessingDocument document)
             : base(document)
@@ -25,21 +24,21 @@ namespace Foxby.Core.DocumentBuilder
 
         public IDocumentContextBuilder EditableStart()
         {
-            if (isEditable)
+            if (_isEditable)
                 return this;
 
             Aggregation.Add(CreatePermStart());
-            isEditable = true;
+            _isEditable = true;
             return this;
         }
 
         public IDocumentContextBuilder EditableEnd()
         {
-            if (isEditable == false)
+            if (_isEditable == false)
                 return this;
 
             Aggregation.Add(CreatePermEnd());
-            isEditable = false;
+            _isEditable = false;
             return this;
         }
 
@@ -52,7 +51,7 @@ namespace Foxby.Core.DocumentBuilder
         {
             get
             {
-                runPropertiesElements.Add(new Bold());
+                _runPropertiesElements.Add(new Bold());
                 return this;
             }
         }
@@ -61,7 +60,7 @@ namespace Foxby.Core.DocumentBuilder
         {
             get
             {
-                runPropertiesElements.Add(new Italic());
+                _runPropertiesElements.Add(new Italic());
                 return this;
             }
         }
@@ -70,7 +69,7 @@ namespace Foxby.Core.DocumentBuilder
         {
             get
             {
-                runPropertiesElements.Add(new Underline { Val = UnderlineValues.Single });
+                _runPropertiesElements.Add(new Underline { Val = UnderlineValues.Single });
                 return this;
             }
         }
@@ -124,9 +123,9 @@ namespace Foxby.Core.DocumentBuilder
         {
             RunProperties properties = RunProperties.CloneElement();
             properties.Vanish = null;
-            properties.Append(runPropertiesElements);
+            properties.Append(_runPropertiesElements);
             Aggregation.AddRange(CreateTextContent(contentLines, properties));
-            runPropertiesElements.Clear();
+            _runPropertiesElements.Clear();
 
             return this;
         }

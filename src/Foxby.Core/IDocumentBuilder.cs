@@ -30,6 +30,13 @@ namespace Foxby.Core
 		IDocumentBuilder BlockField(string fieldName, Action<IDocumentTagContextBuilder> options);
 
 		/// <summary>
+		/// Sets internal content to inline field (sdt element) with name <paramref name="fieldName"/>
+		/// </summary>
+		/// <param name="fieldName">Field name from template</param>
+		/// <param name="options">Delegate which contains code filling field content</param>
+		IDocumentBuilder InlineField(string fieldName, Action<IDocumentContextBuilder> options);
+
+		/// <summary>
 		/// Hide or display content of tag with name <paramref name="tagName"/>
 		/// </summary>
 		/// <param name="tagName">Tag name from template</param>

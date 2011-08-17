@@ -129,6 +129,7 @@
     <None Include="Resources\WithTitlePlaceholderReplaced.docx" />
     <None Include="Resources\WithTwoIndependentOrderedListsInserted.docx" />
     <None Include="Resources\WithTwoParagraphsInBlockField.docx" />
+    <None Include="Resources\WithTwoRunsInInlineField.docx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

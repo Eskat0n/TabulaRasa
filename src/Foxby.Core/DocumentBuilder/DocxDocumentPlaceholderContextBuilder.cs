@@ -5,17 +5,17 @@ namespace Foxby.Core.DocumentBuilder
 {
 	internal class DocxDocumentPlaceholderContextBuilder : DocxDocumentContextBuilderBase
 	{
-		private readonly RunProperties runProperties;
+		private readonly RunProperties _runProperties;
 
 		public DocxDocumentPlaceholderContextBuilder(WordprocessingDocument document, RunProperties runProperties)
 			: base(document)
 		{
-			this.runProperties = runProperties;
+			_runProperties = runProperties;
 		}
 
 		protected override RunProperties RunProperties
 		{
-			get { return runProperties; }
+			get { return _runProperties; }
 		}
 	}
 }

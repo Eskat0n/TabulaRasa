@@ -59,15 +59,16 @@ namespace Foxby.Core.DocumentBuilder
 
 			foreach (var documentPlaceholder in documentPlaceholders)
 			{
-                var builder = new DocxDocumentPlaceholderContextBuilder(Document, !documentPlaceholders.Any()
-                                                                                                    ? new RunProperties()
-                                                                                                    : documentPlaceholder.Opening.RunProperties);
+				var builder = new DocxDocumentPlaceholderContextBuilder(Document, documentPlaceholders.Any() == false
+				                                                                  	? new RunProperties()
+				                                                                  	: documentPlaceholder.Opening.RunProperties);
                 options(builder);
                 foreach (var contentElement in builder.AggregatedContent)
 					documentPlaceholder.Closing.InsertBeforeSelf(contentElement.CloneElement());
 				if (preservePlaceholder == false)
 					documentPlaceholder.Remove();
 			}
+
 			SaveDocument();
 
 			return this;
@@ -76,6 +77,30 @@ namespace Foxby.Core.DocumentBuilder
 		public IDocumentBuilder BlockField(string fieldName, Action<IDocumentTagContextBuilder> options)
 		{
 			options(new DocxDocumentBlockFieldContextBuilder(Document, fieldName));
+			return this;
+		}
+
+		public IDocumentBuilder InlineField(string fieldName, Action<IDocumentContextBuilder> options)
+		{
+			var inlineFields = Anchors.InlineField.Get(Document, fieldName);
+
+			foreach (var inlineField in inlineFields)
+				inlineField.ContentWrapper.RemoveAllChildren();
+
+			SaveDocument();
+
+			foreach (var inlineField in inlineFields)
+			{
+				var builder = new DocxDocumentPlaceholderContextBuilder(Document, new RunProperties());
+
+				options(builder);
+
+				var cloned = builder.AggregatedContent.Select(x => x.CloneElement());
+				inlineField.ContentWrapper.Append(cloned);
+			}
+
+			SaveDocument();
+
 			return this;
 		}
 

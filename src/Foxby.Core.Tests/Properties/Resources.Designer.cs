@@ -430,5 +430,12 @@ namespace Foxby.Core.Tests.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] WithTwoRunsInInlineField {
+            get {
+                object obj = ResourceManager.GetObject("WithTwoRunsInInlineField", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
