@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using Foxby.Core.DocumentBuilder;
 using Foxby.Core.MetaObjects;

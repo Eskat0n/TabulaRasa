@@ -37,11 +37,15 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 		/// </summary>
 		public TElement Closing { get; protected set; }
 
-		protected AnchorElement(string elementName, string openingNameFormat, string closingNameFormat)
+		protected AnchorElement(string elementName, string openingNameFormat = null, string closingNameFormat = null)
 		{
 			Name = elementName;
-			OpeningName = string.Format(openingNameFormat, elementName);
-			ClosingName = string.Format(closingNameFormat, elementName);
+			OpeningName = openingNameFormat == null
+			              	? elementName
+			              	: string.Format(openingNameFormat, elementName);
+			ClosingName = closingNameFormat == null
+			              	? elementName
+			              	: string.Format(closingNameFormat, elementName);
 		}
 
 		protected static IEnumerable<TElement> GetElements(WordprocessingDocument document)
@@ -49,7 +53,6 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 		    var ofType = document.MainDocumentPart.Document
 		        .Descendants()
 		        .OfType<TElement>().ToList();
-
 
 		    var elementsInHeaders = new List<TElement>();
 		    foreach (var headerPart in document.MainDocumentPart.HeaderParts)
@@ -72,7 +75,8 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 	    public void Remove()
 		{
 			Opening.Remove();
-			Closing.Remove();
+			if (Opening != Closing)
+				Closing.Remove();
 		}
 	}
 }

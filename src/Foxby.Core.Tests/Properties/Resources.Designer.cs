@@ -423,5 +423,12 @@ namespace Foxby.Core.Tests.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] WithTwoParagraphsInBlockField {
+            get {
+                object obj = ResourceManager.GetObject("WithTwoParagraphsInBlockField", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

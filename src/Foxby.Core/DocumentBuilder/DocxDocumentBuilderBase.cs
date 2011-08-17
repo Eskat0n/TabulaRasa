@@ -14,7 +14,7 @@ namespace Foxby.Core.DocumentBuilder
 	public abstract class DocxDocumentBuilderBase
 	{
 		protected readonly WordprocessingDocument Document;
-		private int currentPermId;
+		private int _currentPermId;
 
 		protected DocxDocumentBuilderBase(WordprocessingDocument document)
 		{
@@ -23,7 +23,7 @@ namespace Foxby.Core.DocumentBuilder
 
 		protected OpenXmlElement CreatePermStart()
 		{
-			currentPermId = Document.MainDocumentPart.Document
+			_currentPermId = Document.MainDocumentPart.Document
 				.Descendants()
 				.OfType<PermStart>()
 				.Select(x => x.Id.Value)
@@ -32,14 +32,14 @@ namespace Foxby.Core.DocumentBuilder
 
 			return new PermStart
 			       	{
-			       		Id = currentPermId,
+			       		Id = _currentPermId,
 			       		EditorGroup = RangePermissionEditingGroupValues.Everyone
 			       	};
 		}
 
 		protected OpenXmlElement CreatePermEnd()
 		{
-			return new PermEnd { Id = currentPermId };
+			return new PermEnd { Id = _currentPermId };
 		}
 
 		protected void SaveDocument()

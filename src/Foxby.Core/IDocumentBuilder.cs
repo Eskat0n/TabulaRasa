@@ -23,6 +23,13 @@ namespace Foxby.Core
 		IDocumentBuilder Placeholder(string placeholderName, Action<IDocumentContextBuilder> options, bool preservePlaceholder = true);
 
 		/// <summary>
+		/// Sets internal content to block field (sdt element) with name <paramref name="fieldName"/>
+		/// </summary>
+		/// <param name="fieldName">Field name from template</param>
+		/// <param name="options">Delegate which contains code filling field content</param>
+		IDocumentBuilder BlockField(string fieldName, Action<IDocumentTagContextBuilder> options);
+
+		/// <summary>
 		/// Hide or display content of tag with name <paramref name="tagName"/>
 		/// </summary>
 		/// <param name="tagName">Tag name from template</param>

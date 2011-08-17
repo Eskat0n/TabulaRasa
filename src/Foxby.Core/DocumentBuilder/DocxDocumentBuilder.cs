@@ -73,7 +73,13 @@ namespace Foxby.Core.DocumentBuilder
 			return this;
 		}
 
-        public void SetVisibilityTag(string tagName, bool visible)
+		public IDocumentBuilder BlockField(string fieldName, Action<IDocumentTagContextBuilder> options)
+		{
+			options(new DocxDocumentBlockFieldContextBuilder(Document, fieldName));
+			return this;
+		}
+
+		public void SetVisibilityTag(string tagName, bool visible)
         {
             docxDocument.SetTagVisibility(tagName, visible);
         }

@@ -7,14 +7,14 @@ namespace Foxby.Core.DocumentBuilder
 {
 	internal class DocxDocumentParagraphContextBuilder : DocxDocumentContextBuilderBase
 	{
-		private readonly IEnumerable<OpenXmlElement> prependedElements;
-		private readonly ParagraphProperties properties;
+		private readonly IEnumerable<OpenXmlElement> _prependedElements;
+		private readonly ParagraphProperties _properties;
 
 		public DocxDocumentParagraphContextBuilder(WordprocessingDocument document, ParagraphProperties properties, IEnumerable<OpenXmlElement> prependedElements)
 			: base(document)
 		{
-			this.prependedElements = prependedElements;
-			this.properties = properties;
+			_prependedElements = prependedElements;
+			_properties = properties;
 		}
 
 		protected override RunProperties RunProperties
@@ -25,12 +25,12 @@ namespace Foxby.Core.DocumentBuilder
 		public OpenXmlElement ToElement()
 		{
 			var paragraphContent = new List<OpenXmlElement>();
-			if (prependedElements != null)
-				paragraphContent.AddRange(prependedElements);
+			if (_prependedElements != null)
+				paragraphContent.AddRange(_prependedElements);
 
 			paragraphContent.AddRange(AggregatedContent);
 
-			return new Paragraph(paragraphContent) {ParagraphProperties = properties};
+			return new Paragraph(paragraphContent) {ParagraphProperties = _properties};
 		}
 	}
 }

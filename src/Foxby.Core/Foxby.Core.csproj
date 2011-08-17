@@ -52,9 +52,14 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DocumentBuilder\Anchors\AnchorElement.cs" />
+    <Compile Include="DocumentBuilder\Anchors\BlockField.cs" />
     <Compile Include="DocumentBuilder\Anchors\DocumentPlaceholder.cs" />
     <Compile Include="DocumentBuilder\Anchors\DocumentTag.cs" />
+    <Compile Include="DocumentBuilder\Anchors\InlineField.cs" />
+    <Compile Include="DocumentBuilder\Anchors\SdtField.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentAggregationBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBlockContextBuilderBase.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBlockFieldContextBuilder.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentBuilderBase.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentCellContextBuilder.cs" />
