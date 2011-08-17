@@ -16,7 +16,7 @@
 	<property name="build.config" value="Release" dynamic="true" />
 	<property name="build.platform" value="Any CPU"/>
 
-	<property name="version" value="1.2.0.0" dynamic="true" />
+	<property name="version" value="1.3.0.0" dynamic="true" />
 	<property name="version.major" value="${version::get-major(version::parse(version))}" dynamic="true" />
 	<property name="version.minor" value="${version::get-minor(version::parse(version))}" dynamic="true" />
 	<property name="version.revision" value="${build.number}" dynamic="true" />
