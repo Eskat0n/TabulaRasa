@@ -11,7 +11,7 @@
 
 	<property name="build.asminfo" value="GlobalAssemblyInfo.cs" />
 	<property name="solution.filename" value="Foxby.sln" />
-	<property name="xunit.console.exe" value="d:\Configuration\Tools\XUnit\xunit.console.clr4.exe" />
+	<property name="xunit.console.exe" value="${path.root}\build\XUnit\xunit.console.clr4.exe" />
 
 	<property name="build.config" value="Release" dynamic="true" />
 	<property name="build.platform" value="Any CPU"/>
@@ -22,10 +22,9 @@
 	<property name="version.revision" value="${build.number}" dynamic="true" />
 	<property name="build.version" value="${version.major}.${version.minor}.${version.revision}.0" dynamic="true" />
 
-	<property name="packaging.console.exe" value="d:\Configuration\Tools\NuGet\NuGet.exe" />
+	<property name="packaging.console.exe" value="${path.root}\build\NuGet\NuGet" />
 	<property name="packaging.metadata" value="package.nuspec" />
 	<property name="packaging.name" value="Foxby.${build.version}.nupkg" />
-	<property name="packaging.key" value="2e73205b-5d6b-4e53-971c-6054e12c2459" />
 	
 	<!-- entry point -->
 	<target name="go" depends="create-assembly-info, build, test, pack" />
@@ -85,7 +84,6 @@
 			<arg value="-source" />
 			<arg value="http://packages.nuget.org/v1/" />
 			<arg value="${packaging.name}" />
-			<arg value="${packaging.key}" />			
 		</exec>
 	</target>
 
