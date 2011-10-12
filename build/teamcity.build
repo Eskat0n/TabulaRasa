@@ -22,7 +22,7 @@
 	<property name="version.revision" value="${build.number}" dynamic="true" />
 	<property name="build.version" value="${version.major}.${version.minor}.${version.revision}.0" dynamic="true" />
 
-	<property name="packaging.console.exe" value="${path.root}\build\NuGet\NuGet" />
+	<property name="nuget" value="${path.root}\build\NuGet\NuGet" />
 	<property name="packaging.metadata" value="package.nuspec" />
 	<property name="packaging.name" value="Foxby.${build.version}.nupkg" />
 	
@@ -73,13 +73,13 @@
 	</target>
 
 	<target name="pack">
-		<exec program="${packaging.console.exe}" workingdir="${path.base}">
+		<exec program="${nuget}.exe" workingdir="${path.base}">
 			<arg value="pack" />
 			<arg value="${packaging.metadata}" />
 			<arg value="-Version" />
 			<arg value="${build.version}" />
 		</exec>
-		<exec program="${packaging.console.exe}" workingdir="${path.base}">
+		<exec program="${nuget}.bat" workingdir="${path.base}">
 			<arg value="push" />
 			<arg value="-source" />
 			<arg value="http://packages.nuget.org/v1/" />
