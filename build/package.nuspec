@@ -12,7 +12,7 @@
     <description>Fluent OpenXml Generator is .NET library which provides a fluent API for generating, changing and templating documents in OpenXML format.</description>
     <summary>Fluent OpenXml Generator is .NET library which provides a fluent API for generating, changing and templating documents in OpenXML format.</summary>
     <language>en-GB</language>
-    <tags>openxml, microsoft word</tags>
+    <tags>openxml word msword docx</tags>
     <dependencies>
       <dependency id="DocumentFormat.OpenXml" version="1.0" />
     </dependencies>
