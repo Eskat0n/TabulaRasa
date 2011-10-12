@@ -121,21 +121,20 @@ namespace Foxby.Core.MetaObjects
 
 	    private static void SetVisibilityInParagraphProperty(OpenXmlElement paragraph, bool visible)
 	    {
-	        var paragraphProperties = paragraph.Descendants().OfType<ParagraphProperties>();
-	        foreach (var paragraphProperty in paragraphProperties)
-	        {
-	            var paragraphMarkRunProperties = paragraphProperty.Descendants().OfType<ParagraphMarkRunProperties>().ToList();
-	            if (paragraphMarkRunProperties.Any())
-	                foreach (var markRunProperty in paragraphMarkRunProperties)
-	                {
-	                    markRunProperty.RemoveAllChildren<Vanish>();
-	                    if (!visible)
-	                        markRunProperty.Append(new Vanish());
-	                }
-	        }
+	    	var markRunProperties = paragraph.Descendants()
+	    		.OfType<ParagraphProperties>()
+	    		.SelectMany(paragraphProperty => paragraphProperty.Descendants())
+	    		.OfType<ParagraphMarkRunProperties>()
+	    		.ToList();
+	    	foreach (var markRunProperty in markRunProperties)
+	    	{
+	    		markRunProperty.RemoveAllChildren<Vanish>();
+	    		if (!visible)
+	    			markRunProperty.Append(new Vanish());
+	    	}
 	    }
 
-	    private static void Hide(Run run)
+		private static void Hide(Run run)
 	    {
 	        run.RunProperties.Vanish = new Vanish();
 	    }
@@ -246,7 +245,7 @@ namespace Foxby.Core.MetaObjects
 		///</summary>
 		public void Unprotect()
 		{
-			SetProtectionAttribute("None");
+			SetProtectionAttribute(DocumentProtectionValues.None);
 		}
 
 		///<summary>
@@ -254,16 +253,24 @@ namespace Foxby.Core.MetaObjects
 		///</summary>
 		public void Protect()
 		{
-			SetProtectionAttribute("readOnly");
+			SetProtectionAttribute(DocumentProtectionValues.ReadOnly);
 		}
 
-		private void SetProtectionAttribute(string value)
+		private void SetProtectionAttribute(DocumentProtectionValues value)
 		{
-			Settings settings = _wordDocument.MainDocumentPart.DocumentSettingsPart.Settings;
-			OpenXmlElement protectionTag = settings.Where(x => x.LocalName == "documentProtection").FirstOrDefault();
+			var mainDocumentPart = _wordDocument.MainDocumentPart;
+			var settingsPart = mainDocumentPart.DocumentSettingsPart ??
+			                   CreateDocumentSettingsPart(mainDocumentPart);
+			var protectionTag = settingsPart.Settings.GetFirstChild<DocumentProtection>() ??
+			                    settingsPart.Settings.AppendChild(new DocumentProtection());
+			protectionTag.Edit = value;
+		}
 
-			if (protectionTag != null)
-				protectionTag.SetAttribute(new OpenXmlAttribute("w:edit", "http://schemas.openxmlformats.org/wordprocessingml/2006/main", value));
+		private static DocumentSettingsPart CreateDocumentSettingsPart(OpenXmlPartContainer mainDocumentPart)
+		{
+			var part = mainDocumentPart.AddNewPart<DocumentSettingsPart>();
+			part.Settings = new Settings();
+			return part;
 		}
 
 		private static string GetOpenTagName(string tagName)

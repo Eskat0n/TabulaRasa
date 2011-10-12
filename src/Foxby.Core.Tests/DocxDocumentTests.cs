@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Foxby.Core.MetaObjects;
-using Foxby.Core.Tests.DocumentBuilder;
 using Foxby.Core.Tests.EqualityComparers;
 using Foxby.Core.Tests.Properties;
 using Xunit;
@@ -12,7 +9,9 @@ using Xunit.Sdk;
 
 namespace Foxby.Core.Tests
 {
-    public class DocxDocumentTests
+	using System;
+
+	public class DocxDocumentTests
     {
         [Fact]
         public void DocumentsWithDifferentInnerXmlMustBeNotEqual()
@@ -105,8 +104,7 @@ namespace Foxby.Core.Tests
             using (var @unprotected = new DocxDocument(Resources.Unprotected))
             {
                 @protected.Unprotect();
-
-                Assert.Equal(@unprotected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml, @protected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml);
+            	Assert.Equal(@unprotected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml, @protected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml, StringComparer.InvariantCultureIgnoreCase);
             }
         }
 
@@ -206,12 +204,13 @@ namespace Foxby.Core.Tests
             using (var expected = new DocxDocument(Resources.DocumentWithAddedParagraph))
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
             {
-                var paragraphsCount = GetParagraphs(document).Count();
+            	var paragraphsCount = GetParagraphs(document).Count;
 
                 document.AppendParagraph("New paragraph content", false);
 
-                Assert.Equal(paragraphsCount + 1, GetParagraphs(document).Count());
-                Assert.Equal(GetParagraphs(expected).Last().InnerXml, GetParagraphs(document).Last().InnerXml);
+            	var paragraphs = GetParagraphs(document);
+            	Assert.Equal(paragraphsCount + 1, paragraphs.Count);
+				Assert.Equal(GetParagraphs(expected).Last().InnerXml, paragraphs.Last().InnerXml);
             }
         }
 
@@ -220,15 +219,15 @@ namespace Foxby.Core.Tests
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
             {
-                var initialCount = GetParagraphs(document).Count();
+                var initialCount = GetParagraphs(document).Count;
 
                 document.AppendTag("Test");
 
                 var paragraphs = GetParagraphs(document);
 
                 Assert.Equal("{/Test}", paragraphs.Last().InnerText);
-                Assert.Equal("{Test}", paragraphs.Skip(paragraphs.Count() - 2).First().InnerText);
-                Assert.Equal(initialCount + 2, paragraphs.Count());
+                Assert.Equal("{Test}", paragraphs.Skip(paragraphs.Count - 2).First().InnerText);
+                Assert.Equal(initialCount + 2, paragraphs.Count);
             }
         }
 
@@ -237,14 +236,14 @@ namespace Foxby.Core.Tests
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
             {
-                var initialCount = GetParagraphs(document).Count();
+                var initialCount = GetParagraphs(document).Count;
 
                 document.AppendSelfclosingTag("Test");
 
                 var paragraphs = GetParagraphs(document);
 
                 Assert.Equal("{{Test}}", paragraphs.Last().InnerText);
-                Assert.Equal(initialCount + 1, paragraphs.Count());
+                Assert.Equal(initialCount + 1, paragraphs.Count);
             }
         }
 
@@ -253,7 +252,7 @@ namespace Foxby.Core.Tests
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
             {
-                var initialCount = GetParagraphs(document).Count();
+                var initialCount = GetParagraphs(document).Count;
 
                 document.AppendSelfclosingTag("Test", false);
 
@@ -262,13 +261,13 @@ namespace Foxby.Core.Tests
                 var insertedParagraph = paragraphs.Last();
                 Assert.Equal("{{Test}}", insertedParagraph.InnerText);
                 Assert.NotEmpty(insertedParagraph.ParagraphProperties);
-                Assert.Equal(initialCount + 1, paragraphs.Count());
+                Assert.Equal(initialCount + 1, paragraphs.Count);
             }
         }
 
-        private static IEnumerable<Paragraph> GetParagraphs(DocxDocument document)
+        private static ICollection<Paragraph> GetParagraphs(DocxDocument document)
         {
-            return document.GetWordDocument().MainDocumentPart.Document.Descendants().OfType<Paragraph>();
+        	return document.GetWordDocument().MainDocumentPart.Document.Descendants().OfType<Paragraph>().ToArray();
         }
 
         [Fact]
@@ -348,6 +347,24 @@ namespace Foxby.Core.Tests
 			{
 				Assert.Equal(2, document.Fields.Count());
 			}
+    	}
+
+    	[Fact]
+    	public void CanUnprotectNewDocument()
+    	{
+    		using (var document = new DocxDocument())
+    		{
+    			Assert.DoesNotThrow(document.Unprotect);
+    		}
+    	}
+
+    	[Fact]
+    	public void CanProtectNewDocument()
+    	{
+    		using (var document = new DocxDocument())
+    		{
+    			document.Protect();
+    		}
     	}
     }
 }
