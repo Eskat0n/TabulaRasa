@@ -44,12 +44,15 @@ namespace Foxby.Core.MetaObjects.Collections
 
 		private static bool SearchPredicate(Field field, string name, string tag)
 		{
+			var fieldName = field.Name;
+			var fieldTag = field.Tag;
+
 			if (name != null && tag != null)
-				return field.Name == name && field.Tag == tag;
+				return fieldName == name && fieldTag == tag;
 			if (name != null)
-				return field.Name == name;
+				return fieldName == name;
 			if (tag != null)
-				return field.Tag == tag;
+				return fieldTag == tag;
 			return true;
 		}
 	}

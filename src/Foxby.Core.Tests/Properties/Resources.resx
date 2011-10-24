@@ -280,4 +280,7 @@
   <data name="WithTwoRunsInInlineField" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\withtworunsininlinefield.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="SdtElementWithoutSdtAlias" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\sdtelementwithoutsdtalias.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

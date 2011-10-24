@@ -340,7 +340,7 @@ namespace Foxby.Core.Tests
 			}
     	}
 
-    	[Fact]
+		[Fact]
     	public void CanCorrectlyCountAllFieldsInDocument()
     	{
 			using (var document = new DocxDocument(Resources.WithSdtElements))
@@ -349,7 +349,7 @@ namespace Foxby.Core.Tests
 			}
     	}
 
-    	[Fact]
+		[Fact]
     	public void CanUnprotectNewDocument()
     	{
     		using (var document = new DocxDocument())
@@ -358,7 +358,7 @@ namespace Foxby.Core.Tests
     		}
     	}
 
-    	[Fact]
+		[Fact]
     	public void CanProtectNewDocument()
     	{
     		using (var document = new DocxDocument())
@@ -366,5 +366,15 @@ namespace Foxby.Core.Tests
     			document.Protect();
     		}
     	}
+
+		[Fact]
+		public void CanFindTagIfSdtElementHasNoSdtAlias()
+		{
+			using (var document = new DocxDocument(Resources.SdtElementWithoutSdtAlias))
+			{
+				document.Fields.Contains(tag: "FirstTag");
+				document.Fields.Contains(tag: "SecondTag");
+			}
+		}
     }
 }

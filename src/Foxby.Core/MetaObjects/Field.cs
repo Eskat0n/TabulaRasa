@@ -1,8 +1,8 @@
-﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.MetaObjects
+﻿namespace Foxby.Core.MetaObjects
 {
+	using DocumentFormat.OpenXml;
+	using DocumentFormat.OpenXml.Wordprocessing;
+
 	/// <summary>
 	/// Class which holds basic information about <see cref="SdtElement"/>
 	/// </summary>
@@ -20,8 +20,8 @@ namespace Foxby.Core.MetaObjects
 		/// </summary>
 		public string Name
 		{
-			get { return _element.SdtProperties.GetFirstChild<SdtAlias>().Val.Value; }
-			set { _element.SdtProperties.GetFirstChild<SdtAlias>().Val = new StringValue(value); }
+			get { return Get<SdtAlias>().Val.Value; }
+			set { Get<SdtAlias>().Val = new StringValue(value); }
 		}
 
 		/// <summary>
@@ -29,8 +29,16 @@ namespace Foxby.Core.MetaObjects
 		/// </summary>
 		public string Tag
 		{
-			get { return _element.SdtProperties.GetFirstChild<Tag>().Val.Value; }
-			set { _element.SdtProperties.GetFirstChild<Tag>().Val = new StringValue(value); }
+			get { return Get<Tag>().Val.Value; }
+			set { Get<Tag>().Val = new StringValue(value); }
+		}
+
+		private T Get<T>() where T : StringType, new()
+		{
+			SdtProperties properties = _element.SdtProperties;
+
+			return properties.GetFirstChild<T>() ??
+			       properties.AppendChild(new T {Val = new StringValue()});
 		}
 	}
 }

@@ -93,6 +93,7 @@
     <None Include="Resources\InvalidDocument.docx" />
     <None Include="Resources\Protected.docx" />
     <None Include="Resources\TableWithFormattedCells.docx" />
+    <None Include="Resources\SdtElementWithoutSdtAlias.docx" />
     <None Include="Resources\Unprotected.docx" />
     <None Include="Resources\WithCellWithPlaceholder.docx" />
     <None Include="Resources\WithDifferentlyFormattedTextInPlaceholder.docx" />
