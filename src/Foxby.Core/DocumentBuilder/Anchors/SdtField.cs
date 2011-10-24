@@ -32,9 +32,15 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 			where TSdtField : SdtField<TSdtElement, TSdtContentElement>
 		{
 			return GetElements(document)
-				.Where(x => x.SdtProperties.GetFirstChild<SdtAlias>().Val.Value == fieldName)
+				.Where(x => FindBySdtAlias(fieldName, x))
 				.Select(x => factory(fieldName, x))
 				.ToList();
+		}
+
+		private static bool FindBySdtAlias(string fieldName, TSdtElement x)
+		{
+			var sdtAlias = x.SdtProperties.GetFirstChild<SdtAlias>();
+			return sdtAlias != null && sdtAlias.Val.Value == fieldName;
 		}
 	}
 }
