@@ -11,7 +11,7 @@ using Foxby.Core.MetaObjects;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	/// <summary>
+    /// <summary>
 	/// Operates with content of tags and placeholders in OpenXML template
 	/// </summary>
 	public class DocxDocumentBuilder : DocxDocumentBuilderBase, IDocumentBuilder
@@ -113,6 +113,11 @@ namespace Foxby.Core.DocumentBuilder
 	    {
 	        var errorInfos = new OpenXmlValidator(FileFormatVersions.Office2007).Validate(Document);
 	        return !errorInfos.Any();
+	    }
+
+        public IEnumerable<Field> Fields
+	    {
+            get { return docxDocument.Fields; }
 	    }
 
 	    public byte[] ToArray()

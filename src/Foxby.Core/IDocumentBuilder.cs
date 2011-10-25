@@ -2,7 +2,10 @@
 
 namespace Foxby.Core
 {
-	/// <summary>
+    using System.Collections.Generic;
+    using MetaObjects;
+
+    /// <summary>
 	/// Provide methods for top level operations
 	/// </summary>
 	public interface IDocumentBuilder
@@ -36,6 +39,8 @@ namespace Foxby.Core
 		/// <param name="options">Delegate which contains code filling field content</param>
 		IDocumentBuilder InlineField(string fieldName, Action<IDocumentContextBuilder> options);
 
+        
+        
 		/// <summary>
 		/// Hide or display content of tag with name <paramref name="tagName"/>
 		/// </summary>
@@ -53,5 +58,10 @@ namespace Foxby.Core
 		/// Serialize OpenXML document as binary array
 		/// </summary>
 		byte[] ToArray();
+
+        /// <summary>
+        /// Returns collection of fields of underlying docxdocument
+        /// </summary>
+        IEnumerable<Field> Fields { get; }
 	}
 }

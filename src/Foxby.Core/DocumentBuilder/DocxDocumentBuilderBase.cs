@@ -8,7 +8,7 @@ using Foxby.Core.DocumentBuilder.Extensions;
 
 namespace Foxby.Core.DocumentBuilder
 {
-	/// <summary>
+    /// <summary>
 	/// Contains common operations for working OpenXML tree
 	/// </summary>
 	public abstract class DocxDocumentBuilderBase
@@ -21,7 +21,7 @@ namespace Foxby.Core.DocumentBuilder
 			Document = document;
 		}
 
-		protected OpenXmlElement CreatePermStart()
+	    protected OpenXmlElement CreatePermStart()
 		{
 			_currentPermId = Document.MainDocumentPart.Document
 				.Descendants()
