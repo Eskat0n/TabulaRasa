@@ -95,7 +95,19 @@ namespace Foxby.Core.DocumentBuilder
 
 				options(builder);
 
-				var cloned = builder.AggregatedContent.Select(x => x.CloneElement());
+				var cloned = builder.AggregatedContent
+					.Select(x => x.CloneElement())
+					.ToList();
+
+				var runs = cloned
+					.OfType<Run>();
+
+				foreach (var run in runs)
+					if (run.RunProperties == null)
+						run.RunProperties = new RunProperties(inlineField.RunStyle);
+					else
+						run.RunProperties.RunStyle = inlineField.RunStyle;
+
 				inlineField.ContentWrapper.Append(cloned);
 			}
 
