@@ -37,6 +37,21 @@ namespace Foxby.Core.Tests.DocumentBuilder
 			}
 		}
 
+		[Fact]
+		public void StyleAppliedToFieldsShouldPersistAfterSettingContent()
+		{
+			using (var expected = new DocxDocument(Resources.WithStyledSdtElementsContentInserted))
+			using (var document = new DocxDocument(Resources.WithStyledSdtElements))
+			{
+				var builder = new DocxDocumentBuilder(document);
+
+				builder.BlockField("BlockField", x => x.Paragraph("Первый").Paragraph("Второй"));
+				builder.InlineField("InlineField", x => x.Text("Первый").Text("Второй"));
+
+				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+			}			
+		}
+
 		private static void SaveDocxFile(DocxDocument document, string fileName)
 		{
 			File.WriteAllBytes(string.Format(@"D:\{0}.docx", fileName), document.ToArray());

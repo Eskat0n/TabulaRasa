@@ -122,6 +122,8 @@
     <None Include="Resources\WithPlaceholdersDenormalized.docx" />
     <None Include="Resources\WithPlaceholdersNormalized.docx" />
     <None Include="Resources\WithSdtElements.docx" />
+    <None Include="Resources\WithStyledSdtElements.docx" />
+    <None Include="Resources\WithStyledSdtElementsContentInserted.docx" />
     <None Include="Resources\WithTableInsert.docx" />
     <None Include="Resources\WithTableWithMultilineCells.docx" />
     <None Include="Resources\WithTableWithoutBordersInsert.docx" />

@@ -382,6 +382,20 @@ namespace Foxby.Core.Tests.Properties {
             }
         }
         
+        internal static byte[] WithStyledSdtElements {
+            get {
+                object obj = ResourceManager.GetObject("WithStyledSdtElements", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] WithStyledSdtElementsContentInserted {
+            get {
+                object obj = ResourceManager.GetObject("WithStyledSdtElementsContentInserted", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] WithTableInsert {
             get {
                 object obj = ResourceManager.GetObject("WithTableInsert", resourceCulture);
