@@ -38,7 +38,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 		}
 
 		[Fact]
-		public void StyleAppliedToFieldsShouldPersistAfterSettingContent()
+		public void StyleAppliedToBlockFieldShouldPersistAfterSettingContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithStyledSdtElementsContentInserted))
 			using (var document = new DocxDocument(Resources.WithStyledSdtElements))
@@ -46,6 +46,19 @@ namespace Foxby.Core.Tests.DocumentBuilder
 				var builder = new DocxDocumentBuilder(document);
 
 				builder.BlockField("BlockField", x => x.Paragraph("Первый").Paragraph("Второй"));
+
+				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+			}			
+		}
+		
+		[Fact]
+		public void StyleAppliedToInlineFieldShouldPersistAfterSettingContent()
+		{
+			using (var expected = new DocxDocument(Resources.WithStyledInlineSdtElementContentInserted))
+			using (var document = new DocxDocument(Resources.WithStyledInlineSdtElement))
+			{
+				var builder = new DocxDocumentBuilder(document);
+
 				builder.InlineField("InlineField", x => x.Text("Первый").Text("Второй"));
 
 				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
