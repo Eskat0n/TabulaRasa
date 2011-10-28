@@ -17,7 +17,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 				.Descendants<ParagraphProperties>()
 				.FirstOrDefault();
 
-			_paragraphStyleId = paragraphProperties != null
+			_paragraphStyleId = paragraphProperties != null && paragraphProperties.ParagraphStyleId != null
 			                    	? paragraphProperties.ParagraphStyleId.CloneElement()
 			                    	: null;
 		}

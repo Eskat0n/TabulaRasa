@@ -17,7 +17,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 				.Descendants<RunProperties>()
 				.FirstOrDefault();
 
-			_runStyle = runProperties != null
+			_runStyle = runProperties != null && runProperties.RunStyle != null
 			            	? runProperties.RunStyle.CloneElement()
 			            	: null;
 		}
