@@ -24,7 +24,12 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 
 		internal RunStyle RunStyle
 		{
-			get { return _runStyle.CloneElement(); }
+			get
+			{
+				return _runStyle == null
+						? null
+						: _runStyle.CloneElement();
+			}
 		}
 
 		internal static IEnumerable<InlineField> Get(WordprocessingDocument document, string fieldName)
