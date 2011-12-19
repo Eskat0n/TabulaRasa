@@ -8,7 +8,7 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 {
 	internal class BlockField : SdtField<SdtBlock, SdtContentBlock>
 	{
-		private readonly ParagraphStyleId _paragraphStyleId;
+		private readonly ParagraphProperties _paragraphProperties;
 
 		private BlockField(string elementName, SdtBlock sdtElement)
 			: base(elementName, sdtElement)
@@ -17,20 +17,13 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 				.Descendants<ParagraphProperties>()
 				.FirstOrDefault();
 
-			_paragraphStyleId = paragraphProperties != null && paragraphProperties.ParagraphStyleId != null
-			                    	? paragraphProperties.ParagraphStyleId.CloneElement()
-			                    	: null;
+		    _paragraphProperties = paragraphProperties != null ? paragraphProperties.CloneElement() : null;
 		}
 
-		internal ParagraphStyleId ParagraphStyleId
-		{
-			get
-			{
-				return _paragraphStyleId == null
-				       	? null
-				       	: _paragraphStyleId.CloneElement();
-			}
-		}
+	    internal ParagraphProperties ParagraphProperties
+	    {
+	        get { return _paragraphProperties == null ? new ParagraphProperties() : _paragraphProperties.CloneElement(); }
+	    }
 
 		internal static IEnumerable<BlockField> Get(WordprocessingDocument document, string fieldName)
 		{

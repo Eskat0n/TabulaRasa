@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Foxby.Core.DocumentBuilder;
+﻿using Foxby.Core.DocumentBuilder;
 using Foxby.Core.MetaObjects;
 using Foxby.Core.Tests.EqualityComparers;
 using Foxby.Core.Tests.Properties;
@@ -38,7 +37,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 		}
 
 		[Fact]
-		public void StyleAppliedToBlockFieldShouldPersistAfterSettingContent()
+		public void PropertiesAppliedToBlockFieldShouldPersistAfterSettingContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithStyledSdtElementsContentInserted))
 			using (var document = new DocxDocument(Resources.WithStyledSdtElements))
@@ -52,7 +51,7 @@ namespace Foxby.Core.Tests.DocumentBuilder
 		}
 		
 		[Fact]
-		public void StyleAppliedToInlineFieldShouldPersistAfterSettingContent()
+		public void PropertiesAppliedToInlineFieldShouldPersistAfterSettingContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithStyledInlineSdtElementContentInserted))
 			using (var document = new DocxDocument(Resources.WithStyledInlineSdtElement))
@@ -63,11 +62,6 @@ namespace Foxby.Core.Tests.DocumentBuilder
 
 				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
 			}			
-		}
-
-		private static void SaveDocxFile(DocxDocument document, string fileName)
-		{
-			File.WriteAllBytes(string.Format(@"D:\{0}.docx", fileName), document.ToArray());
 		}
 	}
 }

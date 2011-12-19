@@ -103,10 +103,7 @@ namespace Foxby.Core.DocumentBuilder
 					.OfType<Run>();
 
 				foreach (var run in runs)
-					if (run.RunProperties == null)
-						run.RunProperties = new RunProperties(inlineField.RunStyle);
-					else
-						run.RunProperties.RunStyle = inlineField.RunStyle;
+					run.RunProperties = inlineField.RunProperties;
 
 				inlineField.ContentWrapper.Append(cloned);
 			}

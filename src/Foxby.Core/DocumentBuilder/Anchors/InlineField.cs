@@ -8,29 +8,27 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 {
 	internal class InlineField : SdtField<SdtRun, SdtContentRun>
 	{
-		private readonly RunStyle _runStyle;
+	    private readonly RunProperties _runProperties;
 
-		private InlineField(string elementName, SdtRun sdtElement)
+	    private InlineField(string elementName, SdtRun sdtElement)
 			: base(elementName, sdtElement)
 		{
 			var runProperties = sdtElement
 				.Descendants<RunProperties>()
 				.FirstOrDefault();
 
-			_runStyle = runProperties != null && runProperties.RunStyle != null
-			            	? runProperties.RunStyle.CloneElement()
-			            	: null;
+	        _runProperties = runProperties != null ? runProperties.CloneElement() : null;
 		}
 
-		internal RunStyle RunStyle
-		{
-			get
-			{
-				return _runStyle == null
-						? null
-						: _runStyle.CloneElement();
-			}
-		}
+	    internal RunProperties RunProperties
+        {
+            get
+            {
+                return _runProperties == null
+                        ? new RunProperties()
+                        : _runProperties.CloneElement();
+            }
+        }
 
 		internal static IEnumerable<InlineField> Get(WordprocessingDocument document, string fieldName)
 		{

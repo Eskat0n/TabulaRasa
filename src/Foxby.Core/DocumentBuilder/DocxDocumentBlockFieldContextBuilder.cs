@@ -33,11 +33,8 @@ namespace Foxby.Core.DocumentBuilder
 				var paragraphs = cloned
 					.OfType<Paragraph>();
 
-				foreach (var paragraph in paragraphs)
-					if (paragraph.ParagraphProperties == null)
-						paragraph.ParagraphProperties = new ParagraphProperties(blockField.ParagraphStyleId);
-					else
-						paragraph.ParagraphProperties.ParagraphStyleId = blockField.ParagraphStyleId;
+                foreach (var paragraph in paragraphs)
+                    paragraph.ParagraphProperties = blockField.ParagraphProperties;
 
 				blockField.ContentWrapper.Append(cloned);
 			}
