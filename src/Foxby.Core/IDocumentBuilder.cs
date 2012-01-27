@@ -63,5 +63,11 @@ namespace Foxby.Core
         /// Returns collection of fields of underlying docxdocument
         /// </summary>
         IEnumerable<Field> Fields { get; }
+
+        ///<summary>
+        /// Gets value for specified <paramref name="key"/> from docx document inner key-value storage
+        ///</summary>
+        ///<param name="key">Key name</param>
+        string GetCustomProperty(string key);
 	}
 }

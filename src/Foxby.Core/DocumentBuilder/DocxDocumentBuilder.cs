@@ -124,6 +124,11 @@ namespace Foxby.Core.DocumentBuilder
 	        return !errorInfos.Any();
 	    }
 
+        public string GetCustomProperty(string key)
+        {
+            return docxDocument.GetCustomProperty(key);
+        }
+
         public IEnumerable<Field> Fields
 	    {
             get { return docxDocument.Fields; }
