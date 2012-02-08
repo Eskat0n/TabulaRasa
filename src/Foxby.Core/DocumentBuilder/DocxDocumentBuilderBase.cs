@@ -42,12 +42,13 @@ namespace Foxby.Core.DocumentBuilder
 			return new PermEnd { Id = _currentPermId };
 		}
 
-		protected void SaveDocument()
+        protected void SaveDocument()
 		{
-			Document.MainDocumentPart.Document.Save();
+            foreach (var element in Document.MainDocumentPart.GetRootElements())
+                element.Save();
 		}
 
-		protected static IEnumerable<Run> CreateTextContent(IEnumerable<string> content, RunProperties runProperties = null)
+        protected static IEnumerable<Run> CreateTextContent(IEnumerable<string> content, RunProperties runProperties = null)
 		{
 			return content
 				.SelectMany(x => x.Split(new[] {Environment.NewLine}, StringSplitOptions.None))

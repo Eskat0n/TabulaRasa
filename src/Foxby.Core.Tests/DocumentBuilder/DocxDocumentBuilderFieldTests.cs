@@ -1,4 +1,5 @@
-﻿using Foxby.Core.DocumentBuilder;
+﻿using System.IO;
+using Foxby.Core.DocumentBuilder;
 using Foxby.Core.MetaObjects;
 using Foxby.Core.Tests.EqualityComparers;
 using Foxby.Core.Tests.Properties;
@@ -59,6 +60,20 @@ namespace Foxby.Core.Tests.DocumentBuilder
 				var builder = new DocxDocumentBuilder(document);
 
 				builder.InlineField("InlineField", x => x.Text("Первый").Text("Второй"));
+
+				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+			}			
+		}
+		
+        [Fact]
+		public void PropertiesAppliedToInlineFieldInHeadersAndFooters()
+        {
+            using (var expected = new DocxDocument(Resources.FieldsInHeadersAndFootersReplaced))
+            using (var document = new DocxDocument(Resources.FieldsInHeadersAndFooters))
+			{
+				var builder = new DocxDocumentBuilder(document);
+
+                builder.InlineField("Signer.ShortNameThisOrSubstitute", x => x.Text("Первый").Text("Второй"));
 
 				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
 			}			

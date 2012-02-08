@@ -35,8 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\OpenXml\DocumentFormat.OpenXml.dll</HintPath>
+      <HintPath>..\..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,6 +69,7 @@
     <Compile Include="DocumentBuilder\DocxDocumentTableSchemeBuilder.cs" />
     <Compile Include="DocumentBuilder\DocxDocumentTagContextBuilder.cs" />
     <Compile Include="DocumentBuilder\Extensions\OpenXmlElementExtensions.cs" />
+    <Compile Include="DocumentBuilder\MainDocumentPartExtensions.cs" />
     <Compile Include="DocumentBuilder\TagVisibilityOptions.cs" />
     <Compile Include="MetaObjects\Collections\FieldsCollection.cs" />
     <Compile Include="MetaObjects\Field.cs" />
@@ -100,6 +100,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\Empty.docx" />
   </ItemGroup>
   <ItemGroup>

@@ -158,6 +158,20 @@ namespace Foxby.Core.Tests.Properties {
             }
         }
         
+        internal static byte[] FieldsInHeadersAndFooters {
+            get {
+                object obj = ResourceManager.GetObject("FieldsInHeadersAndFooters", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] FieldsInHeadersAndFootersReplaced {
+            get {
+                object obj = ResourceManager.GetObject("FieldsInHeadersAndFootersReplaced", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] InvalidDocument {
             get {
                 object obj = ResourceManager.GetObject("InvalidDocument", resourceCulture);

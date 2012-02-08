@@ -50,23 +50,8 @@ namespace Foxby.Core.DocumentBuilder.Anchors
 
 		protected static IEnumerable<TElement> GetElements(WordprocessingDocument document)
 		{
-		    var ofType = document.MainDocumentPart.Document
-		        .Descendants()
-		        .OfType<TElement>().ToList();
-
-		    var elementsInHeaders = new List<TElement>();
-		    foreach (var headerPart in document.MainDocumentPart.HeaderParts)
-		        elementsInHeaders.AddRange(headerPart.RootElement.Descendants().OfType<TElement>());
-
-		    ofType.AddRange(elementsInHeaders);
-
-            var elementsInFooters = new List<TElement>();
-            foreach (var footerPart in document.MainDocumentPart.FooterParts)
-                elementsInFooters.AddRange(footerPart.RootElement.Descendants().OfType<TElement>());
-
-            ofType.AddRange(elementsInFooters);
-
-            return ofType;
+		    return document.MainDocumentPart.GetRootElements()
+		        .SelectMany(e => e.Descendants<TElement>());
 		}
 
 	    ///<summary>

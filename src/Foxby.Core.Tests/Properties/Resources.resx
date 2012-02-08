@@ -295,4 +295,10 @@
   <data name="WithStyledInlineSdtElementContentInserted" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WithStyledInlineSdtElementContentInserted.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="FieldsInHeadersAndFooters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FieldsInHeadersAndFooters.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FieldsInHeadersAndFootersReplaced" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FieldsInHeadersAndFootersReplaced.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
