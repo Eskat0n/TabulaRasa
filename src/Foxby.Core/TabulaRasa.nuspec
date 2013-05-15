@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>TabulaRasa</id>
+    <version>$version$</version>
+    <title>TabulaRasa</title>
+	  <authors>Eskat0n, hazzik, Александр Бындю</authors>
+    <owners>Eskat0n</owners>
+    <licenseUrl>http://www.gnu.org/copyleft/lesser.html</licenseUrl>
+    <projectUrl>https://github.com/Eskat0n/TabulaRasa</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>TabulaRasa is .NET library which provides a fluent API for generating, changing and templating documents in OpenXML format.</description>
+	  <tags>openxml word msword docx</tags>
+    <dependencies>
+      <dependency id="DocumentFormat.OpenXml" version="1.0" />
+    </dependencies>
+  </metadata>
+</package>

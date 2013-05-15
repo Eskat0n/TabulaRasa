@@ -101,6 +101,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\Empty.docx" />
+    <None Include="TabulaRasa.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SimpleTemplate.resx">
