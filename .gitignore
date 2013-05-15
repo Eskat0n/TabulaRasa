@@ -2,7 +2,6 @@ _ReSharper.*
 
 bin
 obj
-build
 packages
 tests
 
