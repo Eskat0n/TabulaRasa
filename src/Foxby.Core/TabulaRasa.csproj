@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8826F774-A0F0-46BC-8089-90F947485ECE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foxby.Core</RootNamespace>
+    <AssemblyName>Foxby</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\build\Debug\Foxby.xml</DocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\build\Release\Foxby.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DocumentFormat.OpenXml.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Solution Items\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="DocumentBuilder\Anchors\AnchorElement.cs" />
+    <Compile Include="DocumentBuilder\Anchors\BlockField.cs" />
+    <Compile Include="DocumentBuilder\Anchors\DocumentPlaceholder.cs" />
+    <Compile Include="DocumentBuilder\Anchors\DocumentTag.cs" />
+    <Compile Include="DocumentBuilder\Anchors\InlineField.cs" />
+    <Compile Include="DocumentBuilder\Anchors\SdtField.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentAggregationBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBlockContextBuilderBase.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBlockFieldContextBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentBuilderBase.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentCellContextBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentContextBuilderBase.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentOrderedListBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentParagraphContextBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentPlaceholderContextBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentTableSchemeBuilder.cs" />
+    <Compile Include="DocumentBuilder\DocxDocumentTagContextBuilder.cs" />
+    <Compile Include="DocumentBuilder\Extensions\OpenXmlElementExtensions.cs" />
+    <Compile Include="DocumentBuilder\MainDocumentPartExtensions.cs" />
+    <Compile Include="DocumentBuilder\TagVisibilityOptions.cs" />
+    <Compile Include="MetaObjects\Collections\FieldsCollection.cs" />
+    <Compile Include="MetaObjects\Field.cs" />
+    <Compile Include="MetaObjects\OpenCloseTagReplacer.cs" />
+    <Compile Include="MetaObjects\DocxDocument.cs" />
+    <Compile Include="ICellContextBuilder.cs" />
+    <Compile Include="IDocumentBuilder.cs" />
+    <Compile Include="IDocumentContextBuilder.cs" />
+    <Compile Include="IDocumentContextFormattableBuilder.cs" />
+    <Compile Include="IDocumentFormattableBuilder.cs" />
+    <Compile Include="IDocumentOrderedListBuilder.cs" />
+    <Compile Include="IDocumentParagraphFormattableBuilder.cs" />
+    <Compile Include="IDocumentTableContextBuilder.cs" />
+    <Compile Include="IDocumentTableRowsBuilder.cs" />
+    <Compile Include="IDocumentTableSchemeBuilder.cs" />
+    <Compile Include="IDocumentTagContextBuilder.cs" />
+    <Compile Include="MetaObjects\Extensions\StringFormatExtensions.cs" />
+    <Compile Include="MetaObjects\Format.cs" />
+    <Compile Include="MetaObjects\Image.cs" />
+    <Compile Include="MetaObjects\SingleTagReplacer.cs" />
+    <Compile Include="MetaObjects\TagReplacer.cs" />
+    <Compile Include="MetaObjects\TextBlock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleTemplate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SimpleTemplate.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\Empty.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SimpleTemplate.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SimpleTemplate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
