@@ -1,7 +1,10 @@
+_ReSharper.*
+
 bin
 obj
-_ReSharper.*
-build/**/*
-tests/*
+build
+packages
+tests
+
 *.user
 *.suo
