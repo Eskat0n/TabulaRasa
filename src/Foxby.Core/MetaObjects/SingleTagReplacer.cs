@@ -1,8 +1,8 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.MetaObjects
+﻿namespace TabulaRasa.MetaObjects
 {
-	internal class SingleTagReplacer : TagReplacer
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal class SingleTagReplacer : TagReplacer
     {
         public SingleTagReplacer(string name, DocxDocument document)
             : base(name, document)

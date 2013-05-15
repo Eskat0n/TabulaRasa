@@ -1,14 +1,14 @@
-using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder.Anchors;
-using Foxby.Core.DocumentBuilder.Extensions;
-
-namespace Foxby.Core.DocumentBuilder
+namespace TabulaRasa.DocumentBuilder
 {
-	internal class DocxDocumentBlockFieldContextBuilder : DocxDocumentBlockContextBuilderBase
+    using System.Collections.Generic;
+    using System.Linq;
+    using Anchors;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Extensions;
+
+    internal class DocxDocumentBlockFieldContextBuilder : DocxDocumentBlockContextBuilderBase
 	{
 		private readonly IEnumerable<BlockField> _documentFields;
 

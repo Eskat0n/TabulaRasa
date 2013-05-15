@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder.Extensions;
-
-namespace Foxby.Core.DocumentBuilder.Anchors
+namespace TabulaRasa.DocumentBuilder.Anchors
 {
-	internal class BlockField : SdtField<SdtBlock, SdtContentBlock>
+    using System.Collections.Generic;
+    using System.Linq;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Extensions;
+
+    internal class BlockField : SdtField<SdtBlock, SdtContentBlock>
 	{
 		private readonly ParagraphProperties _paragraphProperties;
 

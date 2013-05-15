@@ -1,11 +1,11 @@
-using System;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.DocumentBuilder
+namespace TabulaRasa.DocumentBuilder
 {
-	internal class DocxDocumentCellContextBuilder : DocxDocumentContextBuilderBase, ICellContextBuilder
+    using System;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal class DocxDocumentCellContextBuilder : DocxDocumentContextBuilderBase, ICellContextBuilder
 	{
 		private readonly TableCellProperties contextTableCellProperties;
 		private ParagraphProperties paragraphProperties;

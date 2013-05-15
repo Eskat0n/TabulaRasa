@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.MetaObjects.Collections
+﻿namespace TabulaRasa.MetaObjects.Collections
 {
-	/// <summary>
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    /// <summary>
 	/// Collection which contains all sdt fields from document represented as <see cref="Field"/>s
 	/// </summary>
 	public class FieldsCollection : IEnumerable<Field>

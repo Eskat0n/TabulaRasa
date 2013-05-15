@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
-	internal abstract class DocxDocumentAggregationBuilder : DocxDocumentBuilderBase
+    using System.Collections.Generic;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+
+    internal abstract class DocxDocumentAggregationBuilder : DocxDocumentBuilderBase
 	{
 		internal readonly List<OpenXmlElement> Aggregation = new List<OpenXmlElement>();
 

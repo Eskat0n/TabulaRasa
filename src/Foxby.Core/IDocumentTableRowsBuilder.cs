@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Foxby.Core
+﻿namespace TabulaRasa
 {
-	///<summary>
+    using System;
+
+    ///<summary>
 	/// Provides methods for inserting table rows with content
 	///</summary>
 	public interface IDocumentTableRowsBuilder

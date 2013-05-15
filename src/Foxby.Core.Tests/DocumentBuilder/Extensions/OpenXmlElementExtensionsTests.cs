@@ -1,10 +1,10 @@
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder.Extensions;
-using Xunit;
-
-namespace Foxby.Core.Tests.DocumentBuilder.Extensions
+namespace TabulaRasa.Tests.DocumentBuilder.Extensions
 {
-	public class OpenXmlElementExtensionsTests
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Xunit;
+    using TabulaRasa.DocumentBuilder.Extensions;
+
+    public class OpenXmlElementExtensionsTests
 	{
 		[Fact]
 		public void CloneElementCorrect()

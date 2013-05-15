@@ -1,12 +1,12 @@
-using System;
-using System.Linq;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.DocumentBuilder
+namespace TabulaRasa.DocumentBuilder
 {
-	internal class DocxDocumentTableSchemeBuilder : DocxDocumentAggregationBuilder, IDocumentTableSchemeBuilder, IDocumentTableRowsBuilder
+    using System;
+    using System.Linq;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal class DocxDocumentTableSchemeBuilder : DocxDocumentAggregationBuilder, IDocumentTableSchemeBuilder, IDocumentTableRowsBuilder
 	{
 		private readonly TableRow headerRow;
 		private readonly Table table;

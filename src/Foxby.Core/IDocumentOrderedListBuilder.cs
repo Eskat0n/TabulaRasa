@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Foxby.Core
+﻿namespace TabulaRasa
 {
-	/// <summary>
+    using System;
+
+    /// <summary>
 	/// Provider methods for creating ordered list items
 	/// </summary>
 	public interface IDocumentOrderedListBuilder

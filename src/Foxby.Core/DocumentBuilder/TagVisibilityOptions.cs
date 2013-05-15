@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
-	/// <summary>
+    using System.Collections.Generic;
+
+    /// <summary>
 	/// List of tags for show and hide 
 	/// </summary>
 	public class TagVisibilityOptions

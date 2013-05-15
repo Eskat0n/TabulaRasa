@@ -1,13 +1,10 @@
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Run = DocumentFormat.OpenXml.Wordprocessing.Run;
-using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
-using A = DocumentFormat.OpenXml.Drawing;
-using Pictures = DocumentFormat.OpenXml.Drawing.Pictures;
-
-namespace Foxby.Core.MetaObjects
+namespace TabulaRasa.MetaObjects
 {
-	internal class Image
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Run = DocumentFormat.OpenXml.Wordprocessing.Run;
+
+    internal class Image
     {
         private const string SchemaUri = "http://schemas.openxmlformats.org/drawingml/2006/picture";
         private const string PictureName = "Image inserted via Foxby";
@@ -24,36 +21,36 @@ namespace Foxby.Core.MetaObjects
         {
             var drawing =
                 new Drawing(
-                    new DW.Inline(
-                        new DW.Extent {Cx = 990000L, Cy = 792000L},
-                        new DW.EffectExtent
+                    new DocumentFormat.OpenXml.Drawing.Wordprocessing.Inline(
+                        new DocumentFormat.OpenXml.Drawing.Wordprocessing.Extent {Cx = 990000L, Cy = 792000L},
+                        new DocumentFormat.OpenXml.Drawing.Wordprocessing.EffectExtent
                             {
                                 LeftEdge = 0L,
                                 TopEdge = 0L,
                                 RightEdge = 0L,
                                 BottomEdge = 0L
                             },
-                        new DW.DocProperties
+                        new DocumentFormat.OpenXml.Drawing.Wordprocessing.DocProperties
                             {
                                 Id = (UInt32Value) 1U,
                                 Name = "Picture"
                             },
-                        new DW.NonVisualGraphicFrameDrawingProperties(
-                            new A.GraphicFrameLocks {NoChangeAspect = true}),
-                        new A.Graphic(
-                            new A.GraphicData(
-                                new Pictures.Picture(
-                                    new Pictures.NonVisualPictureProperties(
-                                        new Pictures.NonVisualDrawingProperties
+                        new DocumentFormat.OpenXml.Drawing.Wordprocessing.NonVisualGraphicFrameDrawingProperties(
+                            new DocumentFormat.OpenXml.Drawing.GraphicFrameLocks {NoChangeAspect = true}),
+                        new DocumentFormat.OpenXml.Drawing.Graphic(
+                            new DocumentFormat.OpenXml.Drawing.GraphicData(
+                                new DocumentFormat.OpenXml.Drawing.Pictures.Picture(
+                                    new DocumentFormat.OpenXml.Drawing.Pictures.NonVisualPictureProperties(
+                                        new DocumentFormat.OpenXml.Drawing.Pictures.NonVisualDrawingProperties
                                             {
                                                 Id = (UInt32Value) 0U,
                                                 Name = PictureName
                                             },
-                                        new Pictures.NonVisualPictureDrawingProperties()),
-                                    new Pictures.BlipFill(
-                                        new A.Blip(
-                                            new A.BlipExtensionList(
-                                                new A.BlipExtension
+                                        new DocumentFormat.OpenXml.Drawing.Pictures.NonVisualPictureDrawingProperties()),
+                                    new DocumentFormat.OpenXml.Drawing.Pictures.BlipFill(
+                                        new DocumentFormat.OpenXml.Drawing.Blip(
+                                            new DocumentFormat.OpenXml.Drawing.BlipExtensionList(
+                                                new DocumentFormat.OpenXml.Drawing.BlipExtension
                                                     {
                                                         Uri = BlipUriGuid
                                                     })
@@ -61,17 +58,17 @@ namespace Foxby.Core.MetaObjects
                                             {
                                                 Embed = imagePartId,
                                                 CompressionState =
-                                                    A.BlipCompressionValues.Print
+                                                    DocumentFormat.OpenXml.Drawing.BlipCompressionValues.Print
                                             },
-                                        new A.Stretch(
-                                            new A.FillRectangle())),
-                                    new Pictures.ShapeProperties(
-                                        new A.Transform2D(
-                                            new A.Offset {X = 0L, Y = 0L},
-                                            new A.Extents {Cx = 990000L, Cy = 792000L}),
-                                        new A.PresetGeometry(
-                                            new A.AdjustValueList()
-                                            ) {Preset = A.ShapeTypeValues.Rectangle}))
+                                        new DocumentFormat.OpenXml.Drawing.Stretch(
+                                            new DocumentFormat.OpenXml.Drawing.FillRectangle())),
+                                    new DocumentFormat.OpenXml.Drawing.Pictures.ShapeProperties(
+                                        new DocumentFormat.OpenXml.Drawing.Transform2D(
+                                            new DocumentFormat.OpenXml.Drawing.Offset {X = 0L, Y = 0L},
+                                            new DocumentFormat.OpenXml.Drawing.Extents {Cx = 990000L, Cy = 792000L}),
+                                        new DocumentFormat.OpenXml.Drawing.PresetGeometry(
+                                            new DocumentFormat.OpenXml.Drawing.AdjustValueList()
+                                            ) {Preset = DocumentFormat.OpenXml.Drawing.ShapeTypeValues.Rectangle}))
                                 ) {Uri = SchemaUri})
                         )
                         {

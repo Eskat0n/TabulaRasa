@@ -1,4 +1,4 @@
-﻿namespace Foxby.Core
+﻿namespace TabulaRasa
 {
 	/// <summary>
 	/// Provides alignment options for block OpenXML elements

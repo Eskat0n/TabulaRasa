@@ -1,12 +1,12 @@
-﻿using Foxby.Core.DocumentBuilder;
-using Foxby.Core.MetaObjects;
-using Foxby.Core.Tests.EqualityComparers;
-using TabulaRasa.Tests.Properties;
-using Xunit;
-
-namespace Foxby.Core.Tests.DocumentBuilder
+﻿namespace TabulaRasa.Tests.DocumentBuilder
 {
-	public class DocxDocumentBuilderFieldTests
+    using EqualityComparers;
+    using TabulaRasa.Tests.Properties;
+    using Xunit;
+    using TabulaRasa.DocumentBuilder;
+    using TabulaRasa.MetaObjects;
+
+    public class DocxDocumentBuilderFieldTests
 	{
 		[Fact]
 		public void CanSetContentToBlockFieldConsistingOfTwoParagraphs()

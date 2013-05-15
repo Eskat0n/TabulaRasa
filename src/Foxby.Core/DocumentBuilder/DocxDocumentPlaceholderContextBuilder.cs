@@ -1,9 +1,9 @@
-﻿using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
-	internal class DocxDocumentPlaceholderContextBuilder : DocxDocumentContextBuilderBase
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal class DocxDocumentPlaceholderContextBuilder : DocxDocumentContextBuilderBase
 	{
 		private readonly RunProperties _runProperties;
 

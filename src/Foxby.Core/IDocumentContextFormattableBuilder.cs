@@ -1,4 +1,4 @@
-﻿namespace Foxby.Core
+﻿namespace TabulaRasa
 {
 	/// <summary>
 	/// Provide methods for edit or format text content of inline elements

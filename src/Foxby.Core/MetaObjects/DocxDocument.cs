@@ -1,20 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.CustomProperties;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.VariantTypes;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder;
-using Foxby.Core.DocumentBuilder.Anchors;
-using Foxby.Core.MetaObjects.Collections;
-
-namespace Foxby.Core.MetaObjects
+namespace TabulaRasa.MetaObjects
 {
-	///<summary>
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using Collections;
+    using DocumentBuilder;
+    using DocumentBuilder.Anchors;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.CustomProperties;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.VariantTypes;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    ///<summary>
 	/// Wrapper for OpenXML docx file which provides base methods for operating document
 	///</summary>
 	public class DocxDocument : IDisposable

@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.MetaObjects;
-using Foxby.Core.Tests.EqualityComparers;
-using TabulaRasa.Tests.Properties;
-using Xunit;
-using Xunit.Sdk;
-
-namespace Foxby.Core.Tests
+﻿namespace TabulaRasa.Tests
 {
-	using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using EqualityComparers;
+    using TabulaRasa.Tests.Properties;
+    using Xunit;
+    using Xunit.Sdk;
+    using System;
+    using TabulaRasa.MetaObjects;
 
-	public class DocxDocumentTests
+    public class DocxDocumentTests
     {
         [Fact]
         public void DocumentsWithDifferentInnerXmlMustBeNotEqual()

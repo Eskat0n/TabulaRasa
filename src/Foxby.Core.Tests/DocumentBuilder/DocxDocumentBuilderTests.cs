@@ -1,14 +1,14 @@
-using System.IO;
-using Foxby.Core.DocumentBuilder;
-using Foxby.Core.MetaObjects;
-using Foxby.Core.MetaObjects.Extensions;
-using Foxby.Core.Tests.EqualityComparers;
-using TabulaRasa.Tests.Properties;
-using Xunit;
-
-namespace Foxby.Core.Tests.DocumentBuilder
+namespace TabulaRasa.Tests.DocumentBuilder
 {
-	public class DocxDocumentBuilderTests
+    using System.IO;
+    using EqualityComparers;
+    using TabulaRasa.Tests.Properties;
+    using Xunit;
+    using TabulaRasa.DocumentBuilder;
+    using TabulaRasa.MetaObjects;
+    using TabulaRasa.MetaObjects.Extensions;
+
+    public class DocxDocumentBuilderTests
 	{
 	    private static DocxDocumentBuilder CreateBuilder(DocxDocument document)
 	    {

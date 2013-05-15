@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
-	internal class DocxDocumentParagraphContextBuilder : DocxDocumentContextBuilderBase
+    using System.Collections.Generic;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal class DocxDocumentParagraphContextBuilder : DocxDocumentContextBuilderBase
 	{
 		private readonly IEnumerable<OpenXmlElement> _prependedElements;
 		private readonly ParagraphProperties _properties;

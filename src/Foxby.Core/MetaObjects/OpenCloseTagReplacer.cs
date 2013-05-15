@@ -1,8 +1,8 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.MetaObjects
+﻿namespace TabulaRasa.MetaObjects
 {
-	internal class OpenCloseTagReplacer : TagReplacer
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal class OpenCloseTagReplacer : TagReplacer
     {
         public OpenCloseTagReplacer(string name, DocxDocument document)
             : base(name, document)

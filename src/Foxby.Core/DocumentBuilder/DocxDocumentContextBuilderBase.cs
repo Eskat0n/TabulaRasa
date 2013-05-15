@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder.Anchors;
-using Foxby.Core.DocumentBuilder.Extensions;
-using Foxby.Core.MetaObjects;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
-	internal abstract class DocxDocumentContextBuilderBase : DocxDocumentAggregationBuilder, IDocumentContextBuilder
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using Anchors;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Extensions;
+    using MetaObjects;
+
+    internal abstract class DocxDocumentContextBuilderBase : DocxDocumentAggregationBuilder, IDocumentContextBuilder
     {
         private readonly ICollection<OpenXmlElement> _runPropertiesElements = new List<OpenXmlElement>();
         private bool _isEditable;

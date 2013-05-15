@@ -1,8 +1,8 @@
-using DocumentFormat.OpenXml;
-
-namespace Foxby.Core.DocumentBuilder.Extensions
+namespace TabulaRasa.DocumentBuilder.Extensions
 {
-	internal static class OpenXmlElementExtensions
+    using DocumentFormat.OpenXml;
+
+    internal static class OpenXmlElementExtensions
 	{
 		public static TElement CloneElement<TElement>(this TElement element)
 			where TElement : OpenXmlElement

@@ -1,8 +1,8 @@
-using System;
-
-namespace Foxby.Core
+namespace TabulaRasa
 {
-	/// <summary>
+    using System;
+
+    /// <summary>
 	/// Provides methods for building content of table cells
 	/// </summary>
 	public interface ICellContextBuilder : IDocumentContextBuilder, IDocumentFormattableBuilder<ICellContextBuilder>

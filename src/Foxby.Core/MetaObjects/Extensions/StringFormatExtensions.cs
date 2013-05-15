@@ -1,4 +1,4 @@
-﻿namespace Foxby.Core.MetaObjects.Extensions
+﻿namespace TabulaRasa.MetaObjects.Extensions
 {
 	///<summary>
 	/// Provides extension methods for specifying formatting options for text strings

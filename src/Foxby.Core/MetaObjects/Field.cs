@@ -1,9 +1,9 @@
-﻿namespace Foxby.Core.MetaObjects
+﻿namespace TabulaRasa.MetaObjects
 {
-	using DocumentFormat.OpenXml;
-	using DocumentFormat.OpenXml.Wordprocessing;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Wordprocessing;
 
-	/// <summary>
+    /// <summary>
 	/// Class which holds basic information about <see cref="SdtElement"/>
 	/// </summary>
 	public class Field

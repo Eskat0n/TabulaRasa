@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-
-namespace Foxby.Core.DocumentBuilder.Anchors
+﻿namespace TabulaRasa.DocumentBuilder.Anchors
 {
-	/// <summary>
+    using System.Collections.Generic;
+    using System.Linq;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+
+    /// <summary>
 	/// Contains metadata for anchors such as tags, placeholders etc.
 	/// </summary>
 	/// <typeparam name="TElement"><see cref="OpenXmlElement"/> representing anchor</typeparam>

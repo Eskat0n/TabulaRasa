@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using Foxby.Core.DocumentBuilder.Anchors;
-using Foxby.Core.DocumentBuilder.Extensions;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
-	internal class DocxDocumentTagContextBuilder : DocxDocumentBlockContextBuilderBase
+    using System.Collections.Generic;
+    using Anchors;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using Extensions;
+
+    internal class DocxDocumentTagContextBuilder : DocxDocumentBlockContextBuilderBase
 	{
 		private readonly IEnumerable<DocumentTag> _documentTags;
 

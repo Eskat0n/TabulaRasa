@@ -1,12 +1,12 @@
-using System.Linq;
-using Foxby.Core.DocumentBuilder.Anchors;
-using Foxby.Core.MetaObjects;
-using TabulaRasa.Tests.Properties;
-using Xunit;
-
-namespace Foxby.Core.Tests.DocumentBuilder
+namespace TabulaRasa.Tests.DocumentBuilder
 {
-	public class DocumentTagTests
+    using System.Linq;
+    using TabulaRasa.Tests.Properties;
+    using Xunit;
+    using TabulaRasa.DocumentBuilder.Anchors;
+    using TabulaRasa.MetaObjects;
+
+    public class DocumentTagTests
 	{
 		[Fact]
 		public void NewTagNameShouldBeCorrect()

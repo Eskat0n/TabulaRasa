@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder.Extensions;
-
-namespace Foxby.Core.DocumentBuilder.Anchors
+namespace TabulaRasa.DocumentBuilder.Anchors
 {
-	internal class InlineField : SdtField<SdtRun, SdtContentRun>
+    using System.Collections.Generic;
+    using System.Linq;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Extensions;
+
+    internal class InlineField : SdtField<SdtRun, SdtContentRun>
 	{
 	    private readonly RunProperties _runProperties;
 

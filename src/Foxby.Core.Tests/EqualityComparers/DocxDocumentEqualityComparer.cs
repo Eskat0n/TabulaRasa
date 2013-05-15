@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using Foxby.Core.DocumentBuilder;
-using Foxby.Core.MetaObjects;
-using Xunit;
-
-namespace Foxby.Core.Tests.EqualityComparers
+namespace TabulaRasa.Tests.EqualityComparers
 {
-	public class DocxDocumentEqualityComparer : IEqualityComparer<DocxDocument>
+    using System.Collections.Generic;
+    using System.Linq;
+    using Xunit;
+    using TabulaRasa.DocumentBuilder;
+    using TabulaRasa.MetaObjects;
+
+    public class DocxDocumentEqualityComparer : IEqualityComparer<DocxDocument>
 	{
 		public bool Equals(DocxDocument x, DocxDocument y)
 		{

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Validation;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder.Anchors;
-using Foxby.Core.DocumentBuilder.Extensions;
-using Foxby.Core.MetaObjects;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using Anchors;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Validation;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Extensions;
+    using MetaObjects;
+
     /// <summary>
 	/// Operates with content of tags and placeholders in OpenXML template
 	/// </summary>

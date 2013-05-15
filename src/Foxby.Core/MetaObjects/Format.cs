@@ -1,4 +1,4 @@
-﻿namespace Foxby.Core.MetaObjects
+﻿namespace TabulaRasa.MetaObjects
 {
 	///<summary>
 	/// Stores formatting options for text strings

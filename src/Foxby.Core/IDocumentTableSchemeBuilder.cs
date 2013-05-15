@@ -1,4 +1,4 @@
-﻿namespace Foxby.Core
+﻿namespace TabulaRasa
 {
 	///<summary>
 	/// Provides methods for defining table header and columns metadata

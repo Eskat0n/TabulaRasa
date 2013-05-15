@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Foxby.Core
+﻿namespace TabulaRasa
 {
-	/// <summary>
+    using System;
+
+    /// <summary>
 	/// Provide base methods for changing content of block anchors and OpenXML elements
 	/// </summary>
 	public interface IDocumentContextBuilder : IDocumentContextFormattableBuilder

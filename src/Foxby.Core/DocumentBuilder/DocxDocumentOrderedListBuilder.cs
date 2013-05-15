@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.DocumentBuilder
+﻿namespace TabulaRasa.DocumentBuilder
 {
-	internal class DocxDocumentOrderedListBuilder : DocxDocumentAggregationBuilder, IDocumentOrderedListBuilder
+    using System;
+    using System.Linq;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal class DocxDocumentOrderedListBuilder : DocxDocumentAggregationBuilder, IDocumentOrderedListBuilder
 	{
 		private readonly int numberingId;
 

@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.DocumentBuilder.Anchors
+﻿namespace TabulaRasa.DocumentBuilder.Anchors
 {
-	///<summary>
+    using System.Collections.Generic;
+    using System.Linq;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    ///<summary>
 	/// Represents inline anchor (placeholder)
 	///</summary>
 	internal class DocumentPlaceholder : AnchorElement<Run>

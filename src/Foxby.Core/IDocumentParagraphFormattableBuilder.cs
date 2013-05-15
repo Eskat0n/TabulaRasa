@@ -1,9 +1,9 @@
-﻿using System;
-using Foxby.Core.MetaObjects;
-
-namespace Foxby.Core
+﻿namespace TabulaRasa
 {
-	///<summary>
+    using System;
+    using MetaObjects;
+
+    ///<summary>
 	/// Provides methods for inserting paragraphs with specified indentation and format
 	///</summary>
 	public interface IDocumentParagraphFormattableBuilder : IDocumentFormattableBuilder<IDocumentParagraphFormattableBuilder>

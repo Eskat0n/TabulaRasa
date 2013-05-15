@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace Foxby.Core
+﻿namespace TabulaRasa
 {
+    using System;
     using System.Collections.Generic;
     using MetaObjects;
 

@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-
-namespace Foxby.Core.DocumentBuilder.Anchors
+namespace TabulaRasa.DocumentBuilder.Anchors
 {
-	internal abstract class SdtField<TSdtElement, TSdtContentElement> : AnchorElement<TSdtElement>
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+
+    internal abstract class SdtField<TSdtElement, TSdtContentElement> : AnchorElement<TSdtElement>
 		where TSdtElement : SdtElement
 		where TSdtContentElement : OpenXmlElement
 	{

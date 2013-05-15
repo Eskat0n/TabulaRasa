@@ -1,14 +1,14 @@
-using System;
-using System.Linq;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Foxby.Core.DocumentBuilder.Anchors;
-using Format = Foxby.Core.MetaObjects.Format;
-
-namespace Foxby.Core.DocumentBuilder
+namespace TabulaRasa.DocumentBuilder
 {
-	internal abstract class DocxDocumentBlockContextBuilderBase : DocxDocumentBuilderBase, IDocumentTagContextBuilder
+    using System;
+    using System.Linq;
+    using Anchors;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+    using DocumentFormat.OpenXml.Wordprocessing;
+    using Format = MetaObjects.Format;
+
+    internal abstract class DocxDocumentBlockContextBuilderBase : DocxDocumentBuilderBase, IDocumentTagContextBuilder
 	{
 		private OpenXmlElement[] _contextParagraphPrependedElements;
 		private ParagraphProperties _contextParagraphProperties;

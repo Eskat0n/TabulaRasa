@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Foxby.Core
+﻿namespace TabulaRasa
 {
-	///<summary>
+    using System;
+
+    ///<summary>
 	/// Provides methods for inserting tables
 	///</summary>
 	public interface IDocumentTableContextBuilder

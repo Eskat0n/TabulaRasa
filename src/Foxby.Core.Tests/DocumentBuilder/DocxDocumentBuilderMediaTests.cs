@@ -1,11 +1,11 @@
-using System.IO;
-using Foxby.Core.DocumentBuilder;
-using Foxby.Core.MetaObjects;
-using TabulaRasa.Tests.Properties;
-using Xunit;
-
-namespace Foxby.Core.Tests.DocumentBuilder
+namespace TabulaRasa.Tests.DocumentBuilder
 {
+    using System.IO;
+    using TabulaRasa.Tests.Properties;
+    using Xunit;
+    using TabulaRasa.DocumentBuilder;
+    using TabulaRasa.MetaObjects;
+
     public class DocxDocumentBuilderMediaTests
     {
         [Fact]

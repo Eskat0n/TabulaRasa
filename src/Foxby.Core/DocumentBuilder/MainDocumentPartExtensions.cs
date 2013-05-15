@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-
-namespace Foxby.Core.DocumentBuilder
+namespace TabulaRasa.DocumentBuilder
 {
+    using System.Collections.Generic;
+    using DocumentFormat.OpenXml;
+    using DocumentFormat.OpenXml.Packaging;
+
     internal static class MainDocumentPartExtensions
     {
         public static IEnumerable<OpenXmlPartRootElement> GetRootElements(this MainDocumentPart mainPart)
