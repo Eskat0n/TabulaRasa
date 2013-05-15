@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabulaRasa", "src\Foxby.Core\TabulaRasa.csproj", "{8826F774-A0F0-46BC-8089-90F947485ECE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabulaRasa", "sources\TabulaRasa\TabulaRasa.csproj", "{8826F774-A0F0-46BC-8089-90F947485ECE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabulaRasa.Tests", "src\Foxby.Core.Tests\TabulaRasa.Tests.csproj", "{C25FFBAC-8F07-491D-B14F-7AB1EEF6DAEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabulaRasa.Tests", "sources\TabulaRasa.Tests\TabulaRasa.Tests.csproj", "{C25FFBAC-8F07-491D-B14F-7AB1EEF6DAEE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CF6B906E-E19F-4B09-B7F8-B29EC832AB1E}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CF6B90
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuspec", ".nuspec", "{57F9A89A-707D-49E1-9D70-93BB700A3F2A}"
 	ProjectSection(SolutionItems) = preProject
-		src\Foxby.Core\TabulaRasa.nuspec = src\Foxby.Core\TabulaRasa.nuspec
+		sources\TabulaRasa\TabulaRasa.nuspec = sources\TabulaRasa\TabulaRasa.nuspec
 	EndProjectSection
 EndProject
 Global
