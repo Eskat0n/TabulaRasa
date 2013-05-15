@@ -1,15 +1,15 @@
 ##About
-Fluent OpenXml Generator is .NET library which provides a fluent API for generating, changing and templating documents in OpenXML format.
+TabulaRasa is .NET library which provides a fluent API for generating, changing and templating documents in OpenXML format.
 
 ##NuGet Install
 
-<img src="http://indycode.github.com/images/Nuget-Foxby.png" alt="Nuget Foxby">
+<img src="http://eskat0n.github.com/images/Nuget-Foxby.png" alt="Nuget Foxby">
 
-NuGet link http://nuget.org/List/Packages/Foxby
+NuGet link https://nuget.org/packages/TabulaRasa
 
 ##Object Hierarchy
 
-<img src="http://indycode.github.com/images/Foxby-Hierarchy.png" alt="Hierarchy">
+<img src="http://eskat0n.github.com/images/Foxby-Hierarchy.png" alt="Hierarchy">
 
 ##Examples
 
