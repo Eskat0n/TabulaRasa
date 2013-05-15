@@ -8,8 +8,8 @@
     <ProjectGuid>{C25FFBAC-8F07-491D-B14F-7AB1EEF6DAEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Foxby.Core.Tests</RootNamespace>
-    <AssemblyName>Foxby.Core.Tests</AssemblyName>
+    <RootNamespace>TabulaRasa.Tests</RootNamespace>
+    <AssemblyName>TabulaRasa.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
