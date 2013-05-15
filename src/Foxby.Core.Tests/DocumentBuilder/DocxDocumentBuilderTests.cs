@@ -3,7 +3,7 @@ using Foxby.Core.DocumentBuilder;
 using Foxby.Core.MetaObjects;
 using Foxby.Core.MetaObjects.Extensions;
 using Foxby.Core.Tests.EqualityComparers;
-using Foxby.Core.Tests.Properties;
+using TabulaRasa.Tests.Properties;
 using Xunit;
 
 namespace Foxby.Core.Tests.DocumentBuilder

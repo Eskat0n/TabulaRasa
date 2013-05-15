@@ -3,7 +3,7 @@ using System.Linq;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Foxby.Core.MetaObjects;
 using Foxby.Core.Tests.EqualityComparers;
-using Foxby.Core.Tests.Properties;
+using TabulaRasa.Tests.Properties;
 using Xunit;
 using Xunit.Sdk;
 

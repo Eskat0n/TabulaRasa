@@ -1,7 +1,7 @@
 using System.Linq;
 using Foxby.Core.DocumentBuilder.Anchors;
 using Foxby.Core.MetaObjects;
-using Foxby.Core.Tests.Properties;
+using TabulaRasa.Tests.Properties;
 using Xunit;
 
 namespace Foxby.Core.Tests.DocumentBuilder
