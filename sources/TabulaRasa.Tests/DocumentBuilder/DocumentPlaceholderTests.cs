@@ -1,38 +1,39 @@
 ﻿namespace TabulaRasa.Tests.DocumentBuilder
 {
     using System.Linq;
-    using TabulaRasa.Tests.Properties;
-    using Xunit;
+    using NUnit.Framework;
+    using Properties;
     using TabulaRasa.DocumentBuilder.Anchors;
-    using TabulaRasa.MetaObjects;
+    using MetaObjects;                                    
 
+    [TestFixture]
     public class DocumentPlaceholderTests
 	{
-		[Fact]
+		[Test]
 		public void NewPlaceholderNameShouldBeCorrect()
 		{
 			var placeholder = new DocumentPlaceholder("TEST_PLACEHOLDER");
 
-			Assert.Equal("TEST_PLACEHOLDER", placeholder.Name);
+			Assert.AreEqual("TEST_PLACEHOLDER", placeholder.Name);
 		}
 
-		[Fact]
+		[Test]
 		public void NewPlaceholderOpeningEnclosureShouldBeCorrect()
 		{
 			var placeholder = new DocumentPlaceholder("TEST_PLACEHOLDER");
 
-			Assert.Equal("{{TEST_PLACEHOLDER}}", placeholder.OpeningName);
+			Assert.AreEqual("{{TEST_PLACEHOLDER}}", placeholder.OpeningName);
 		}
 
-		[Fact]
+		[Test]
 		public void NewPlaceholderClosingEnclosureShouldBeCorrect()
 		{
 			var placeholder = new DocumentPlaceholder("TEST_PLACEHOLDER");
 
-			Assert.Equal("{{/TEST_PLACEHOLDER}}", placeholder.ClosingName);
+			Assert.AreEqual("{{/TEST_PLACEHOLDER}}", placeholder.ClosingName);
 		}
 
-		[Fact]
+		[Test]
 		public void NewPlaceholderCreationCreatesItsParagraphs()
 		{
 			var placeholder = new DocumentPlaceholder("TEST_PH");
@@ -43,7 +44,7 @@
 			Assert.Null(placeholder.Closing.Parent);
 		}
 
-		[Fact]
+		[Test]
 		public void ManyPlaceholdersGettingFromDocumentCorrect()
 		{
 			using (var document = new DocxDocument(Resources.WithManyPlaceholders))
@@ -51,18 +52,18 @@
 				var placeholders = DocumentPlaceholder.Get(document.GetWordDocument(), "INNER");
 
 				Assert.NotNull(placeholders);
-				Assert.Equal(3, placeholders.Count());
+				Assert.AreEqual(3, placeholders.Count());
 			}
 		}
 
-		[Fact]
+		[Test]
 		public void PlaceholderGettingWhichNotExistsReturnsEmpty()
 		{
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
 			{
 				var placeholders = DocumentPlaceholder.Get(document.GetWordDocument(), "NON_EXISTING");
 
-				Assert.Empty(placeholders);
+				Assert.IsEmpty(placeholders);
 			}
 		}
 	}

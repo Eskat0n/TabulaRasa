@@ -2,9 +2,9 @@ namespace TabulaRasa.Tests.EqualityComparers
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Xunit;
+    using NUnit.Framework;
     using TabulaRasa.DocumentBuilder;
-    using TabulaRasa.MetaObjects;
+    using MetaObjects;
 
     public class DocxDocumentEqualityComparer : IEqualityComparer<DocxDocument>
 	{
@@ -12,7 +12,9 @@ namespace TabulaRasa.Tests.EqualityComparers
 		{
 		    var enumerable1 = x.GetWordDocument().MainDocumentPart.GetRootElements().Select(e => e.InnerXml);
 		    var enumerable2 = y.GetWordDocument().MainDocumentPart.GetRootElements().Select(e => e.InnerXml);
-		    Assert.Equal(enumerable1, enumerable2);
+
+		    Assert.AreEqual(enumerable1, enumerable2);
+
 			return true;
 		}
 

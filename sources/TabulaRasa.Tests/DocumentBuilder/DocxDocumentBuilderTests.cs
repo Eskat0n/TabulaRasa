@@ -1,21 +1,16 @@
 namespace TabulaRasa.Tests.DocumentBuilder
 {
-    using System.IO;
     using EqualityComparers;
-    using TabulaRasa.Tests.Properties;
-    using Xunit;
+    using NUnit.Framework;
+    using Properties;
     using TabulaRasa.DocumentBuilder;
-    using TabulaRasa.MetaObjects;
-    using TabulaRasa.MetaObjects.Extensions;
+    using MetaObjects;
+    using MetaObjects.Extensions;
 
+    [TestFixture]
     public class DocxDocumentBuilderTests
 	{
-	    private static DocxDocumentBuilder CreateBuilder(DocxDocument document)
-	    {
-            return new DocxDocumentBuilder(document, new TagVisibilityOptions("Black_White_Template", new[] { "sg", "fg" }));
-	    }
-
-		[Fact]
+        [Test]
 		public void GoingToTagCleansItsEntireContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentTag))
@@ -25,11 +20,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 
 				builder.Tag("MAIN_CONTENT", x => { });
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertTwoEditableIndentedParagraphsIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedTwoParagraphs))
@@ -44,11 +39,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	.Indent.Paragraph("Тестовый 2")
 					          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertOneEditableAndOneNonEditableNonIndentedParagraphIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentTwoDifferentParagraphs))
@@ -62,11 +57,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	.EditableEnd()
 					          	.Paragraph("Тестовый 2 нередактируемый"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertOneEditableMultilineParagraphIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedMultilineParagraph))
@@ -80,11 +75,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	.Indent.Paragraph("Тестовая строка 1\r\nтестовая строка 2", "тестовая строка 3")
 					          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertNewTagAndFillItContentInPlaceIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentAndNewTag))
@@ -102,11 +97,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	.Indent.Paragraph("Тестовый 1")
 					          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanAccessNewlyCreatedTagViaTagAndChangeItsContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentAndNewTag))
@@ -126,11 +121,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	.Indent.Paragraph("Тестовый в новом теге 2 строка 1", "Тестовый в новом теге 2 строка 2")
 					          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanReplacePlaceholderWithText()
 		{
 			using (var expected = new DocxDocument(Resources.WithTitlePlaceholderReplaced))
@@ -141,11 +136,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				builder
 					.Placeholder("TITLE", x => x.Text("Заголовок"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertEditableEmptyLinesIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentAndThreeEmptyLines))
@@ -163,11 +158,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	.Paragraph("Выше находятся три пустые строки")
 					          	.EditableEnd());
 		
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertNumberOfEmptyLines()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentTag))
@@ -187,11 +182,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					.Tag("MAIN_CONTENT",
 					     x => x.EmptyLine(3));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertEditableOrderedListIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedOrderedList))
@@ -206,11 +201,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	                  	.Item("Элемент списка 2 строка 1", "Элемент списка 2 строка 2"))
 					          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertThreeParagraphsWithDifferentJustificationIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedJustifiedParagraphs))
@@ -225,11 +220,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					          	.Right.Paragraph("Тестовый справа")
 					          	.Both.Paragraph("Тестовый по ширине"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertPlaceholderIntoParagraph()
 		{
 			using (var expected = new DocxDocument(Resources.WithPlaceholderInsertedInParagraph))
@@ -244,11 +239,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                           	.Text(" Слева плейсхолдер")));
 
 				
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertTextContentIntoInsertedPlaceholder()
 		{
 			using (var expected = new DocxDocument(Resources.WithPlaceholderInsertedContentInserted))
@@ -260,11 +255,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					.Placeholder("SIMPLE",
 					             x => x.Text(" Текст плейсхолдера "));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertPlaceholderIntoPlaceholderAndReplaceItsContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithPlaceholderInPlaceholder))
@@ -279,11 +274,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                                           	                              	.Text("слева внутренний\r\n"))
 					                                           	.Text("Слева плейсхолдер")));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertContentIntoPlaceholderAndRemoveIt()
 		{
 			using (var expected = new DocxDocument(Resources.WithTitlePlaceholderRemoved))
@@ -294,11 +289,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				builder
 					.Placeholder("TITLE", x => x.Text("Замененный текст"), false);
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertTableWithDifferentJustificationToCells()
 		{
 			using (var expected = new DocxDocument(Resources.TableWithFormattedCells))
@@ -311,11 +306,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				                                         y => y.Row(z=>z.Left.Cell("123"), z=>z.Right.Cell("456"))
 				                                 	));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertActionToCells()
 		{
 			using (var expected = new DocxDocument(Resources.WithCellWithPlaceholder))
@@ -327,11 +322,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				                                              	.Column("Адрес"),
 				                                         y => y.Row(z => z.Left.Cell(c => c.Placeholder("somePlaceholder", "hello world!")))
 				                                 	));
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertTableInOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithTableInsert))
@@ -344,11 +339,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				                                         y => y.Row("Нежилое помещение", "Челябинская область")
 				                                 	));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertTableWithoutBordersInOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithTableWithoutBordersInsert))
@@ -362,11 +357,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 																		
 				                                 	));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertContentInManyTagsWithSameName()
 		{
 			using (var expected = new DocxDocument(Resources.WithManyTagsInsertedParagraph))
@@ -377,11 +372,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				builder
 					.Tag("SUB", x => x.Paragraph("Параграф во всех тегах"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanReplaceManyPlaceholdersWithContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithManyPlaceholdersInsertedContent))
@@ -392,11 +387,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				builder
 					.Placeholder("INNER", x => x.Text("Вставленный контент "));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CallToNonExistingTagDoesNotChangeDocument()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentTag))
@@ -413,11 +408,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                          	.Paragraph(z => z.Placeholder("TEST"))
 					                          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CallToNonExistingPlaceholderDoesNotChangeDocument()
 		{
 			using (var expected = new DocxDocument(Resources.WithTitlePlaceholder))
@@ -432,11 +427,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                                  	.Text("Тест")
 					                                  	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertTextIntoParagraphWithTrailingSpacesPreserved()
 		{
 			using (var expected = new DocxDocument(Resources.WithMainContentInsertedTextWithSpaces))
@@ -447,11 +442,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				builder
 					.Tag("MAIN_CONTENT", x => x.Paragraph(z => z.Text("Слово1").Text(" Слово2 ").Text(" Слово3")));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertBuildedParagraphIntoOrderedListItem()
 		{
 			using (var expected = new DocxDocument(Resources.WithOrderedListWithParagraphs))
@@ -464,11 +459,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                                             	.Item(y => y.EditableStart().Text("Редактируемый элемент списка").EditableEnd())
 					                                             	.Item(y => y.Text("Справа плейсхолдер ").Placeholder("NEW").Text(" слева плейсхолдер"))));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void OpeningDocumentViaBuilderNormalizesItsPlaceholderRuns()
 		{
 			using (var expected = new DocxDocument(Resources.WithPlaceholdersNormalized))
@@ -476,11 +471,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 			{
                 CreateBuilder(document);
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertDifferentlyFormattedTextInsidePargraphIntoOpenCloseTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithDifferentlyFormattedTextInTag))
@@ -494,11 +489,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                                           	.Underlined.Text("Подчеркнутый ")
 					                                           	.Text("Нормальный")));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                CompareDocuments(expected, document);
 			}
 		}
-		
-		[Fact]
+
+        [Test]
 		public void CanInsertDifferentlyFormattedTextInsidePargraphIntoOpenCloseTagViaFormat()
 		{
 			using (var expected = new DocxDocument(Resources.WithDifferentlyFormattedTextInTag))
@@ -509,11 +504,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 				builder
 					.Tag("MAIN_CONTENT", x => x.Paragraph("Жирный ".Bold() + "Курсив ".Italic() + "Подчеркнутый ".Underlined() + "Нормальный"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertDifferentlyFormattedTextIntoPlaceholder()
 		{
 			using (var expected = new DocxDocument(Resources.WithDifferentlyFormattedTextInPlaceholder))
@@ -527,11 +522,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                           	.Underlined.Text("Подчеркнутый ")
 					                           	.Text("Нормальный "));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertMultilineTextInTableCell()
 		{
 			using (var expected = new DocxDocument(Resources.WithTableWithMultilineCells))
@@ -544,11 +539,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                                  z => z.Row(y => y.Text("Первая строка в 1 колонке", "Вторая строка в 1 колонке"),
 					                                             y => y.Text("Первая строка во 2 колонке").Text("\r\nВторая строка во 2 колонке"))));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertIndentedOrderedListIntoTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithIndentedOrderedListInserted))
@@ -561,11 +556,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                          	.OrderedList(z => z.Item("Первый элемент списка").Item("Второй элемент списка"))
 					                          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void CanInsertTwoIndependentOrderedListsIntoTag()
 		{
 			using (var expected = new DocxDocument(Resources.WithTwoIndependentOrderedListsInserted))
@@ -579,11 +574,11 @@ namespace TabulaRasa.Tests.DocumentBuilder
 					                          	.OrderedList(z => z.Item("Первый элемент второго списка").Item("Второй элемент второго списка"))
 					                          	.EditableEnd());
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+				CompareDocuments(expected, document);
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void ValidationForValidDocumentShouldBeCorrect()
 		{
 			using (var document = new DocxDocument(Resources.WithMainContentTag))
@@ -594,7 +589,7 @@ namespace TabulaRasa.Tests.DocumentBuilder
 			}
 		}
 
-		[Fact]
+        [Test]
 		public void ValidationForInvalidDocumentShouldFail()
 		{
 			using (var document = new DocxDocument(Resources.InvalidDocument))
@@ -605,9 +600,14 @@ namespace TabulaRasa.Tests.DocumentBuilder
 			}
 		}
 
-	    private static void SaveDocxFile(DocxDocument document, string fileName)
-		{
-			File.WriteAllBytes(string.Format(@"D:\{0}.docx", fileName), document.ToArray());
-		}
+        private static DocxDocumentBuilder CreateBuilder(DocxDocument document)
+        {
+            return new DocxDocumentBuilder(document, new TagVisibilityOptions("Black_White_Template", new[] { "sg", "fg" }));
+        }
+
+        private static void CompareDocuments(DocxDocument expected, DocxDocument actual)
+        {
+            Assert.True(new DocxDocumentEqualityComparer().Equals(expected, actual));
+        }
 	}
 }

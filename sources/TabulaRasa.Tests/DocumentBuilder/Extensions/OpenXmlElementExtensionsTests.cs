@@ -1,12 +1,13 @@
 namespace TabulaRasa.Tests.DocumentBuilder.Extensions
 {
     using DocumentFormat.OpenXml.Wordprocessing;
-    using Xunit;
+    using NUnit.Framework;
     using TabulaRasa.DocumentBuilder.Extensions;
 
+    [TestFixture]
     public class OpenXmlElementExtensionsTests
 	{
-		[Fact]
+		[Test]
 		public void CloneElementCorrect()
 		{
 			var initial = new Run();

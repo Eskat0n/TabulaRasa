@@ -4,47 +4,50 @@
     using System.Linq;
     using DocumentFormat.OpenXml.Wordprocessing;
     using EqualityComparers;
-    using TabulaRasa.Tests.Properties;
-    using Xunit;
-    using Xunit.Sdk;
+    using NUnit.Framework;
+    using Properties;
     using System;
-    using TabulaRasa.MetaObjects;
+    using MetaObjects;
 
+    [TestFixture]
     public class DocxDocumentTests
     {
-        [Fact]
+        [Test]
         public void DocumentsWithDifferentInnerXmlMustBeNotEqual()
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
             using (var otherDocument = new DocxDocument(Resources.DocumentWithParagraph))
             {
                 var comparer = new DocxDocumentEqualityComparer();
-                Assert.Throws<EqualException>(() => comparer.Equals(document, otherDocument));
+
+                Assert.Throws<AssertionException>(() => comparer.Equals(document, otherDocument));
             }
         }
 
-        [Fact]
+        [Test]
         public void DocumentsWithEqualInnerXmlMustBeEqual()
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
             using (var otherDocument = new DocxDocument(Resources.DocumentWithoutParagraph))
             {
-                Assert.Equal(document, otherDocument, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(document, otherDocument));
             }
         }
 
-        [Fact(Skip = "Несовпадающие rsidR у элементов параграфов документа")]
+        [Test]
+        [Ignore("Несовпадающие rsidR у элементов параграфов документа")]
         public void TestCleanContent()
         {
             using (var withParagraph = new DocxDocument(Resources.DocumentWithParagraph))
             using (var withOutParagraph = new DocxDocument(Resources.DocumentWithoutParagraph))
             {
                 withParagraph.CleanContent("Edit");
-                Assert.Equal(withOutParagraph, withParagraph, new DocxDocumentEqualityComparer());
+
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(withOutParagraph, withParagraph));
             }
         }
 
-        [Fact]
+        [Test]
         public void ReplacePairsFromDictionary()
         {
             using (var initialDocument = new DocxDocument(Resources.DocumentWithTitle))
@@ -54,11 +57,11 @@
 				                        	{
 				                        		{"Title", "Hello"}
 				                        	});
-                Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expectedDocument, initialDocument));
             }
         }
 
-        [Fact]
+        [Test]
         public void ReplaceSingleTagWithTextBlocksDoesNothing()
         {
             using (var initialDocument = new DocxDocument(Resources.WithMainContentSingleTag))
@@ -66,11 +69,11 @@
                 var content = new[] { new TextBlock("Контент документа") };
                 initialDocument.Replace("MAIN_CONTENT", content);
 
-                Assert.Equal(initialDocument, initialDocument, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(initialDocument, initialDocument));
             }
         }
 
-        [Fact]
+        [Test]
         public void ReplaceOpenCloseTagWithTextBlocksEditable()
         {
             using (var initialDocument = new DocxDocument(Resources.WithMainContentTag))
@@ -79,11 +82,11 @@
                 var content = new[] { new TextBlock("Контент документа") };
                 initialDocument.Replace("MAIN_CONTENT", content);
 
-                Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expectedDocument, initialDocument));
             }
         }
 
-        [Fact]
+        [Test]
         public void InsertTagContentToOpenCloseTag()
         {
             using (var initialDocument = new DocxDocument(Resources.WithMainContentTag))
@@ -92,22 +95,26 @@
                 var content = new[] { new TextBlock("Контент документа") };
                 initialDocument.InsertTagContent("MAIN_CONTENT", content);
 
-                Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expectedDocument, initialDocument));
             }
         }
 
-        [Fact]
+        [Test]
         public void UnprotectRemovesWrightProtectionFromFile()
         {
             using (var @protected = new DocxDocument(Resources.Protected))
             using (var @unprotected = new DocxDocument(Resources.Unprotected))
             {
                 @protected.Unprotect();
-            	Assert.Equal(@unprotected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml, @protected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml, StringComparer.InvariantCultureIgnoreCase);
+
+                var unprotectedOuterXml = @unprotected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml;
+                var protectedOuterXml = @protected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml;
+
+                Assert.IsTrue(unprotectedOuterXml.Equals(protectedOuterXml, StringComparison.InvariantCultureIgnoreCase));
             }
         }
 
-        [Fact]
+        [Test]
         public void ProtectAddWrightProtectionToFile()
         {
             using (var @protected = new DocxDocument(Resources.Protected))
@@ -115,11 +122,11 @@
             {
                 @unprotected.Protect();
 
-                Assert.Equal(@protected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml, @unprotected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml);
+                Assert.AreEqual(@protected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml, @unprotected.GetWordDocument().MainDocumentPart.DocumentSettingsPart.Settings.OuterXml);
             }
         }
 
-        [Fact]
+        [Test]
         public void SetCustomPropertyToDocument()
         {
             using (var withoutAttributes = new DocxDocument(Resources.DocumentWithoutAttributes))
@@ -129,11 +136,12 @@
 
                 var withoutAttributesOuterXml = withoutAttributes.GetWordDocument().CustomFilePropertiesPart.Properties.Single(x => x.LocalName == "property").OuterXml;
                 var withAttributeOuterXml = withAttribute.GetWordDocument().CustomFilePropertiesPart.Properties.Single(x => x.LocalName == "property").OuterXml;
-                Assert.Equal(withAttributeOuterXml, withoutAttributesOuterXml);
+
+                Assert.AreEqual(withAttributeOuterXml, withoutAttributesOuterXml);
             }
         }
 
-        [Fact]
+        [Test]
         public void SetAndUpdateCustomPropertyToDocument()
         {
             using (var withoutAttributes = new DocxDocument(Resources.DocumentWithoutAttributes))
@@ -144,11 +152,12 @@
 
                 var withoutAttributesOuterXml = withoutAttributes.GetWordDocument().CustomFilePropertiesPart.Properties.Single(x => x.LocalName == "property").OuterXml;
                 var withAttributeOuterXml = withAttribute.GetWordDocument().CustomFilePropertiesPart.Properties.Single(x => x.LocalName == "property").OuterXml;
-                Assert.Equal(withAttributeOuterXml, withoutAttributesOuterXml);
+
+                Assert.AreEqual(withAttributeOuterXml, withoutAttributesOuterXml);
             }
         }
 
-        [Fact]
+        [Test]
         public void SetCustomPropertyToDocumentIfItAlreadyHasProperties()
         {
             using (var withTwoAttributes = new DocxDocument(Resources.DocumentWithTwoAttributes))
@@ -156,26 +165,26 @@
             {
                 withAttribute.SetCustomProperty("customAttributes2", "Working2");
 
-                DocumentFormat.OpenXml.CustomProperties.Properties propertiesWithTwoAttributes = withTwoAttributes.GetWordDocument().CustomFilePropertiesPart.Properties;
-                DocumentFormat.OpenXml.CustomProperties.Properties propertiesWithAttribute = withAttribute.GetWordDocument().CustomFilePropertiesPart.Properties;
+                var propertiesWithTwoAttributes = withTwoAttributes.GetWordDocument().CustomFilePropertiesPart.Properties;
+                var propertiesWithAttribute = withAttribute.GetWordDocument().CustomFilePropertiesPart.Properties;
 
-                Assert.Equal(propertiesWithTwoAttributes.First(x => x.LocalName == "property").OuterXml,
-                             propertiesWithAttribute.First(x => x.LocalName == "property").OuterXml);
-                Assert.Equal(propertiesWithTwoAttributes.Last(x => x.LocalName == "property").OuterXml,
-                             propertiesWithAttribute.Last(x => x.LocalName == "property").OuterXml);
+                Assert.AreEqual(propertiesWithTwoAttributes.First(x => x.LocalName == "property").OuterXml,
+                                propertiesWithAttribute.First(x => x.LocalName == "property").OuterXml);
+                Assert.AreEqual(propertiesWithTwoAttributes.Last(x => x.LocalName == "property").OuterXml,
+                                propertiesWithAttribute.Last(x => x.LocalName == "property").OuterXml);
             }
         }
 
-        [Fact]
+        [Test]
         public void GetCustomPropertyFromDocument()
         {
             using (var docxDocument = new DocxDocument(Resources.DocumentWithAttribute))
             {
-                Assert.Equal("Working", docxDocument.GetCustomProperty("customAttributes"));
+                Assert.AreEqual("Working", docxDocument.GetCustomProperty("customAttributes"));
             }
         }
 
-        [Fact]
+        [Test]
         public void GetCustomPropertyFromDocumentReturnNullIfItDoesNotExists()
         {
             using (var docxDocument = new DocxDocument(Resources.DocumentWithoutAttributes))
@@ -184,7 +193,7 @@
             }
         }
 
-        [Fact]
+        [Test]
         public void AppendParagraphAddsNewParagraphToTheEndOfDocument()
         {
             using (var expected = new DocxDocument(Resources.DocumentWithAddedParagraph))
@@ -192,12 +201,12 @@
             {
                 document.AppendParagraph("New paragraph content");
 
-                Assert.Equal(GetParagraphs(expected).Count(), GetParagraphs(document).Count());
-                Assert.Equal(GetParagraphs(expected).Last().InnerText, GetParagraphs(document).Last().InnerText);
+                Assert.AreEqual(GetParagraphs(expected).Count(), GetParagraphs(document).Count());
+                Assert.AreEqual(GetParagraphs(expected).Last().InnerText, GetParagraphs(document).Last().InnerText);
             }
         }
 
-        [Fact]
+        [Test]
         public void AppendHiddenParagraph()
         {
             using (var expected = new DocxDocument(Resources.DocumentWithAddedParagraph))
@@ -208,12 +217,12 @@
                 document.AppendParagraph("New paragraph content", false);
 
             	var paragraphs = GetParagraphs(document);
-            	Assert.Equal(paragraphsCount + 1, paragraphs.Count);
-				Assert.Equal(GetParagraphs(expected).Last().InnerXml, paragraphs.Last().InnerXml);
+            	Assert.AreEqual(paragraphsCount + 1, paragraphs.Count);
+				Assert.AreEqual(GetParagraphs(expected).Last().InnerXml, paragraphs.Last().InnerXml);
             }
         }
 
-        [Fact]
+        [Test]
         public void AppendReplacementOpenCloseTagAddsTagsForReplacementsToTheEndOfTheDocument()
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
@@ -224,13 +233,13 @@
 
                 var paragraphs = GetParagraphs(document);
 
-                Assert.Equal("{/Test}", paragraphs.Last().InnerText);
-                Assert.Equal("{Test}", paragraphs.Skip(paragraphs.Count - 2).First().InnerText);
-                Assert.Equal(initialCount + 2, paragraphs.Count);
+                Assert.AreEqual("{/Test}", paragraphs.Last().InnerText);
+                Assert.AreEqual("{Test}", paragraphs.Skip(paragraphs.Count - 2).First().InnerText);
+                Assert.AreEqual(initialCount + 2, paragraphs.Count);
             }
         }
 
-        [Fact]
+        [Test]
         public void AppendSingleReplacementTagAddsTagForReplacementToTheEndOfTheDocument()
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
@@ -241,12 +250,12 @@
 
                 var paragraphs = GetParagraphs(document);
 
-                Assert.Equal("{{Test}}", paragraphs.Last().InnerText);
-                Assert.Equal(initialCount + 1, paragraphs.Count);
+                Assert.AreEqual("{{Test}}", paragraphs.Last().InnerText);
+                Assert.AreEqual(initialCount + 1, paragraphs.Count);
             }
         }
 
-        [Fact]
+        [Test]
         public void AppendHiddenSingleReplacementTagAddsTagForReplacementToTheEndOfTheDocument()
         {
             using (var document = new DocxDocument(Resources.DocumentWithoutParagraph))
@@ -258,9 +267,9 @@
                 var paragraphs = GetParagraphs(document);
 
                 var insertedParagraph = paragraphs.Last();
-                Assert.Equal("{{Test}}", insertedParagraph.InnerText);
-                Assert.NotEmpty(insertedParagraph.ParagraphProperties);
-                Assert.Equal(initialCount + 1, paragraphs.Count);
+                Assert.AreEqual("{{Test}}", insertedParagraph.InnerText);
+                Assert.IsNotEmpty(insertedParagraph.ParagraphProperties);
+                Assert.AreEqual(initialCount + 1, paragraphs.Count);
             }
         }
 
@@ -269,51 +278,55 @@
         	return document.GetWordDocument().MainDocumentPart.Document.Descendants().OfType<Paragraph>().ToArray();
         }
 
-        [Fact]
+        [Test]
         public void HideContentInTag()
         {
             using (var initialDocument = new DocxDocument(Resources.DocumentWithVisibilityContentInTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithHideContentInTag))
             {
                 initialDocument.SetTagVisibility("Tag", false);
-                Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
+
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expectedDocument, initialDocument));
             }
         }
 
-        [Fact]
+        [Test]
         public void VisibilityContentInTag()
         {
             using (var initialDocument = new DocxDocument(Resources.DocumentWithHideContentInTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithVisibilityContentInTag))
             {
                 initialDocument.SetTagVisibility("Tag", true);
-                Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
+
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expectedDocument, initialDocument));
             }
         }
 
-        [Fact]
+        [Test]
         public void HidePlaceholderIfHideContentInTag()
         {
             using (var initialDocument = new DocxDocument(Resources.DocumentWithHideContentInPlaceholderInTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithVisibilityContentInPlaceholderInTag))
             {
                 initialDocument.SetTagVisibility("Tag", true);
-                Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
+
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expectedDocument, initialDocument));
             }
         }  
         
-        [Fact]
+        [Test]
         public void NotVisibilityContentIfDocumentWithContentTypeTag()
         {
             using (var initialDocument = new DocxDocument(Resources.DocumentWithContentTypeTag))
             using (var expectedDocument = new DocxDocument(Resources.DocumentWithContentTypeTag))
             {
                 initialDocument.SetTagVisibility("Tag", true);
-                Assert.Equal(expectedDocument, initialDocument, new DocxDocumentEqualityComparer());
+
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expectedDocument, initialDocument));
             }
         }
 
-    	[Fact]
+    	[Test]
     	public void CanCheckFieldAvailabilityUsingItsName()
     	{
 			using (var document = new DocxDocument(Resources.WithSdtElements))
@@ -326,7 +339,7 @@
 			}
     	}
 		
-		[Fact]
+		[Test]
     	public void CanCheckFieldAvailabilityUsingItsTag()
     	{
 			using (var document = new DocxDocument(Resources.WithSdtElements))
@@ -339,16 +352,16 @@
 			}
     	}
 
-		[Fact]
+		[Test]
     	public void CanCorrectlyCountAllFieldsInDocument()
     	{
 			using (var document = new DocxDocument(Resources.WithSdtElements))
 			{
-				Assert.Equal(2, document.Fields.Count());
+				Assert.AreEqual(2, document.Fields.Count());
 			}
     	}
 
-		[Fact]
+		[Test]
     	public void CanUnprotectNewDocument()
     	{
     		using (var document = new DocxDocument())
@@ -357,7 +370,7 @@
     		}
     	}
 
-		[Fact]
+		[Test]
     	public void CanProtectNewDocument()
     	{
     		using (var document = new DocxDocument())
@@ -366,7 +379,7 @@
     		}
     	}
 
-		[Fact]
+		[Test]
 		public void CanFindTagIfSdtElementHasNoSdtAlias()
 		{
 			using (var document = new DocxDocument(Resources.SdtElementWithoutSdtAlias))

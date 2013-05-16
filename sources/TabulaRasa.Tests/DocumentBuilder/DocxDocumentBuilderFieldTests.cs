@@ -1,14 +1,15 @@
 ﻿namespace TabulaRasa.Tests.DocumentBuilder
 {
     using EqualityComparers;
-    using TabulaRasa.Tests.Properties;
-    using Xunit;
+    using NUnit.Framework;
+    using Properties;
     using TabulaRasa.DocumentBuilder;
-    using TabulaRasa.MetaObjects;
+    using MetaObjects;
 
+    [TestFixture]
     public class DocxDocumentBuilderFieldTests
 	{
-		[Fact]
+		[Test]
 		public void CanSetContentToBlockFieldConsistingOfTwoParagraphs()
 		{
 			using (var expected = new DocxDocument(Resources.WithTwoParagraphsInBlockField))
@@ -18,11 +19,11 @@
 
 				builder.BlockField("BlockField", x => x.Paragraph("Первый").Paragraph("Второй"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expected, document));
 			}
 		}
 		
-		[Fact]
+		[Test]
 		public void CanSetContentToInlineFieldConsistingOfTwoRuns()
 		{
 			using (var expected = new DocxDocument(Resources.WithTwoRunsInInlineField))
@@ -32,11 +33,11 @@
 
 				builder.InlineField("InlineField", x => x.Text("Первый").Text("Второй"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expected, document));
 			}
 		}
 
-		[Fact]
+		[Test]
 		public void PropertiesAppliedToBlockFieldShouldPersistAfterSettingContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithStyledSdtElementsContentInserted))
@@ -46,11 +47,11 @@
 
 				builder.BlockField("BlockField", x => x.Paragraph("Первый").Paragraph("Второй"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expected, document));
 			}			
 		}
 		
-		[Fact]
+		[Test]
 		public void PropertiesAppliedToInlineFieldShouldPersistAfterSettingContent()
 		{
 			using (var expected = new DocxDocument(Resources.WithStyledInlineSdtElementContentInserted))
@@ -60,11 +61,11 @@
 
 				builder.InlineField("InlineField", x => x.Text("Первый").Text("Второй"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expected, document));
 			}			
 		}
 		
-        [Fact]
+        [Test]
 		public void PropertiesAppliedToInlineFieldInHeadersAndFooters()
         {
             using (var expected = new DocxDocument(Resources.FieldsInHeadersAndFootersReplaced))
@@ -74,7 +75,7 @@
 
                 builder.InlineField("Signer.ShortNameThisOrSubstitute", x => x.Text("Первый").Text("Второй"));
 
-				Assert.Equal(expected, document, new DocxDocumentEqualityComparer());
+                Assert.IsTrue(new DocxDocumentEqualityComparer().Equals(expected, document));
 			}			
 		}
 	}

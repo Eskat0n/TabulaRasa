@@ -1,14 +1,16 @@
 namespace TabulaRasa.Tests.DocumentBuilder
 {
     using System.IO;
-    using TabulaRasa.Tests.Properties;
-    using Xunit;
+    using NUnit.Framework;
+    using Properties;
     using TabulaRasa.DocumentBuilder;
-    using TabulaRasa.MetaObjects;
+    using MetaObjects;
 
+    [TestFixture]
+    [Ignore("Test incomplete")]
     public class DocxDocumentBuilderMediaTests
     {
-        [Fact]
+        [Test]
         public void CanInsertJpegImageIntoParagraph()
         {
             using (var expected = new DocxDocument(Resources.WithMainContentTag))
@@ -18,8 +20,7 @@ namespace TabulaRasa.Tests.DocumentBuilder
 
                 var content = File.ReadAllBytes("Resources/Images/apple.jpg");
 			    builder
-			        .Tag("MAIN_CONTENT",
-			             x => x.Paragraph(z => z.Image(content, "image/jpeg")));
+                    .Tag("MAIN_CONTENT", x => x.Paragraph(z => z.Image(content, "image/jpeg")));
 
                 SaveDocxFile(document, "WithImageInserted");
 			}
